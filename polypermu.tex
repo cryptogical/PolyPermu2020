@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage[francais]{babel}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{vmargin}
+\usepackage{xcolor}
+
+\title{Polynômes de Permutations}
+\author{PIARD A. - JACQUET R. - CARVAILLO T.}
+\date{\today}
+
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\theauthor}
+\lhead{\thetitle}
+\cfoot{\thepage}
+\def\dotfill#1{\cleaders\hbox to #1{.}\hfill}
+\newcommand\dotline[2][.5em]{\leavevmode\hbox to #2{\dotfill{#1}\hfil}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+	\centering
+    \vspace*{0.5 cm}
+    \textsc{\LARGE Projet de Recherche . 2020-2021}\\[1.0 cm]
+    \dotline[15pt]{15cm}\\
+	\includegraphics[scale = 2.2]{logo.png}
+	\dotline[15pt]{15cm}\\
+	\vspace{1.5cm}
+	\textsc{\Large Faculté des Sciences et Techniques}\\
+	\textsc{\large Master 1 - Maths. CRYPTIS}\\[1.0 cm]
+	\rule{\linewidth}{0.2 mm} \\[0.4 cm]
+	{ \huge \bfseries \color{blue} \thetitle}\\
+	\rule{\linewidth}{0.2 mm} \\[1.5 cm]
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{A l'attention de :}\\
+			M. NECER\\
+			\phantom{a}\\
+			\phantom{a}\\
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+    	\begin{flushright} \large
+		\emph{Rédigé par :}\\
+		PIARD A.\\
+		JACQUET R.\\
+		CARVAILLO T.\\
+		\end{flushright}
+	\end{minipage}\\[2 cm]
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Blablabla}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a nulla cursus, tristique odio ut, molestie velit. Vestibulum suscipit quam porta, luctus felis eget, pharetra ipsum. Praesent eleifend, augue ac posuere convallis, lorem arcu interdum lectus, congue feugiat justo ipsum sit amet dui. Vivamus eu ligula nec nulla iaculis blandit ut non quam. Morbi faucibus lacinia est sit amet fringilla. Etiam fringilla velit metus, vel pellentesque dolor ultrices quis. Donec quis ante aliquet, viverra sapien vitae, fermentum sem. Praesent molestie tincidunt turpis eget interdum. Nulla porttitor maximus nisl. 
+\subsection{Blobloblo}
+Mauris ut pulvinar libero. Sed ut orci risus. Sed viverra hendrerit luctus. Duis ex neque, congue at est vel, dictum rutrum ante. Morbi diam urna, commodo vulputate facilisis in, semper ac felis. Maecenas ut scelerisque nunc, convallis venenatis neque. Ut faucibus augue ac enim auctor, non rutrum quam blandit. Fusce bibendum, lacus at semper dignissim, quam ipsum sagittis quam, at porttitor enim lacus in orci. Sed tempor at nunc ut scelerisque. Curabitur dictum erat eget lacus cursus, vitae vehicula tellus molestie. Maecenas magna risus, interdum et dictum quis, efficitur dignissim felis. Cras ac justo gravida, imperdiet velit vitae, sollicitudin lacus. 
+\subsubsection{Bliblibli}
+Vestibulum porta lorem lacus, at vestibulum dui finibus ac. Nulla at sodales enim. Maecenas ut eros vehicula, pretium orci eu, dapibus metus. Suspendisse fermentum condimentum venenatis. Ut gravida ipsum ac pulvinar condimentum. Donec nec tempor arcu. Aliquam at fringilla dui. Pellentesque velit neque, malesuada at accumsan tempor, pulvinar ac est. 
+
+\end{document}
