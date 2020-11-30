@@ -3,13 +3,16 @@
 \usepackage{natbib}
 \usepackage{url}
 \usepackage[utf8x]{inputenc}
-\usepackage{amsmath}
 \usepackage{graphicx}
 \graphicspath{{images/}}
 \usepackage{parskip}
 \usepackage{fancyhdr}
 \usepackage{vmargin}
 \usepackage{xcolor}
+\usepackage{bbm}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+
 
 \title{Polynômes de Permutations}
 \author{PIARD A. - JACQUET R. - CARVAILLO T.}
@@ -28,6 +31,25 @@
 \cfoot{\thepage}
 \def\dotfill#1{\cleaders\hbox to #1{.}\hfill}
 \newcommand\dotline[2][.5em]{\leavevmode\hbox to #2{\dotfill{#1}\hfil}}
+
+\newcommand{\M}{\mathbbm{M}}
+\newcommand{\N}{\mathbbm{N}}
+\newcommand{\Z}{\mathbbm{Z}}
+\newcommand{\Q}{\mathbbm{Q}}
+\newcommand{\R}{\mathbbm{R}}
+\newcommand{\C}{\mathbbm{C}}
+\newcommand{\G}{\mathbbm{G}}
+\newcommand{\K}{\mathbbm{K}}
+\newcommand{\F}{\mathbbm{F}}
+
+\newtheorem{theorem}{Théorème}
+\newtheorem{corollaire}{Corollaire}
+\newtheorem{lemma}{Lemme}
+\newtheorem{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Définition}
+\newtheorem{example}{Exemple}
+\newtheorem{exo}{Exercice}	
 
 \begin{document}
 
@@ -71,11 +93,72 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Blablabla}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a nulla cursus, tristique odio ut, molestie velit. Vestibulum suscipit quam porta, luctus felis eget, pharetra ipsum. Praesent eleifend, augue ac posuere convallis, lorem arcu interdum lectus, congue feugiat justo ipsum sit amet dui. Vivamus eu ligula nec nulla iaculis blandit ut non quam. Morbi faucibus lacinia est sit amet fringilla. Etiam fringilla velit metus, vel pellentesque dolor ultrices quis. Donec quis ante aliquet, viverra sapien vitae, fermentum sem. Praesent molestie tincidunt turpis eget interdum. Nulla porttitor maximus nisl. 
-\subsection{Blobloblo}
-Mauris ut pulvinar libero. Sed ut orci risus. Sed viverra hendrerit luctus. Duis ex neque, congue at est vel, dictum rutrum ante. Morbi diam urna, commodo vulputate facilisis in, semper ac felis. Maecenas ut scelerisque nunc, convallis venenatis neque. Ut faucibus augue ac enim auctor, non rutrum quam blandit. Fusce bibendum, lacus at semper dignissim, quam ipsum sagittis quam, at porttitor enim lacus in orci. Sed tempor at nunc ut scelerisque. Curabitur dictum erat eget lacus cursus, vitae vehicula tellus molestie. Maecenas magna risus, interdum et dictum quis, efficitur dignissim felis. Cras ac justo gravida, imperdiet velit vitae, sollicitudin lacus. 
-\subsubsection{Bliblibli}
-Vestibulum porta lorem lacus, at vestibulum dui finibus ac. Nulla at sodales enim. Maecenas ut eros vehicula, pretium orci eu, dapibus metus. Suspendisse fermentum condimentum venenatis. Ut gravida ipsum ac pulvinar condimentum. Donec nec tempor arcu. Aliquam at fringilla dui. Pellentesque velit neque, malesuada at accumsan tempor, pulvinar ac est. 
+\section{Construction des Corps Finis}
+\subsection{Existence et unicité}
+Soit $\K$ un corps quelconque et soit $\varphi$ le morphisme suivant :
+\begin{center}
+$
+\begin{array}{l|rcl}
+
+\varphi : & \Z & \longrightarrow & \K \\
+    & n & \longmapsto & n\cdot 1_{\K}
+\end{array}
+$
+\end{center}
+
+\begin{definition}
+Soit $\K$ un corps quelconque. Toute partie $\mathcal{P}$ de $\K$ vérifiant :
+\begin{itemize}
+\item $\mathcal{P}$ est non vide et est une partie stable pour $+$ et $\times$ de $\K$ et $\mathcal{P}$ muni des lois induites par celles de $\K$ est lui-même un corps.
+\item $\mathcal{P}$ est un sous anneau de $\K$, $1 \in \mathcal{P}$ et $(p \in \mathcal{P}^{*} = \mathcal{P} - \{0 \} \Rightarrow p^{-1} \in \mathcal{P}^{*})$.
+\item $\mathcal{P}$ est un sous groupe de $(\K, +)$ et $\mathcal{P}^{*}$ muni de la loi $\times$ est un sous groupe multiplicatif $(\K^{*}, \times)$.
+\end{itemize}
+Une telle partie $\mathcal{P}$ est appelée sous-corps de $\K$.
+\end{definition}
+
+\begin{definition}
+Soit $\K$ un corps quelconque.
+\begin{itemize}
+\item $\K$ est dit premier s'il ne contient aucun sous-corps strict.
+\item Si $\K$ est un corps, le sous-corps de $\K$ engendré par $1_{K}$ est un corps premier, c'est le sous-corps premier de $\K$.
+\end{itemize}
+\end{definition}
+
+Le noyau de ce morphisme est un idéal de $\Z$ et donc de la forme $k\Z$ pour $k \in \Z$. Par le premier théorème d'isomorphisme on Im$(\varphi) \cong \Z / n \Z$. Par intégrité de $\Z / n \Z$ alors $n=0$ ou alors $n$ est un nombre premier. Si $n=0$ alors $\varphi$ est injective et donc le sous-corps premier de $\K$ est isomorphe à $\Q$. Si $n \neq 0$ alors le sous-corps premier est isomorphe à $\Z / n \Z$ et $n$ s'appelle la caractéristique de $\K$. 
+%On désignera dorénavant par $\K$ un corps fini de caractéristique $p$ avec $p$ un nombre premier.
+
+\begin{definition}
+Soient $L$ et $\K$ deux corps. Si $L/K$ est une extension de corps alors $L$ est un espace vectoriel sur $K$, où l'addition vectorielle est l'addiction dans $L$ et la multiplication par un scalaire $K \times L$ est la restriction à $K \times L$ de la multiplication dans $L$. La dimension du $K$-espace vectoriel $L$ est appelée le degré de l'extension et est notée $[L:K]$.
+\end{definition}
+\begin{definition}
+Soit $P$ un polynôme sur un corps $K$. On appelle corps de décomposition de $P$ sur $K$ une extension $L$ de $K$ telle que :
+\begin{itemize}
+\item dans $L[X]$, $P$ est produit de facteurs de degré 1
+\item les racines de $P$ engendrent $L$
+\end{itemize}
+\end{definition}
+\begin{prop}
+Soit $P$ un polynôme sur un corps $K$. Alors $P$ admet un corps de décomposition, unique à $K$-isomorphisme près.
+\end{prop}
+
+\begin{prop}
+\begin{itemize}
+\item Le cardinal de $\K$ est une puissance de $p$.
+\item Réciproquement, pour tout $n \in \N^{*}$, il existe un corps $\K$ de cardinal $p^n$. En outre $\K$ est unique à isomorphisme près.
+\end{itemize}
+\end{prop}
+\begin{proof}
+\begin{itemize}
+\item Puisque le sous-corps premier de $\K$ est isomorphe à $\Z / p \Z$ alors $\K$ est naturellement muni d'une structure de $\Z / p \Z$-espace vectoriel. On note $n = [ \K : \Z / p \Z ]$ alors $\# \K = \# (\Z / p \Z)^n = p^n$.
+\item Soit $n \in \N^{*}$. Si $\K$ est un corps fini de cardinal $p^n$ alors $\K$ est le corps de décomposition de $X^{p^n} - X$ sur $\Z / p \Z$ : en effet, puisque pour tout $x \in \K$, $x$ est racine de $X^{p^n} - X$ donc $X^{p^n} - X$ possède ses $p^n$ racines dans $\K$.\\
+Réciproquement, soit $K$ le corps de décomposition de $X^{p^n}$ sur $\Z / p \Z$. Soit $\mathcal{K}$ l'ensemble des éléments de $K$ qui sont racines de $X^{p^n} - X$. On vérifie que $\mathcal{K}$ est un sous-corps de $K$. Puisque $1_K \in \mathcal{K}$, et si $x,y \in \mathcal{K}$ alors $x^{p^n}= x$ et $y^{p^n} = y$, donc $(x+y)^{p^n} x + y$ et $(xy^{-1})^{p^n} = xy^{-1}$, si bien que $x + y, xy^{-1} \in \mathcal{K}$. Par ailleurs la dérivée formelle, $(X^{p^n} - X)' = -1$ est premier avec $X^{p^n} - X$ donc les racines de $X^{p^n} - X$ sont simples. On en déduit alors que $\# \mathcal{K} = p^n$. Finalement $K = \mathcal{K}$ est un corps à $p^n$ éléments et il est unique à isomorphisme près en vertu de l'unicité du corps de décomposition de $X^{p^n} - X$ sur $\Z / p \Z$.
+\end{itemize}
+\end{proof}
+On notera dorénavant $\F_q$ \textbf{le} corps fini à $q = p^n$ éléments.
+\subsection{Construction}
+Soit $P \in \F_p [X]$ un polynôme irréductible sur $\F_p$. On note $n = $ deg$(P)$. Puisque $P$ est irréductible, l'idéal $(P)$ est donc maximal. Le quotient $\F_p [X] / (P)$ est le corps de rupture de $P$ sur $\F_p$ de cardinal $p^n$. Afin de montrer que l'on peut toujours construire les corps finis nous allons montrer le résultat suivant :
+
+%NOTFINISHED
+\section{Polynômes de permutations}
 
 \end{document}
