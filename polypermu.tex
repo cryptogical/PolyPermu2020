@@ -1,3 +1,4 @@
+  
 \documentclass[12pt]{article}
 \usepackage[francais]{babel}
 \usepackage{natbib}
@@ -49,6 +50,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Définition}
 \newtheorem{example}{Exemple}
+\newtheorem*{examples}{Exemples}
 \newtheorem{exo}{Exercice}	
 
 \begin{document}
@@ -92,20 +94,21 @@
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\section*{Introduction}
+\vfill \eject
 \section{Construction des Corps Finis}
 \subsection{Existence et unicité}
+\vspace{12pt}
 Soit $\K$ un corps quelconque et soit $\varphi$ le morphisme suivant :
 \begin{center}
 $
 \begin{array}{l|rcl}
-
 \varphi : & \Z & \longrightarrow & \K \\
     & n & \longmapsto & n\cdot 1_{\K}
 \end{array}
 $
 \end{center}
-
+\vspace{12pt}
 \begin{definition}
 Soit $\K$ un corps quelconque. Toute partie $\mathcal{P}$ de $\K$ vérifiant :
 \begin{itemize}
@@ -113,9 +116,9 @@ Soit $\K$ un corps quelconque. Toute partie $\mathcal{P}$ de $\K$ vérifiant :
 \item $\mathcal{P}$ est un sous anneau de $\K$, $1 \in \mathcal{P}$ et $(p \in \mathcal{P}^{*} = \mathcal{P} - \{0 \} \Rightarrow p^{-1} \in \mathcal{P}^{*})$.
 \item $\mathcal{P}$ est un sous groupe de $(\K, +)$ et $\mathcal{P}^{*}$ muni de la loi $\times$ est un sous groupe multiplicatif $(\K^{*}, \times)$.
 \end{itemize}
-Une telle partie $\mathcal{P}$ est appelée sous-corps de $\K$.
+est appelée sous-corps de $\K$.
 \end{definition}
-
+\vspace{12pt}
 \begin{definition}
 Soit $\K$ un corps quelconque.
 \begin{itemize}
@@ -123,31 +126,36 @@ Soit $\K$ un corps quelconque.
 \item Si $\K$ est un corps, le sous-corps de $\K$ engendré par $1_{K}$ est un corps premier, c'est le sous-corps premier de $\K$.
 \end{itemize}
 \end{definition}
-
-Le noyau de ce morphisme est un idéal de $\Z$ et donc de la forme $k\Z$ pour $k \in \Z$. Par le premier théorème d'isomorphisme on Im$(\varphi) \cong \Z / n \Z$. Par intégrité de $\Z / n \Z$ alors $n=0$ ou alors $n$ est un nombre premier. Si $n=0$ alors $\varphi$ est injective et donc le sous-corps premier de $\K$ est isomorphe à $\Q$. Si $n \neq 0$ alors le sous-corps premier est isomorphe à $\Z / n \Z$ et $n$ s'appelle la caractéristique de $\K$. 
+\vspace{12pt}
+Le noyau de ce morphisme est un idéal de $\Z$ et donc de la forme $k\Z$ pour $k \in \Z$. Par le premier théorème d'isomorphisme on a Im$(\varphi) \cong \Z / n \Z$. Par intégrité de $\Z / n \Z$, $n=0$ ou $n$ est un nombre premier. Si $n=0$ alors $\varphi$ est injective et donc le sous-corps premier de $\K$ est isomorphe à $\Q$. Si $n \neq 0$ alors le sous-corps premier est isomorphe à $\Z / n \Z$ et $n$ s'appelle la caractéristique de $\K$. 
 %On désignera dorénavant par $\K$ un corps fini de caractéristique $p$ avec $p$ un nombre premier.
+\\
 
 \begin{definition}
-Soient $L$ et $\K$ deux corps. Si $L/K$ est une extension de corps alors $L$ est un espace vectoriel sur $K$, où l'addition vectorielle est l'addiction dans $L$ et la multiplication par un scalaire $K \times L$ est la restriction à $K \times L$ de la multiplication dans $L$. La dimension du $K$-espace vectoriel $L$ est appelée le degré de l'extension et est notée $[L:K]$.
+Soient $L$ et $\K$ deux corps. Si $L/K$ est une extension de corps alors $L$ est un espace vectoriel sur $K$, où l'addition vectorielle est l'addition dans $L$ et la multiplication par un scalaire $K \times L$ est la restriction à $K \times L$ de la multiplication dans $L$. La dimension du $K$-espace vectoriel $L$ est appelée le degré de l'extension et est notée $[L:K]$.
 \end{definition}
+\vspace{12pt}
 \begin{definition}
 Soit $P$ un polynôme sur un corps $K$. On appelle corps de décomposition de $P$ sur $K$ une extension $L$ de $K$ telle que :
 \begin{itemize}
-\item dans $L[X]$, $P$ est produit de facteurs de degré 1
-\item les racines de $P$ engendrent $L$
+\item dans $L[X]$, $P$ est produit de facteurs de degré $1$,
+\item les racines de $P$ engendrent $L$.
 \end{itemize}
 \end{definition}
+\vspace{12pt}
 \begin{prop}
 Soit $P$ un polynôme sur un corps $K$. Alors $P$ admet un corps de décomposition, unique à $K$-isomorphisme près.
 \end{prop}
-
-\begin{prop}
+\vspace{30pt}
+\begin{prop}\hspace{12pt}
 \begin{itemize}
 \item Le cardinal de $\K$ est une puissance de $p$.
 \item Réciproquement, pour tout $n \in \N^{*}$, il existe un corps $\K$ de cardinal $p^n$. En outre $\K$ est unique à isomorphisme près.
+%On appelle corps de décomposition de P, la plus petite extension de K contenant toutes les racines de P (item 1)
 \end{itemize}
 \end{prop}
-\begin{proof}
+%\vspace{12pt}
+\begin{proof}\hspace{12pt}
 \begin{itemize}
 \item Puisque le sous-corps premier de $\K$ est isomorphe à $\Z / p \Z$ alors $\K$ est naturellement muni d'une structure de $\Z / p \Z$-espace vectoriel. On note $n = [ \K : \Z / p \Z ]$ alors $\# \K = \# (\Z / p \Z)^n = p^n$.
 \item Soit $n \in \N^{*}$. Si $\K$ est un corps fini de cardinal $p^n$ alors $\K$ est le corps de décomposition de $X^{p^n} - X$ sur $\Z / p \Z$ : en effet, puisque pour tout $x \in \K$, $x$ est racine de $X^{p^n} - X$ donc $X^{p^n} - X$ possède ses $p^n$ racines dans $\K$.\\
@@ -156,9 +164,49 @@ Réciproquement, soit $K$ le corps de décomposition de $X^{p^n}$ sur $\Z / p \Z
 \end{proof}
 On notera dorénavant $\F_q$ \textbf{le} corps fini à $q = p^n$ éléments.
 \subsection{Construction}
-Soit $P \in \F_p [X]$ un polynôme irréductible sur $\F_p$. On note $n = $ deg$(P)$. Puisque $P$ est irréductible, l'idéal $(P)$ est donc maximal. Le quotient $\F_p [X] / (P)$ est le corps de rupture de $P$ sur $\F_p$ de cardinal $p^n$. Afin de montrer que l'on peut toujours construire les corps finis nous allons montrer le résultat suivant :
+Soit $P \in \F_p [X]$ un polynôme irréductible sur $\F_p$. On note $n = $ deg$(P)$. Puisque $P$ est irréductible, l'idéal $(P)$ est donc maximal%est-ce qu'on le montre ?
+. Le quotient $\F_p [X] / (P)$ est le corps de rupture de $P$ sur $\F_p$ de cardinal $p^n$. Afin de montrer que l'on peut toujours construire les corps finis nous allons montrer le résultat suivant :
 
 %NOTFINISHED
 \section{Polynômes de permutations}
+Rappelons d'abord ce qu'est un polynôme dans le cas général.\\ %Est-ce qu'on n'en parlerait pas dans la première partie ? Vu qu'on évoque les polynômes irréductibles dès la partie 1
+\begin{definition} %Si plus tard on parle de polynôme à plusieurs indéterminées, on fera une définition à ce moment là
+Soit $K$ un ensemble non vide. On appelle polynôme en l'indéterminée $X$, toute application 
+\begin{eqnarray}
+P : & K & \longrightarrow K  \nonumber \\ 
+& X & \longmapsto  \sum_{i=0}^n a_iX^i,  a_i \in K. \nonumber
+\end{eqnarray}
+\end{definition}
 
+\begin{definition}
+Soit $K$ un ensemble fini de cardinal $n\in \mathbb{N}^*$. Une permutation de $K$ est une bijection de $K$ dans $K$.
+\end{definition}
+\vspace{12pt}
+\begin{definition}
+Soit $P$ un polynôme de $\F_q [X]$. $P$ est appelé \textbf{polynôme de permutation} de $\F_q$ si et seulement si la fonction associée
+\begin{eqnarray}
+P : &\F _q& \longrightarrow \F _q \nonumber \\
+& x & \longmapsto P(x) \nonumber
+\end{eqnarray}
+est une permutation, c'est à dire est bijective.
+\end{definition}
+\vspace{24pt}
+\begin{examples}
+	\begin{itemize}
+On se place dans $\F_5$.\\
+\item[1.] Le polynôme $X^3$ est un polynôme de permutation. En effet, l'application 
+		\begin{eqnarray}
+P : &\F _5& \longrightarrow \F _5 \nonumber \\
+& X & \longmapsto X^3 \nonumber
+		\end{eqnarray}
+est clairement bijective.\\
+\item[2.] Le polynôme $X^2$ n'est pas un polynôme de permutation. Considérons l'application 
+		\begin{eqnarray}
+P : &\F _5& \longrightarrow \F _5 \nonumber \\
+& X & \longmapsto X^2. \nonumber
+		\end{eqnarray}
+%Cette application n'est pas injective. En effet, soit $(X,Y) \in \F_5$.$P(X)=P(Y)$ si et seulement si $X^2=Y^2$. En prenant $X=3$ et $Y=-2
+Il faut montrer que cette application n'est pas bijective.
+	\end{itemize}
+\end{examples}
 \end{document}
