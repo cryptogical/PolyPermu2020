@@ -52,6 +52,7 @@
 \newtheorem{example}{Exemple}
 \newtheorem*{examples}{Exemples}
 \newtheorem{exo}{Exercice}	
+\newtheorem{coro}{Corollaire}	
 
 \begin{document}
 
@@ -127,7 +128,7 @@ Soit $\K$ un corps quelconque.
 \end{itemize}
 \end{definition}
 \vspace{12pt}
-Le noyau de ce morphisme est un idéal de $\Z$ et donc de la forme $k\Z$ pour $k \in \Z$. Par le premier théorème d'isomorphisme on a Im$(\varphi) \cong \Z / n \Z$. Par intégrité de $\Z / n \Z$, $n=0$ ou $n$ est un nombre premier. Si $n=0$ alors $\varphi$ est injective et donc le sous-corps premier de $\K$ est isomorphe à $\Q$. Si $n \neq 0$ alors le sous-corps premier est isomorphe à $\Z / n \Z$ et $n$ s'appelle la caractéristique de $\K$. 
+Le noyau du morphisme $\varphi$ est un idéal de $\Z$ et donc de la forme $k\Z$ pour $k \in \Z$. Par le premier théorème d'isomorphisme on a Im$(\varphi) \cong \Z / n \Z$. Par intégrité de $\Z / n \Z$, $n=0$ où $n$ est un nombre premier. Si $n=0$ alors $\varphi$ est injective et donc le sous-corps premier de $\K$ est isomorphe à $\Q$. Si $n \neq 0$ alors le sous-corps premier est isomorphe à $\Z / n \Z$ et $n$ s'appelle la \textbf{caractéristique} de $\K$. 
 %On désignera dorénavant par $\K$ un corps fini de caractéristique $p$ avec $p$ un nombre premier.
 \\
 
@@ -165,48 +166,106 @@ Réciproquement, soit $K$ le corps de décomposition de $X^{p^n}$ sur $\Z / p \Z
 On notera dorénavant $\F_q$ \textbf{le} corps fini à $q = p^n$ éléments.
 \subsection{Construction}
 Soit $P \in \F_p [X]$ un polynôme irréductible sur $\F_p$. On note $n = $ deg$(P)$. Puisque $P$ est irréductible, l'idéal $(P)$ est donc maximal%est-ce qu'on le montre ?
-. Le quotient $\F_p [X] / (P)$ est le corps de rupture de $P$ sur $\F_p$ de cardinal $p^n$. Afin de montrer que l'on peut toujours construire les corps finis nous allons montrer le résultat suivant :
+. Le quotient $\F_p [X] / (P)$ est le corps de rupture de $P$ sur $\F_p$ de cardinal $p^n$. Afin de montrer que l'on peut toujours construire les corps finis nous allons montrer que pour tout $n \in \N^{*}$ il existe un polynôme irréductible sur $\F_p$ de degré $n$.
 
-%NOTFINISHED
+\begin{prop}
+Soit $n \in \N^{*}$, on définit par
+\begin{center}
+$\mathcal{P} (n,p) = \{ P \in \F_p [X]$, $P$ unitaire , irréductible de degré $n \}$.
+\end{center}
+alors pour tout $n \in \N^{*}$ on a,
+\begin{center}
+$\displaystyle X^{p^n} - X = \prod_{d | n} \prod_{P \in \mathcal{P}(n,p)} P.$
+\end{center}
+\end{prop}
+\begin{proof}
+\begin{itemize}
+\item Soit $P$ un facteur irréductible de $X^{p^n} - X$ sur $\F_p$ de degré $d$. Le corps de rupture de $P$ sur $\F_p$ est de cardinal $p^d$ du corps de décomposition $X^{p^n} - X$ sur $\F_p$, c'est-à-dire $F_{p^n}$, donc $d$ divise $n$.
+\item Réciproquement, on suppose que $d$ divise $n$ et soit $P \in \mathcal{P} (n,p)$. Soit $\alpha$ une racine de $P$ dans le corps de rupture de $P$ sur $\F_p$. Alors par le théorème ? on a $\F_p (\alpha) \simeq \F_{p^d}$. D'où $\alpha$ est racine de $X^{p^n} - X$. Or puisque $P$ est irréductible, alors $P$ est le polynôme minimal de $\alpha$ sur $\F_p$ donc $P$ divise $X^{p^n} - X$. En outre les facteurs irréductible de$X^{p^n} - X$ sur $\F_p$ sont simple puisque $P$ étant le polynôme minimal de $\alpha$ et que $P$ divise $X^{p^n} - X$.
+\end{itemize}
+\end{proof}
+\begin{coro}
+Soit $n \in \N^{*}$, il existe un polynôme irréductible sur $\F_p$ de degré $n$.
+\end{coro}
+\begin{proof}
+En conservant les notations de la proposition précédente, il s'agit de montrer que $\# \mathcal{P} (n,p) > 0$. Pour ce faire on évalue le degré de l'égalité
+\begin{center}
+$\displaystyle X^{p^n} - X = \prod_{d | n} \prod_{P \in \mathcal{P}(n,p)} P.$
+\end{center}
+on a alors
+\begin{center}
+$\displaystyle p^n = \sum_{d | n} d \cdot \# \mathcal{P} (n,p)$
+\end{center}
+On en déduit alors que pour tout $d \in \N^{*}$ on a $p^d \geq d \cdot \# \mathcal{P} (n,p)$, puis,
+\begin{align*}
+\displaystyle
+n \cdot \# \mathcal{P} (n,p) &= p^n - \sum_{d | n , d \neq n} d \cdot \# \mathcal{P} (n,p)\\
+&\geq p^n - \sum_{d | n , d \neq n} p^d\\
+&\geq p^n - \sum_{d =1}^{n-1} p^d\\
+&\geq p^n - p \frac{p^{n-1} - 1}{p-1} > 0
+\end{align*}
+Puisque $n$ est positif alors $\mathcal{P} (n,p) > 0$.
+\end{proof}
 \section{Polynômes de permutations}
 Rappelons d'abord ce qu'est un polynôme dans le cas général.\\ %Est-ce qu'on n'en parlerait pas dans la première partie ? Vu qu'on évoque les polynômes irréductibles dès la partie 1
 \begin{definition} %Si plus tard on parle de polynôme à plusieurs indéterminées, on fera une définition à ce moment là
-Soit $K$ un ensemble non vide. On appelle polynôme en l'indéterminée $X$, toute application 
-\begin{eqnarray}
-P : & K & \longrightarrow K  \nonumber \\ 
-& X & \longmapsto  \sum_{i=0}^n a_iX^i,  a_i \in K. \nonumber
-\end{eqnarray}
+Soit $K$ un ensemble non vide. On appelle polynôme en l'indéterminée $X$, toute application
+\begin{center}
+$
+\begin{array}{l|rcl}
+\displaystyle
+P : & K & \longrightarrow & K \\
+    & X & \longmapsto & \sum_{i=0}^n a_iX^i,  a_i \in K.
+\end{array}
+$
+\end{center}
 \end{definition}
 
 \begin{definition}
 Soit $K$ un ensemble fini de cardinal $n\in \mathbb{N}^*$. Une permutation de $K$ est une bijection de $K$ dans $K$.
 \end{definition}
-\vspace{12pt}
+\pagebreak
 \begin{definition}
 Soit $P$ un polynôme de $\F_q [X]$. $P$ est appelé \textbf{polynôme de permutation} de $\F_q$ si et seulement si la fonction associée
-\begin{eqnarray}
-P : &\F _q& \longrightarrow \F _q \nonumber \\
-& x & \longmapsto P(x) \nonumber
-\end{eqnarray}
-est une permutation, c'est à dire est bijective.
+\begin{center}
+$
+\begin{array}{l|rcl}
+\displaystyle
+P : & \F _q & \longrightarrow & \F _q \\
+    & x & \longmapsto & P(x)
+\end{array}
+$
+\end{center}
+est une permutation, c'est-à-dire est bijective.
 \end{definition}
 \vspace{24pt}
 \begin{examples}
 	\begin{itemize}
 On se place dans $\F_5$.\\
-\item[1.] Le polynôme $X^3$ est un polynôme de permutation. En effet, l'application 
-		\begin{eqnarray}
-P : &\F _5& \longrightarrow \F _5 \nonumber \\
-& X & \longmapsto X^3 \nonumber
-		\end{eqnarray}
+\item[1.] Le polynôme $X^3$ est un polynôme de permutation. En effet, l'application\\
+\begin{center}
+$
+\begin{array}{l|rcl}
+\displaystyle
+P : & \F _5 & \longrightarrow & \F _5 \\
+    & x & \longmapsto & X^3
+\end{array}
+$
+\end{center}
+\vspace{10pt}
 est clairement bijective.\\
-\item[2.] Le polynôme $X^2$ n'est pas un polynôme de permutation. Considérons l'application 
-		\begin{eqnarray}
-P : &\F _5& \longrightarrow \F _5 \nonumber \\
-& X & \longmapsto X^2. \nonumber
-		\end{eqnarray}
-%Cette application n'est pas injective. En effet, soit $(X,Y) \in \F_5$.$P(X)=P(Y)$ si et seulement si $X^2=Y^2$. En prenant $X=3$ et $Y=-2
-Il faut montrer que cette application n'est pas bijective.
+\item[2.] Le polynôme $X^2$ n'est pas un polynôme de permutation. Considérons l'application \\
+\begin{center}
+$
+\begin{array}{l|rcl}
+\displaystyle
+P : & \F _5 & \longrightarrow & \F _5 \\
+    & x & \longmapsto & X^2
+\end{array}
+$
+\end{center}
+\vspace{12pt}
+En effet cette application n'est pas injective. Soient $(X,Y) \in (\F_5 \times \F_5)$. On a $P(X)=P(Y)$ si et seulement si $X^2=Y^2$. En prenant $X=3$ et $Y=-2$ on fausse l'injectivité.
 	\end{itemize}
 \end{examples}
 \end{document}
