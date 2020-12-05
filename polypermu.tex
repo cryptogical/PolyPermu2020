@@ -13,6 +13,7 @@
 \usepackage{bbm}
 \usepackage{amsmath,amssymb}
 \usepackage{amsthm}
+\usepackage{dsfont}
 
 
 \title{Polynômes de Permutations}
@@ -265,7 +266,43 @@ P : & \F _5 & \longrightarrow & \F _5 \\
 $
 \end{center}
 \vspace{12pt}
-En effet cette application n'est pas injective. Soient $(X,Y) \in (\F_5 \times \F_5)$. On a $P(X)=P(Y)$ si et seulement si $X^2=Y^2$. En prenant $X=3$ et $Y=-2$ on fausse l'injectivité.
+En effet cette application n'est pas injective. Soient $(X,Y) \in (\F_5 \times \F_5)$. On a $P(X)=P(Y)$ si et seulement si $X^2=Y^2$. En prenant $X=2$ et $Y=3$ on fausse l'injectivité.
 	\end{itemize}
 \end{examples}
+
+De manière plus générale, nous avons pour $k \in \mathds{N}$
+
+\begin{prop}
+$X^k$ est un polynôme de permutation de $\mathds{F}_q$ si et seulement si $pgcd(k, q-1) = 1$.
+\end{prop}
+
+\begin{proof}
+
+$\Leftarrow$ Supposons que $pcgd(k,q-1)$ = 1:
+\begin{center}
+$
+\begin{array}{l|rcl}
+\displaystyle
+P : & \F _q & \longrightarrow & \F _q \\
+    & x & \longmapsto & P(x)
+\end{array}
+$
+\end{center}
+est une application de corps, donc clairement injective. Montrons la surjectivité.\newline
+$\mathds{F}_q$ étant un corps, on a $\mathds{F}_q^* = \mathds{F}_q^{\times}$, donc $|\mathds{F}_q^*| = q-1$. Soit $\alpha$ un générateur de $\mathds{F}_q^*$. La théorie élémentaire des groupes nous donne $|<\alpha^k>| = \frac{q-1}{pcgd(k,q-1)}$. Et donc par hypothèse, $|<\alpha^k>| =  q-1$.  Donc $P(\alpha)$ engendre $P(\mathds{F}_q^*)$ et par cardinalité nous obtenons la conclusion voulue.\newline
+$\Rightarrow$ Nous allons raisonner par contraposée, i.e. montrer que $pcgd(k,q-1) \ne 1 \Rightarrow$ $X^k$ n'est pas un polynôme de permutation.\newline
+Supposons donc $pcgd(k,q-1) = m$, où $m \in \mathds{N}$, on obtient donc 
+$$
+\left\{
+    \begin{array}{ll}
+        k = k'.m \\
+        q-1 = q'.m
+    \end{array}
+\right.
+$$
+Et par suite, $k  =k'.\frac{q-1}{q}$.\newline
+Donc, $X^k = X^{k'.\frac{q-1}{q}} = (X^{(q-1)})^{\frac{k'}{q'}} = 1$. Donc, $\forall x \in \mathds{F}_q^{\times}$, $P(x) = 1$, l'application associé n'est donc pas bijective, par suite $P$ n'est pas un polynôme de permutation. \newline
+On obtient donc l'équivalence souhaitée.
+\end{proof}
+
 \end{document}
