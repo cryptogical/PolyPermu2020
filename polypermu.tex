@@ -317,17 +317,18 @@ $X^k$ est un polynôme de permutation de $\Fq$ si et seulement si $pgcd(k, q-1) 
 
 \begin{proof}
 
-$\Leftarrow$ Supposons que $pcgd(k,q-1)$ = 1:
+$\Leftarrow$ Supposons que $pcgd(k,q-1)$ = 1.
+Soit
 \begin{center}
 $
 \begin{array}{l|rcl}
 \displaystyle
 P : & \F _q & \longrightarrow & \F _q \\
-    & x & \longmapsto & x^k
+    & x & \longmapsto & P(x)
 \end{array}
 $
 \end{center}
-est un morphisme et par l'hypothèse, on obtient que $0$ a pour seul antécédent 0; ceci nous donne l'injectivité. Montrons la surjectivité.\newline
+Si $pcgd(k,q-1)$, i.e. si $k \nmid q-1$ ou $q-1 \nmid k$ , il est évident que  $x^k \neq 0$ $\forall x \in \Fq \backslash\{0\}$. Donc 0 est le seul antécédent de 0.
 $\Fq$ étant un corps, on a $\Fq^* = \Fq^{\times}$, donc $|\Fq^*| = q-1$. Soit $\alpha$ un générateur de $\Fq^*$. La théorie élémentaire des groupes nous donne $|<\alpha^k>| = \frac{q-1}{pcgd(k,q-1)}$. Et donc par hypothèse, $|<\alpha^k>| =  q-1$.  Donc $P(\alpha)$ engendre $P(\Fq^*)$ et par cardinalité nous obtenons la conclusion voulue.\newline
 $\Rightarrow$ Nous allons raisonner par contraposée, i.e. montrer que $pcgd(k,q-1) \ne 1 \Rightarrow$ $X^k$ n'est pas un polynôme de permutation.\newline
 Supposons donc $pcgd(k,q-1) = m$, où $m \in \mathds{N}$, on obtient donc 
@@ -376,8 +377,10 @@ De manière plus élégante, nous avons
 		 &= (x-d)^{q-1} - 1
 	\end{align*}
 
-En appliquant l'égalité précédente pour $x = d$, on obtient que \begin{center} $\displaystyle\prod_{c \in \Fq, c \ne d }(x - c) = -1$ \end{center}
-Finalement, obtient que $ \displaystyle\sum_{d \in \Fq} \phi(d).\displaystyle\frac{\displaystyle\prod_{c \in \Fq, c \ne d }(x - c)}{\displaystyle\prod_{c \in \Fq, c \ne d}(d -c)} =  \displaystyle \sum_{d \in \Fq } \phi(d) (1 - (x-d)^{q-1})$ et la proposition est ainsi prouvée.
+En appliquant l'égalité précédente pour $x = d$, on obtient que \begin{center} $\displaystyle\prod_{c \in \Fq, c \ne d }(d - c) = -1$ \end{center}
+Finalement, on obtient que 
+\begin{center} $ \displaystyle\sum_{d \in \Fq} \phi(d).\displaystyle\frac{\displaystyle\prod_{c \in \Fq, c \ne d }(x - c)}{\displaystyle\prod_{c \in \Fq, c \ne d}(d -c)} =  \displaystyle \sum_{d \in \Fq } \phi(d) (1 - (x-d)^{q-1})$  \end{center}
+et la proposition est ainsi prouvée.
 \end{proof}
 
 \begin{rem}
@@ -406,7 +409,7 @@ L'ensemble $PolyPerm$ des polynômes de permutation sur $\Fq$ muni de la loi de 
 Soient $ P = \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i X^i$ , $Q = \displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j X^j$ et $R = \displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k$ des polynômes à coefficients dans $\Fq$. \newline
 \break
 	\begin{enumerate}[label=$\clubsuit$, font=\small  \color{blue}]
-		\item Nous n'avons nullement besoin de détailler que la composition de deux polynômes est encore un polynôme. Nous avons donc notre loi interne.
+		\item La composée de deux polynômes est encore un polynôme. Il est de plus facile de remarquer que si l'on permute un ensemble deux foix, cela reste un ensemble permuté. La composition de deux polynôme de permutation est donc un polynôme de permutation. Nous avons donc notre loi interne.
 		\item Montrons son assiocativité : \newline
 D'une part, on a
 			\begin{center} $\left( P\circ Q \right) \circ R$ \end{center}
@@ -420,9 +423,9 @@ puis,
 &= \left(\displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i X^i\right) \circ \left(\displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k\right)\right)^j\right) \\
 &=  \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i\left(\displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k\right)\right)^j\right)^i
 			\end{align*} 
-Ceci montre l'associativité
-	\item Le neutre est évident le polynôme constant $1$.
-	\item Rappelons que, par définition, un polynôme de permutation est une application bijective de $\Fq$. Il suffit donc de considérer son application récipoque $P^{-1}$ pour obtenir $Q$ tel que $P\circ Q = 1$. Ceci nous donne l'élément neutre. Ceci marche modulo $X^q - X$ car
+donc la loi $\circ$ est associative.
+	\item Le neutre est évidemment le polynôme constant égal à $1$.
+	\item Rappelons que, par définition, un polynôme de permutation est une application bijective de $\Fq$. Il suffit donc de considérer son application récipoque $P^{-1}$ pour obtenir $Q$ tel que $P\circ Q = 1$. Ceci nous donne l'élément neutre. Ceci marche toujours modulo $X^q - X$ car
 	\fonction{\Pi}{\Fq[X]}{\Fq[X] \backslash (X^q - X)}{P}{[P]_{X^q - X}} est un morphisme d'anneaux.
 	\end{enumerate}	
 Il s'ensuit que $PolyPerm$ est un groupe. 
