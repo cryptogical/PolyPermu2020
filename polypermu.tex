@@ -52,15 +52,14 @@
 %définition commande présentation fonction
 \newcommand{\fonction}[5]{
 \begin{displaymath}
-#1 :
-\left(
-\begin{array}{rcl}
-#2 & \longrightarrow &#3 \\
-#4 & \longmapsto & #5 \\
+\begin{array}{l|rcl}
+\displaystyle
+#1 : & #2 & \longrightarrow & #3 \\
+    & #4 & \longmapsto & #5
 \end{array}
-\right.
 \end{displaymath}
 }
+
 %fin définition
 
 
@@ -386,14 +385,14 @@ et la proposition est ainsi prouvée.
 \begin{rem}
 Il est facile de voir que si $\phi $ est un polynôme, alors l'interpolation de Lagrange est une simple application du lemme chinois des restes. \newline
 Il suffit de considérer la solution $P$ du système
-	\begin{align}
+	\begin{align*}
 		\begin{cases}
-			\phi \equiv 1 mod (X - c_1) \\
-			\phi \equiv 1 mod (X- c_2) \\
+			\phi \equiv 1 \pmod{X - c_1} \\
+			\phi \equiv 1 \pmod{X - c_2} \\
 			... \\
-			\phi \equiv 1 mod (X - c_q)
+			\phi \equiv 1 \pmod{X - c_q}
   		\end{cases}
-	\end{align}
+	\end{align*}
 pour s'en convaincre.
 \end{rem}
 
@@ -402,13 +401,13 @@ De cette remarque découle le fait que pour travailler sur des polynômes de per
 \subsection{Un groupe, enfin!} 
 
 \begin{prop}
-L'ensemble $PolyPerm$ des polynômes de permutation sur $\Fq$ muni de la loi de composition $\circ$ est un groupe.
+L'ensemble $\mathbbm{Poly}$ des polynômes de permutation sur $\Fq$ muni de la loi de composition $\circ$ est un groupe, i.e, $(\mathbbm{Poly}, \circ)$ est un groupe.
 \end{prop}
 
 \begin{proof}
 Soient $ P = \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i X^i$ , $Q = \displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j X^j$ et $R = \displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k$ des polynômes à coefficients dans $\Fq$. \newline
 \break
-	\begin{enumerate}[label=$\clubsuit$, font=\small  \color{blue}]
+	\begin{enumerate}[label=$\clubsuit$, font=\small  \color{black}]
 		\item La composée de deux polynômes est encore un polynôme. Il est de plus facile de remarquer que si l'on permute un ensemble deux foix, cela reste un ensemble permuté. La composition de deux polynôme de permutation est donc un polynôme de permutation. Nous avons donc notre loi interne.
 		\item Montrons son assiocativité : \newline
 D'une part, on a
@@ -428,18 +427,47 @@ donc la loi $\circ$ est associative.
 	\item Rappelons que, par définition, un polynôme de permutation est une application bijective de $\Fq$. Il suffit donc de considérer son application récipoque $P^{-1}$ pour obtenir $Q$ tel que $P\circ Q = 1$. Ceci nous donne l'élément neutre. Ceci marche toujours modulo $X^q - X$ car
 	\fonction{\Pi}{\Fq[X]}{\Fq[X] \backslash (X^q - X)}{P}{[P]_{X^q - X}} est un morphisme d'anneaux.
 	\end{enumerate}	
-Il s'ensuit que $PolyPerm$ est un groupe. 
+Il s'ensuit que $(\mathbbm{Poly}, \circ)$ est un groupe. 
 \end{proof}
 
-\begin{prop}[?Admise?]
- $PolyPerm \simeq S_q$, où $S_q$ est le groupe des permutations de l'ensemble $\llbracket 1, ... , q \rrbracket$.
+\begin{prop}
+ On a l'isomorphisme suivant, $(\mathbbm{Poly}, \circ) \cong \mathbbm{S}_q$, où $\mathbbm{S}_q$ est le groupe des permutations de l'ensemble $\llbracket 1, ... , q \rrbracket$.
 \end{prop}
 
+\begin{proof}
+La difficulté de cette preuve réside dans le fait qu'un polynôme de $\mathbbm{F}_q$ peut être représenté par une permutation très complexe et inversement. On rappelle que dans $\mathbbm{S}_q$, toute permutation $\tau$ peut être représentée comme produit de transpositions. Dans notre cas il est suffisant de considérer les transpositions échangeant uniquement les éléments $0$ et $a \in \mathbbm{F}_q$ que l'on note $\tau_{0,a}$. Il vient alors que pour toutes transpositions de $\mathbbm{S}_q$ échangeant deux éléments $a$ et $b$ de $\mathbbm{F}_q$ on a,
+\begin{align*}
+\tau_{0,a} \cdot \tau_{0,b} \cdot \tau_{0,a} = \tau_{a,b}
+\end{align*}
+si bien que l'on exhibe le polynôme associé à la transposition
+\begin{align*}
+\tau_{0,a} : \mathbbm{t} (x) = -a^2 \Bigg [ \Big (x-a)^{q-2} + a^{-1}) \Big )^{q-2} - a \Bigg ]^{q-2}
+\end{align*}
 
+Il est facile de le vérifier dans le cas où $a = 1$. On considère le corps $\mathbbm{F}_p$. On remarque que 
+	$$
+\mathbbm{g}_1 (x) - x = \left\{
+    \begin{array}{ll}
+        1 & \mbox{si } x = 0 \\
+       -1 & \mbox{si } x = 1 \\
+       0 & \mbox{sinon.}
+    \end{array}
+\right.
+$$
+On en déduit alors que $\displaystyle \mathbbm{g}_0  (x)- x = (ax + b) +  \prod_{k=2}^{p-1} (x-k)$
 
-
-
-
-
+En appliquant notre égalité pour $x=1$ et $x=0$ on obtient le système suivant,
+\begin{center}
+$
+\left\{
+    \begin{array}{ll}
+    	1 &= -b(p-1)!\\
+    	-1 &= -(a+b)(p-2)!
+    \end{array}
+\right.
+$
+\end{center}
+Or puisque dans $\mathbbm{F}_p$ on a $(p-1)! = -1$ et $(p-2)! = 1$ alors on en déduit que $(a,b) = (0,1)$ et donc $\displaystyle \mathbbm{g}_1 (x) = x +  \prod_{k=2}^{p-1} (x-k)$.
+\end{proof}
 
 \end{document}
