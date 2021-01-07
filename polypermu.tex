@@ -14,7 +14,11 @@
 \usepackage{amsmath,amssymb}
 \usepackage{amsthm}
 \usepackage{dsfont}
-
+\usepackage{stmaryrd}
+\usepackage{systeme}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{pifont}
 
 \title{Polynômes de Permutations}
 \author{PIARD A. - JACQUET R. - CARVAILLO T.}
@@ -43,6 +47,38 @@
 \newcommand{\G}{\mathbbm{G}}
 \newcommand{\K}{\mathbbm{K}}
 \newcommand{\F}{\mathbbm{F}}
+\newcommand{\Fq}{\mathds{F}_q}
+
+%définition commande présentation fonction
+\newcommand{\fonction}[5]{
+\begin{displaymath}
+#1 :
+\left(
+\begin{array}{rcl}
+#2 & \longrightarrow &#3 \\
+#4 & \longmapsto & #5 \\
+\end{array}
+\right.
+\end{displaymath}
+}
+%fin définition
+
+
+% de jolies accolades
+\newcommand{\accolade}[2]{
+\begin{displaymath}
+%#1 = \left\{
+    \begin{array}{ll}
+       #1 %& \mbox{si }
+       #2 %& \mbox{sinon.}
+    \end{array}
+\right.
+\end{displaymath}
+}
+% de jolies accolades
+
+
+
 
 \newtheorem{theorem}{Théorème}
 \newtheorem{corollaire}{Corollaire}
@@ -54,6 +90,7 @@
 \newtheorem*{examples}{Exemples}
 \newtheorem{exo}{Exercice}	
 \newtheorem{coro}{Corollaire}	
+\newtheorem{rem}{Remarque}
 
 \begin{document}
 
@@ -207,6 +244,8 @@ n \cdot \# \mathcal{P} (n,p) &= p^n - \sum_{d | n , d \neq n} d \cdot \# \mathca
 \end{align*}
 Puisque $n$ est positif alors $\mathcal{P} (n,p) > 0$.
 \end{proof}
+\pagebreak 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Polynômes de permutations}
 Rappelons d'abord ce qu'est un polynôme dans le cas général.\\ %Est-ce qu'on n'en parlerait pas dans la première partie ? Vu qu'on évoque les polynômes irréductibles dès la partie 1
 \begin{definition} %Si plus tard on parle de polynôme à plusieurs indéterminées, on fera une définition à ce moment là
@@ -225,7 +264,7 @@ $
 \begin{definition}
 Soit $K$ un ensemble fini de cardinal $n\in \mathbb{N}^*$. Une permutation de $K$ est une bijection de $K$ dans $K$.
 \end{definition}
-\pagebreak
+
 \begin{definition}
 Soit $P$ un polynôme de $\F_q [X]$. $P$ est appelé \textbf{polynôme de permutation} de $\F_q$ si et seulement si la fonction associée
 \begin{center}
@@ -273,7 +312,7 @@ En effet cette application n'est pas injective. Soient $(X,Y) \in (\F_5 \times \
 De manière plus générale, nous avons pour $k \in \mathds{N}$
 
 \begin{prop}
-$X^k$ est un polynôme de permutation de $\mathds{F}_q$ si et seulement si $pgcd(k, q-1) = 1$.
+$X^k$ est un polynôme de permutation de $\Fq$ si et seulement si $pgcd(k, q-1) = 1$.
 \end{prop}
 
 \begin{proof}
@@ -284,12 +323,12 @@ $
 \begin{array}{l|rcl}
 \displaystyle
 P : & \F _q & \longrightarrow & \F _q \\
-    & x & \longmapsto & P(x)
+    & x & \longmapsto & x^k
 \end{array}
 $
 \end{center}
-est une application de corps, donc clairement injective. Montrons la surjectivité.\newline
-$\mathds{F}_q$ étant un corps, on a $\mathds{F}_q^* = \mathds{F}_q^{\times}$, donc $|\mathds{F}_q^*| = q-1$. Soit $\alpha$ un générateur de $\mathds{F}_q^*$. La théorie élémentaire des groupes nous donne $|<\alpha^k>| = \frac{q-1}{pcgd(k,q-1)}$. Et donc par hypothèse, $|<\alpha^k>| =  q-1$.  Donc $P(\alpha)$ engendre $P(\mathds{F}_q^*)$ et par cardinalité nous obtenons la conclusion voulue.\newline
+est un morphisme et par l'hypothèse, on obtient que $0$ a pour seul antécédent 0; ceci nous donne l'injectivité. Montrons la surjectivité.\newline
+$\Fq$ étant un corps, on a $\Fq^* = \Fq^{\times}$, donc $|\Fq^*| = q-1$. Soit $\alpha$ un générateur de $\Fq^*$. La théorie élémentaire des groupes nous donne $|<\alpha^k>| = \frac{q-1}{pcgd(k,q-1)}$. Et donc par hypothèse, $|<\alpha^k>| =  q-1$.  Donc $P(\alpha)$ engendre $P(\Fq^*)$ et par cardinalité nous obtenons la conclusion voulue.\newline
 $\Rightarrow$ Nous allons raisonner par contraposée, i.e. montrer que $pcgd(k,q-1) \ne 1 \Rightarrow$ $X^k$ n'est pas un polynôme de permutation.\newline
 Supposons donc $pcgd(k,q-1) = m$, où $m \in \mathds{N}$, on obtient donc 
 $$
@@ -301,8 +340,103 @@ $$
 \right.
 $$
 Et par suite, $k  =k'.\frac{q-1}{q}$.\newline
-Donc, $X^k = X^{k'.\frac{q-1}{q}} = (X^{(q-1)})^{\frac{k'}{q'}} = 1$. Donc, $\forall x \in \mathds{F}_q^{\times}$, $P(x) = 1$, l'application associé n'est donc pas bijective, par suite $P$ n'est pas un polynôme de permutation. \newline
+Donc, $X^k = X^{k'.\frac{q-1}{q}} = (X^{(q-1)})^{\frac{k'}{q'}} = 1$. Donc, $\forall x \in \Fq^{\times}$, $P(x) = 1$, l'application associé n'est donc pas bijective, par suite $P$ n'est pas un polynôme de permutation. \newline
 On obtient donc l'équivalence souhaitée.
 \end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{Histoire de groupes...}
+\subsection{Préliminaires, l'interpolation de Lagrange}
+
+Les motivations et descriptions analytiques détaillées de cette notion n'entrent pas dans le cadre de ce projet. Nous nous contenterons donc de rappeler, dans notre cadre, la :
+
+\begin{definition}
+Soit
+\fonction{\phi}{\Fq}{\Fq}{x}{\phi(x)}
+Le problème est de trouver un polynôme $P$, de degré minimal $\le q$, tel que 
+	\begin{center} $P(x) = \phi(x)$ $\forall  \in  x \in \Fq$. \end{center}
+\end{definition}
+
+\begin{prop}[Admise]
+L'unique solution au problème présenté ci-dessus est donnée par 
+	\begin{center} $P(x) := \displaystyle\sum_{d \in \Fq} \phi(d).\displaystyle\frac{\displaystyle\prod_{c \in \Fq, c \ne d }(x - c)}{\displaystyle\prod_{c \in \Fq, c \ne d}(d -c)}$\end{center}
+\end{prop}
+
+\begin{prop}
+De manière plus élégante, nous avons
+	\begin{center} $P(x) := \displaystyle \sum_{d \in \Fq } \phi(d) (1 - (x-d)^{q-1}) $ \end{center}
+\end{prop}
+
+\begin{proof}De manière générale, nous avons que $X^q - X = \displaystyle\prod_{c \in \Fq} (X-c)$, donc \newline
+	\begin{align*} 
+		\displaystyle\prod_{c \in \Fq, c \ne d}(x - c) &= \frac{\displaystyle\prod_{c \in \Fq}(x - c)}{x - d}\\
+		 &= \displaystyle\frac{x^q - x}{x-d} \\
+		 &= \displaystyle\frac{x^q - d^q - (x-d)}{x-d} \\
+		 &= (x-d)^{q-1} - 1
+	\end{align*}
+
+En appliquant l'égalité précédente pour $x = d$, on obtient que \begin{center} $\displaystyle\prod_{c \in \Fq, c \ne d }(x - c) = -1$ \end{center}
+Finalement, obtient que $ \displaystyle\sum_{d \in \Fq} \phi(d).\displaystyle\frac{\displaystyle\prod_{c \in \Fq, c \ne d }(x - c)}{\displaystyle\prod_{c \in \Fq, c \ne d}(d -c)} =  \displaystyle \sum_{d \in \Fq } \phi(d) (1 - (x-d)^{q-1})$ et la proposition est ainsi prouvée.
+\end{proof}
+
+\begin{rem}
+Il est facile de voir que si $\phi $ est un polynôme, alors l'interpolation de Lagrange est une simple application du lemme chinois des restes. \newline
+Il suffit de considérer la solution $P$ du système
+	\begin{align}
+		\begin{cases}
+			\phi \equiv 1 mod (X - c_1) \\
+			\phi \equiv 1 mod (X- c_2) \\
+			... \\
+			\phi \equiv 1 mod (X - c_q)
+  		\end{cases}
+	\end{align}
+pour s'en convaincre.
+\end{rem}
+
+De cette remarque découle le fait que pour travailler sur des polynômes de permutation, il suffit de les regarder modulo $X^q - X$. Nous allons dès lors obtenir une structure intéressante, celle de groupe.
+
+\subsection{Un groupe, enfin!} 
+
+\begin{prop}
+L'ensemble $PolyPerm$ des polynômes de permutation sur $\Fq$ muni de la loi de composition $\circ$ est un groupe.
+\end{prop}
+
+\begin{proof}
+Soient $ P = \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i X^i$ , $Q = \displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j X^j$ et $R = \displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k$ des polynômes à coefficients dans $\Fq$. \newline
+\break
+	\begin{enumerate}[label=$\clubsuit$, font=\small  \color{blue}]
+		\item Nous n'avons nullement besoin de détailler que la composition de deux polynômes est encore un polynôme. Nous avons donc notre loi interne.
+		\item Montrons son assiocativité : \newline
+D'une part, on a
+			\begin{center} $\left( P\circ Q \right) \circ R$ \end{center}
+			\begin{align*} 
+&= \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i\left(\displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j X^j\right)^i \circ \left(\displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k\right) \\ 
+&= \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i\left(\displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k\right)\right)^j\right)^i
+			\end{align*} 
+puis, 
+			\begin{center} $P\circ \left(Q \circ R\right)$ \end{center}
+			\begin{align*} 
+&= \left(\displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i X^i\right) \circ \left(\displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k\right)\right)^j\right) \\
+&=  \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i\left(\displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k\right)\right)^j\right)^i
+			\end{align*} 
+Ceci montre l'associativité
+	\item Le neutre est évident le polynôme constant $1$.
+	\item Rappelons que, par définition, un polynôme de permutation est une application bijective de $\Fq$. Il suffit donc de considérer son application récipoque $P^{-1}$ pour obtenir $Q$ tel que $P\circ Q = 1$. Ceci nous donne l'élément neutre. Ceci marche modulo $X^q - X$ car
+	\fonction{\Pi}{\Fq[X]}{\Fq[X] \backslash (X^q - X)}{P}{[P]_{X^q - X}} est un morphisme d'anneaux.
+	\end{enumerate}	
+Il s'ensuit que $PolyPerm$ est un groupe. 
+\end{proof}
+
+\begin{prop}[?Admise?]
+ $PolyPerm \simeq S_q$, où $S_q$ est le groupe des permutations de l'ensemble $\llbracket 1, ... , q \rrbracket$.
+\end{prop}
+
+
+
+
+
+
+
 
 \end{document}
