@@ -135,6 +135,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
+\addcontentsline{toc}{part}{Introduction}
 \vfill \eject
 \section{Construction des Corps Finis}
 \subsection{Existence et unicité}
@@ -486,7 +487,7 @@ Remarquons tout d'abord que, pour $a, b \in \Fq$,
 		= <\alpha^{m-n}(\alpha^n X+ 1)> \newline
 		= <\alpha^mX+\alpha^{m-n}>$ , ce qui nous donne un générateur de la forme $<aX + b>$
 	\end{itemize}
-Il suffit ensuite de considérer la forme générale du polynôme correspond à la transposition $\tau_{0,a}$ en remarquant que 
+Il suffit ensuite de considérer la forme générale du polynôme correspond à la transposition $\tau_{0,a}$, en remarquant que 
 \begin{center} $\tau_{0,a} = <-a^2X><X^{q-2}><X-a><X^{q-2}><X+a^{q-2}><X^{q-2}><X-a>$ \end{center}
 Il est ensuite aisé de construire n'importe quel polynôme de permutation en sachant que $\tau_{0,a} \cdot \tau_{0,b} \cdot \tau_{0,a} = \tau_{a,b}$
 \end{proof}
@@ -519,13 +520,82 @@ $P$ est un polynôme de permutation si et seulement si $\forall \alpha \in \Fq$,
 \end{crit}
 
 \begin{proof}
-En effet, $deg(pgcd(X^q -X, P(X)-a)) \neq 1$ signifie que $X^q - X$ et $P(X) - a$ ont $\displaystyle\prod_{c \in \Fq, P(c) = a}(X-c)$ en commun, donc $P(X) - a$ s'annule en plusieurs points et finalement $P$ n'est pas une bijection. \newline
+En effet, le fair que $deg(pgcd(X^q -X, P(X)-a)) \neq 1$ signifie que $X^q - X$ et $P(X) - a$ ont $\displaystyle\prod_{c \in \Fq, P(c) = a}(X-c)$ en commun, donc $P(X) - a$ s'annule en plusieurs points et finalement $P$ n'est pas une bijection. \newline
 Réciproquement, si $deg(pgcd(X^q -X, P(X)-a)) = 1$, alors le seul facteur commun à $X^q - X$ et $P(X) - a$ est $X-c$, où $c$ est tel que $P(c) = a$. La conclusion s'ensuit.
 \end{proof}
 
 
 \subsection{Polynômes exceptionnels}
+Avant de commencer, rappelons la 
+
+\begin{prop}
+L'ensemble $\Fq[X,Y]$ des polynômes en les indéterminées $X$ et $Y$ à coefficients dans $\Fq$ est muni d'une structure d'anneau, et est construit comme suit :
+\begin{center} $\Fq[X,Y] = (\Fq[X])[Y] = (\Fq[Y])[X]$ \end{center}
+\end{prop}
+
+\begin{definition}
+Un polynôme en les deux indéterminées $X$ et $Y$ est dit absolument irréductible s'il est irréductible sur toute extension de $\Fq$. En d'autres termes, s'il est sur la clôture algébrique $\bar{\Fq}$ de $\Fq$. 
+
+\begin{rem}
+On rappelle que toute extension de $\Fq$ est algébrique, il en va de même de sa clôture.
+\end{rem}
+
+\begin{bg}
+On rappelle ce qu'est  $\bar{\Fq}$ ?
+\end{bg}
+
+\end{definition}
+
+\begin{definition}
+On dit qu'un polynôme en l'indéterminée $X$ est exceptionnel sur $\Fq$ si aucun facteurs irréductibles du polynôme en les indéterminées $X$ et $Y$
+\begin{center}
+$\Psi (X,Y) := \displaystyle\frac{P(X) - P(Y)}{X-Y}$
+\end{center}
+n'est absolument irréductible. En d'autres terme, si les facteurs irréductibles admettent une décomposition sur une extension de $\Fq$.
+\end{definition}
+
+Avant de nous aventurer dans l'énoncé de critères, voyons un premier exemple de polynôme exceptionnel. \newline
+
+\begin{example}
+Considérons le polynôme $P(X) := X^3 +3X^2 + 3X \in \Fq$, où $q$ est choisit tel qu'il soit la puissance d'un nombre premier impair. \newline
+Construisons le fameux polynôme $\Psi(X,Y)$ à partir de $P$
+	\begin{align*}
+\Psi(X,Y) &= \displaystyle\frac{P(X) - P(Y)}{X-Y} \\
+&= \displaystyle\frac{X^3 + 3X^2 + 3X - Y^3 - 3Y^2 - 3Y}{X -Y} \\
+&= \displaystyle\frac{X^3 - Y^3 + 3X^2 - 3Y^2 + 3X - 3Y}{X -Y} \\
+&= \displaystyle\frac{(X-Y)(X^2+Y^2) - XY^2 + YX^2 + 3(X+Y)(X-Y) +3X - 3Y}{X -Y} \\
+&= \displaystyle\frac{(X-Y)(X^2+Y^2) + XY(X-Y) + 3(X+Y)(X-Y) +3X - 3Y}{X -Y} \\
+&= \displaystyle X^2+Y^2 +XY+ 3(X+Y) +3\\
+&= X^2 + (3+Y)X + Y^2 + 3Y + 3
+	\end{align*}
+Nous avons donc un polynôme de degré 2 en l'indéterminée $X$, faisons une étude de discrimant. \newline
+$\Delta_P = (3+Y)^2 - 4(Y^2 + 3Y + 3) = -3(Y+1)^2$ \newline 
+Nous pouvons dès à présent distinguer deux cas: 
+	\begin{itemize}
+		\item -3 est un carré dans $\Fq$, i.e. $\exists c\in \Fq$ tel que $c^2 = -3$. Les racines $\Psi$ existent donc; et 
+			\begin{center} $\Psi(X,Y) = (\displaystyle X - \frac{-Y -3 + c(Y+1)}{2})( X - \frac{-Y -3 - c(Y+1)}{2})$\end{center}
+Ces facteurs étant de degré 1, il est clair qu'ils sont irréductibles sur toute extension de $\Fq$, $\Psi$ présente donc des facteurs absolument irréductibles, il n'est donc pas un polynôme exceptionel.
+		\item dans le cas contraire, $\Psi(X,Y)$ est irréductible dans $\Fq[X,Y]$. Cependant, $-3$ sera, par définition, un carré dans la clôture algébrique de $\Fq$. (Il suffit de considérer le polynôme $X^2 - 3$...) Nous sommes donc dans la même situation que dans le premier cas, à la subtilité près que, cette fois-ci, $\Psi$ admet des facteurs irréductibles dans une extension de $\Fq$ et non dans $\Fq$, donc peu nous importe la réductibilité de ces dit facteurs! Il s'ensuit que, par définition, $\Psi$ est un polynôme exceptionnel.
+		\end{itemize}
+\end{example}
+
+Enonçons maintenant un critère fondamental :
+
+\begin{crit}
+Tout polynôme exceptionel à coefficients dans $\Fq[X]$ est un polynôme de permutation.
+\end{crit}
+
+\begin{example}
+De l'exemple précédent, il découle que $P := X^3 +3X^2 + 3X$ est un polynôme de permutation si $-3$ n'est pas un carré dans $\Fq$. \newline
+Dans $F_5 \simeq \mathds{Z}/5\mathds{Z}$, $-3 = 2$ qui n'est pas un carré, donc $P$ est un polynôme de permutation. En revanche, dans $F_3 \simeq \mathds{Z}/ 3\mathds{Z}$, $-3 = 0 = 9 = 3^2$, donc $P$ n'est pas un polynôme de permutation.
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\section*{Références}
+\addcontentsline{toc}{part}{Références}
 
 \end{document}
