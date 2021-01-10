@@ -90,6 +90,8 @@
 \newtheorem{exo}{Exercice}	
 \newtheorem{coro}{Corollaire}	
 \newtheorem{rem}{Remarque}
+\newtheorem{crit}{Critère}
+\newtheorem{bg}{A l'attention des bg, question}
 
 \begin{document}
 
@@ -243,9 +245,15 @@ n \cdot \# \mathcal{P} (n,p) &= p^n - \sum_{d | n , d \neq n} d \cdot \# \mathca
 \end{align*}
 Puisque $n$ est positif alors $\mathcal{P} (n,p) > 0$.
 \end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \section{Polynômes de permutations}
+\subsection{Quelques généralités}
 Rappelons d'abord ce qu'est un polynôme dans le cas général.\\ %Est-ce qu'on n'en parlerait pas dans la première partie ? Vu qu'on évoque les polynômes irréductibles dès la partie 1
 \begin{definition} %Si plus tard on parle de polynôme à plusieurs indéterminées, on fera une définition à ce moment là
 Soit $K$ un ensemble non vide. On appelle polynôme en l'indéterminée $X$, toute application
@@ -344,10 +352,8 @@ Donc, $X^k = X^{k'.\frac{q-1}{q}} = (X^{(q-1)})^{\frac{k'}{q'}} = 1$. Donc, $\fo
 On obtient donc l'équivalence souhaitée.
 \end{proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagebreak
-\section{Histoire de groupes...}
-\subsection{Préliminaires, l'interpolation de Lagrange}
+\subsection{Histoire de groupes...}
+\subsubsection{Préliminaires, l'interpolation de Lagrange}
 
 Les motivations et descriptions analytiques détaillées de cette notion n'entrent pas dans le cadre de ce projet. Nous nous contenterons donc de rappeler, dans notre cadre, la :
 
@@ -369,12 +375,8 @@ De manière plus élégante, nous avons
 \end{prop}
 
 \begin{proof}De manière générale, nous avons que $X^q - X = \displaystyle\prod_{c \in \Fq} (X-c)$, donc \newline
-	\begin{align*} 
-		\displaystyle\prod_{c \in \Fq, c \ne d}(x - c) &= \frac{\displaystyle\prod_{c \in \Fq}(x - c)}{x - d}\\
-		 &= \displaystyle\frac{x^q - x}{x-d} \\
-		 &= \displaystyle\frac{x^q - d^q - (x-d)}{x-d} \\
-		 &= (x-d)^{q-1} - 1
-	\end{align*}
+
+
 
 En appliquant l'égalité précédente pour $x = d$, on obtient que \begin{center} $\displaystyle\prod_{c \in \Fq, c \ne d }(d - c) = -1$ \end{center}
 Finalement, on obtient que 
@@ -398,7 +400,7 @@ pour s'en convaincre.
 
 De cette remarque découle le fait que pour travailler sur des polynômes de permutation, il suffit de les regarder modulo $X^q - X$. Nous allons dès lors obtenir une structure intéressante, celle de groupe.
 
-\subsection{Un groupe, enfin!} 
+\subsubsection{Un groupe, enfin!} 
 
 \begin{prop}
 L'ensemble $\mathbbm{Poly}$ des polynômes de permutation sur $\Fq$ muni de la loi de composition $\circ$ est un groupe, i.e, $(\mathbbm{Poly}, \circ)$ est un groupe.
@@ -441,7 +443,7 @@ La difficulté de cette preuve réside dans le fait qu'un polynôme de $\mathbbm
 \end{align*}
 si bien que l'on exhibe le polynôme associé à la transposition
 \begin{align*}
-\tau_{0,a} : \mathbbm{t} (x) = -a^2 \Bigg [ \Big (x-a)^{q-2} + a^{-1}) \Big )^{q-2} - a \Bigg ]^{q-2}
+\tau_{0,a} : \mathbbm{t} (x) = -a^2 \Bigg [ \Big ((x-a)^{q-2} + a^{-1} \Big )^{q-2} - a \Bigg ]^{q-2}
 \end{align*}
 
 Il est facile de le vérifier dans le cas où $a = 1$. On considère le corps $\mathbbm{F}_p$. On remarque que 
@@ -469,5 +471,61 @@ $
 \end{center}
 Or puisque dans $\mathbbm{F}_p$ on a $(p-1)! = -1$ et $(p-2)! = 1$ alors on en déduit que $(a,b) = (0,1)$ et donc $\displaystyle \mathbbm{g}_1 (x) = x +  \prod_{k=2}^{p-1} (x-k)$.
 \end{proof}
+
+\begin{prop}
+Soit $\alpha$ un élément primitif de $\Fq$, alors $(\mathbbm{Poly}, \circ)$ est engendré par $\{ \alpha X, X+1, X^{q-2}\}$
+\end{prop}
+
+\begin{proof}
+Remarquons tout d'abord que, pour $a, b \in \Fq$, 
+	\begin{itemize}
+		\item $<aX> = <\alpha^mX> = <\alpha X>^m$ (cette dernière égalité découle de la loi de composition)
+		\item $<\alpha X>^{m-n}<X+1><\alpha X>^n  \newline
+		= <\alpha X>^{m-n}<\alpha^n + 1> \newline
+		= <\alpha^{m-n} X ><\alpha^n X+ 1> \newline
+		= <\alpha^{m-n}(\alpha^n X+ 1)> \newline
+		= <\alpha^mX+\alpha^{m-n}>$ , ce qui nous donne un générateur de la forme $<aX + b>$
+	\end{itemize}
+Il suffit ensuite de considérer la forme générale du polynôme correspond à la transposition $\tau_{0,a}$ en remarquant que 
+\begin{center} $\tau_{0,a} = <-a^2X><X^{q-2}><X-a><X^{q-2}><X+a^{q-2}><X^{q-2}><X-a>$ \end{center}
+Il est ensuite aisé de construire n'importe quel polynôme de permutation en sachant que $\tau_{0,a} \cdot \tau_{0,b} \cdot \tau_{0,a} = \tau_{a,b}$
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Critères de reconnaissances}
+Il est plus que nécessaire, avant de se lancer dans la tâche ardue qu'est l'étude des polynômes de permutation, de se donner les moyens de les identifier, ou tout du moins de savoir les reconnaître. Cette partie y sera entièrement consacrée. Nous n'aurons pas la prétention de donner une liste exhaustive de critères; cependant dans ce premier rendu nous donnerons les plus élémentaires. Une étude plus approfondie sera faite au second semestre.
+
+\subsection{Considérations triviales}
+Une manière bien simple de reconnaitre un polynôme de permutation consiste à en calculer toute les images, puis de les comparer une à une. Si une image est égale à une autre, i.e. l'application n'est pas injective, alors le polynôme ne sera pas de permutation. On obtient dès lors le 
+\begin{crit}
+Un polynôme $P \in \Fq[X]$ est une permutation de $\Fq$ si et seulement si \begin{center}$\displaystyle\prod_{c \in \Fq}(X-P(c)) = X^q -X$ \end{center}
+\end{crit}
+En plus d'être très peu élégante, cette méthode requiert une puissance de calcul, croissante et en le degré du polynôme et en le cardinal du corps dans lequel on se place. 
+
+\begin{bg}
+Inclut-on les raisonnement sur la complexité du calcul ?
+\end{bg}
+
+Il est également possible de faire la démarche en sens inverse, et de considérer les antécédents. On obtient dès lors le
+
+\begin{crit}
+$P$ est un polynôme de permutation si et seulement si $\forall \alpha \in \Fq$, 
+\begin{center}$deg(pgcd(X^q -X, P(X)-\alpha)) = 1$\end{center}
+\end{crit}
+
+\begin{proof}
+En effet, $deg(pgcd(X^q -X, P(X)-a)) \neq 1$ signifie que $X^q - X$ et $P(X) - a$ ont $\displaystyle\prod_{c \in \Fq, P(c) = a}(X-c)$ en commun, donc $P(X) - a$ s'annule en plusieurs points et finalement $P$ n'est pas une bijection. \newline
+Réciproquement, si $deg(pgcd(X^q -X, P(X)-a)) = 1$, alors le seul facteur commun à $X^q - X$ et $P(X) - a$ est $X-c$, où $c$ est tel que $P(c) = a$. La conclusion s'ensuit.
+\end{proof}
+
+
+\subsection{Polynômes exceptionnels}
+
+
 
 \end{document}
