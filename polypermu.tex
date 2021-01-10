@@ -296,7 +296,7 @@ $
 \begin{array}{l|rcl}
 \displaystyle
 P : & \F _5 & \longrightarrow & \F _5 \\
-    & x & \longmapsto & X^3
+    & X & \longmapsto & X^3
 \end{array}
 $
 \end{center}
@@ -308,7 +308,7 @@ $
 \begin{array}{l|rcl}
 \displaystyle
 P : & \F _5 & \longrightarrow & \F _5 \\
-    & x & \longmapsto & X^2
+    & X & \longmapsto & X^2
 \end{array}
 $
 \end{center}
@@ -356,7 +356,7 @@ On obtient donc l'équivalence souhaitée.
 \subsection{Histoire de groupes...}
 \subsubsection{Préliminaires, l'interpolation de Lagrange}
 
-Les motivations et descriptions analytiques détaillées de cette notion n'entrent pas dans le cadre de ce projet. Nous nous contenterons donc de rappeler, dans notre cadre, la :
+Les motivations et descriptions analytiques détaillées de cette notion n'entrent pas dans le cadre de ce projet. Nous nous contenterons donc de rappeler, dans notre cadre, la définition suivante :
 
 \begin{definition}
 Soit
@@ -411,8 +411,8 @@ L'ensemble $\mathbbm{Poly}$ des polynômes de permutation sur $\Fq$ muni de la l
 Soient $ P = \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i X^i$ , $Q = \displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j X^j$ et $R = \displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k$ des polynômes à coefficients dans $\Fq$. \newline
 \break
 	\begin{enumerate}[label=$\clubsuit$, font=\small  \color{black}]
-		\item La composée de deux polynômes est encore un polynôme. Il est de plus facile de remarquer que si l'on permute un ensemble deux foix, cela reste un ensemble permuté. La composition de deux polynôme de permutation est donc un polynôme de permutation. Nous avons donc notre loi interne.
-		\item Montrons son assiocativité : \newline
+		\item La composée de deux polynômes est encore un polynôme. Il est de plus facile de remarquer que si l'on permute un ensemble deux foix, cela reste un ensemble permuté. La composition de deux polynômes de permutation est donc un polynôme de permutation. Nous avons donc notre loi interne.
+		\item Montrons son associativité : \newline
 D'une part, on a
 			\begin{center} $\left( P\circ Q \right) \circ R$ \end{center}
 			\begin{align*} 
@@ -499,10 +499,10 @@ Il est ensuite aisé de construire n'importe quel polynôme de permutation en sa
 
 
 \section{Critères de reconnaissances}
-Il est plus que nécessaire, avant de se lancer dans la tâche ardue qu'est l'étude des polynômes de permutation, de se donner les moyens de les identifier, ou tout du moins de savoir les reconnaître. Cette partie y sera entièrement consacrée. Nous n'aurons pas la prétention de donner une liste exhaustive de critères; cependant dans ce premier rendu nous donnerons les plus élémentaires. Une étude plus approfondie sera faite au second semestre.
+Il est plus que nécessaire, avant de se lancer dans la tâche ardue qu'est l'étude des polynômes de permutation, de se donner les moyens de les identifier, ou tout du moins de savoir les reconnaître. Cette partie y sera entièrement consacrée. Nous n'aurons pas la prétention de donner une liste exhaustive de critères ; cependant dans ce premier rendu nous donnerons les plus élémentaires. Une étude plus approfondie sera faite au second semestre.
 
 \subsection{Considérations triviales}
-Une manière bien simple de reconnaitre un polynôme de permutation consiste à en calculer toute les images, puis de les comparer une à une. Si une image est égale à une autre, i.e. l'application n'est pas injective, alors le polynôme ne sera pas de permutation. On obtient dès lors le 
+Une manière bien simple de reconnaitre un polynôme de permutation consiste à en calculer toute les images, puis de les comparer une à une. Si une image est égale à une autre, i.e. l'application n'est pas injective, alors le polynôme ne sera pas de permutation. On obtient dès lors le critère suivant :
 \begin{crit}
 Un polynôme $P \in \Fq[X]$ est une permutation de $\Fq$ si et seulement si \begin{center}$\displaystyle\prod_{c \in \Fq}(X-P(c)) = X^q -X$ \end{center}
 \end{crit}
@@ -512,16 +512,16 @@ En plus d'être très peu élégante, cette méthode requiert une puissance de c
 Inclut-on les raisonnement sur la complexité du calcul ?
 \end{bg}
 
-Il est également possible de faire la démarche en sens inverse, et de considérer les antécédents. On obtient dès lors le
+Il est également possible de faire la démarche en sens inverse, et de considérer les antécédents. %On obtient dès lors le
 
 \begin{crit}
 $P$ est un polynôme de permutation si et seulement si $\forall \alpha \in \Fq$, 
-\begin{center}$deg(pgcd(X^q -X, P(X)-\alpha)) = 1$\end{center}
+\begin{center}$deg((X^q -X) \wedge (P(X)-\alpha)) = 1$\end{center}
 \end{crit}
 
 \begin{proof}
-En effet, le fair que $deg(pgcd(X^q -X, P(X)-a)) \neq 1$ signifie que $X^q - X$ et $P(X) - a$ ont $\displaystyle\prod_{c \in \Fq, P(c) = a}(X-c)$ en commun, donc $P(X) - a$ s'annule en plusieurs points et finalement $P$ n'est pas une bijection. \newline
-Réciproquement, si $deg(pgcd(X^q -X, P(X)-a)) = 1$, alors le seul facteur commun à $X^q - X$ et $P(X) - a$ est $X-c$, où $c$ est tel que $P(c) = a$. La conclusion s'ensuit.
+En effet, le fait que $deg((X^q -X) \wedge (P(X)-a)) \neq 1$ signifie que $X^q - X$ et $P(X) - a$ ont $\displaystyle\prod_{c \in \Fq, P(c) = a}(X-c)$ en commun, donc $P(X) - a$ s'annule en plusieurs points et finalement $P$ n'est pas une bijection. \newline
+Réciproquement, si $deg((X^q -X) \wedge (P(X)-a)) = 1$, alors le seul facteur commun à $X^q - X$ et $P(X) - a$ est $X-c$, où $c$ est tel que $P(c) = a$. La conclusion s'ensuit.
 \end{proof}
 
 
@@ -569,13 +569,13 @@ Construisons le fameux polynôme $\Psi(X,Y)$ à partir de $P$
 &= X^2 + (3+Y)X + Y^2 + 3Y + 3
 	\end{align*}
 Nous avons donc un polynôme de degré 2 en l'indéterminée $X$, faisons une étude de discrimant. \newline
-$\Delta_P = (3+Y)^2 - 4(Y^2 + 3Y + 3) = -3(Y+1)^2$ \newline 
+$\Delta_{\Psi(X,Y)} = (3+Y)^2 - 4(Y^2 + 3Y + 3) = -3(Y+1)^2$ \newline 
 Nous pouvons dès à présent distinguer deux cas: 
 	\begin{itemize}
 		\item -3 est un carré dans $\Fq$, i.e. $\exists c\in \Fq$ tel que $c^2 = -3$. Les racines $\Psi$ existent donc; et 
 			\begin{center} $\Psi(X,Y) = (\displaystyle X - \frac{-Y -3 + c(Y+1)}{2})( X - \frac{-Y -3 - c(Y+1)}{2})$\end{center}
 Ces facteurs étant de degré 1, il est clair qu'ils sont irréductibles sur toute extension de $\Fq$, $\Psi$ présente donc des facteurs absolument irréductibles, il n'est donc pas un polynôme exceptionel.
-		\item dans le cas contraire, $\Psi(X,Y)$ est irréductible dans $\Fq[X,Y]$. Cependant, $-3$ sera, par définition, un carré dans la clôture algébrique de $\Fq$. (Il suffit de considérer le polynôme $X^2 - 3$...) Nous sommes donc dans la même situation que dans le premier cas, à la subtilité près que, cette fois-ci, $\Psi$ admet des facteurs irréductibles dans une extension de $\Fq$ et non dans $\Fq$, donc peu nous importe la réductibilité de ces dit facteurs! Il s'ensuit que, par définition, $\Psi$ est un polynôme exceptionnel.
+		\item dans le cas contraire, $\Psi(X,Y)$ est irréductible dans $\Fq[X,Y]$. Cependant, $-3$ sera, par définition, un carré dans la clôture algébrique de $\Fq$. (Il suffit de considérer le polynôme $X^2 - 3$...) Nous sommes donc dans la même situation que dans le premier cas, à la subtilité près que, cette fois-ci, $\Psi$ admet des facteurs irréductibles dans une extension de $\Fq$ et non dans $\Fq$, donc peu nous importe la réductibilité de ces dit facteurs ! Il s'ensuit que, par définition, $\Psi$ est un polynôme exceptionnel.
 		\end{itemize}
 \end{example}
 
@@ -589,6 +589,10 @@ Tout polynôme exceptionel à coefficients dans $\Fq[X]$ est un polynôme de per
 De l'exemple précédent, il découle que $P := X^3 +3X^2 + 3X$ est un polynôme de permutation si $-3$ n'est pas un carré dans $\Fq$. \newline
 Dans $F_5 \simeq \mathds{Z}/5\mathds{Z}$, $-3 = 2$ qui n'est pas un carré, donc $P$ est un polynôme de permutation. En revanche, dans $F_3 \simeq \mathds{Z}/ 3\mathds{Z}$, $-3 = 0 = 9 = 3^2$, donc $P$ n'est pas un polynôme de permutation.
 \end{example}
+
+%\section{Familles de polynômes de permutation} Nom de section à changer
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
