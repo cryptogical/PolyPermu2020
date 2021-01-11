@@ -501,7 +501,8 @@ Il est ensuite aisé de construire n'importe quel polynôme de permutation en sa
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Premiers critères d'identifications avec implémentations}
-
+Nous venons de voir les premières définitions et propriétés sur les polynômes de permutation. Il est plus que nécessaire, avant de se lancer dans la tâche ardue qu'est l'étude des polynômes de permutations, de se donner les moyens de les identifier, ou tout du moins de savoir les reconnaître. 
+Dans cette partie, nous verrons trois premiers critères triviaux, qui seront implémentés en \textit{Python} via \textit{Sagemath}.
 
 \subsection{Considérations triviales}
 Une manière bien simple de reconnaitre un polynôme de permutation consiste à en calculer toute les images, puis de les comparer une à une. Si une image est égale à une autre, i.e. l'application n'est pas injective, alors le polynôme ne sera pas de permutation. On obtient dès lors le critère suivant :
@@ -526,6 +527,26 @@ En effet, le fait que $deg((X^q -X) \wedge (P(X)-a)) \neq 1$ signifie que $X^q -
 Réciproquement, si $deg((X^q -X) \wedge (P(X)-a)) = 1$, alors le seul facteur commun à $X^q - X$ et $P(X) - a$ est $X-c$, où $c$ est tel que $P(c) = a$. La conclusion s'ensuit.
 \end{proof}
 
+\subsection{Le critère d'Hermite-Dickson}
+Soit $q = p^n$ une puissance d'un nombre premier quelconque. On rappelle que la fonction
+\fonction{\Pi}{\Fq[X]}{\Fq[X] \backslash (X^q - X)}{P}{[P]_{X^q - X}} 
+définit un morphisme d'anneaux, de sorte que, $\overline{(P(X))^k} = \overline{P(X)}^k \pmod{X^q - X}$.
+On se donne également un polynôme $P$ à coefficients dans $\Fq$, et l'ensemble 
+\begin{center} $A_{p,q} := \{ k\in \llbracket 1, q-2 \rrbracket$ tels que $p\nmid k\}$ \end{center}
+Enonçons maintenant le
+\begin{crit}[Hermite-Dickson]
+$P$ est un polynôme de permutation si et seulement si les deux conditions suivantes ont lieu
+\begin{enumerate}
+	\item pour tout $k \in A_{p,q}$, $deg(\overline{(P(X))^k}) < q-1$
+	\item $deg(\overline{(P(X))^{q-1}}) = q-1$
+\end{enumerate}
+\end{crit}
+
+\begin{bg}
+Possiblement implémentable ?\newline
+Si oui,
+\end{bg}
+Nous implémenterons ce critère dans un prochain rendu.
 
 \subsection{Implémentations}
 
@@ -541,7 +562,7 @@ Réciproquement, si $deg((X^q -X) \wedge (P(X)-a)) = 1$, alors le seul facteur c
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Classes de polynômes}
-Il est plus que nécessaire, avant de se lancer dans la tâche ardue qu'est l'étude des polynômes de permutation, de se donner les moyens de les identifier, ou tout du moins de savoir les reconnaître. Cette partie y sera entièrement consacrée. Nous n'aurons pas la prétention de donner une liste exhaustive de critères ; cependant dans ce premier rendu nous donnerons les plus élémentaires. Une étude plus approfondie sera faite au second semestre.
+Les méthodes d'identifications que nous venons de voir sont, fonctionnelles certes, mais non raffinées. Elles sont extrêmement couteuses en terme de puissance de calcul. Il est donc primordial d'établir une liste de critères permettant d'accélérer le processus. Cette partie y sera entièrement consacrée. Pour ce faire, nous travaillons sur des ''familles'' de polynômes. Nous n'aurons pas la prétention d'en donner une liste exhaustive; cependant dans ce premier rendu nous donnerons les plus élémentaires. Une étude plus approfondie sera faite au second semestre.
 
 \subsection{Polynômes exceptionnels}
 Avant de commencer, rappelons la 
@@ -572,7 +593,7 @@ $\Psi (X,Y) := \displaystyle\frac{P(X) - P(Y)}{X-Y}$
 n'est absolument irréductible. En d'autres terme, si les facteurs irréductibles admettent une décomposition sur une extension de $\Fq$.
 \end{definition}
 
-Avant de nous aventurer dans l'énoncé de critères, voyons un premier exemple de polynôme exceptionnel. \newline
+Avant de nous aventurer dans l'énoncé de critères, voyons un premier exemple de polynôme exceptionnel.
 
 \begin{example}
 Considérons le polynôme $P(X) := X^3 +3X^2 + 3X \in \Fq$, où $q$ est choisit tel qu'il soit la puissance d'un nombre premier impair. \newline
@@ -608,6 +629,26 @@ De l'exemple précédent, il découle que $P := X^3 +3X^2 + 3X$ est un polynôme
 Dans $F_5 \simeq \mathds{Z}/5\mathds{Z}$, $-3 = 2$ qui n'est pas un carré, donc $P$ est un polynôme de permutation. En revanche, dans $F_3 \simeq \mathds{Z}/ 3\mathds{Z}$, $-3 = 0 = 9 = 3^2$, donc $P$ n'est pas un polynôme de permutation.
 \end{example}
 
+\begin{rem}
+La réciproque de ce théorème est fausse. Même s'il existe des conditions sous lesquelles elle a lieu, nous nous contenterons de donner un contre exemple.
+\end{rem}
+
+\begin{example}
+Soit $q = p^n$ une puissance d'un nombre premier quelconque. Soit $P := X^p$, nous avons clairement $pgcd(q-1, p) = 1)$ la \textit{Proposition 4} nous assure donc que $P$ est un polynôme de permutation. Calculons une nouvelle fois le fameux polynôme $\Psi(X,Y)$ à partir de $P$ :
+	\begin{align*}
+\Psi(X,Y) &= \displaystyle\frac{P(X) - P(Y)}{X-Y} \\
+&= \displaystyle\frac{X^p - Y^p}{X-Y} \\
+&= \displaystyle\frac{(X-Y)^p}{X-Y} \text{(on travaille sur un corps de caracteristique $p$)} \\
+&= (X-Y)^{p-1}
+	\end{align*}
+Or, les $(X-Y)$ sont évidemment irréductibles sur toute extension de $\Fq$, donc $P$ n'est pas un polynôme exceptionnel.
+\end{example}
+Nous allons maintenant énoncé un non-critère fort, qui sera admis pour le moment. Sa démonstration s'appuie sur des éléments complexes de la théorie de \textit{Galois}; nous nous laissons l'opportunité de le démontrer en ce second semestre.
+
+\begin{crit}[non-critère]
+Soit $q = p^n$ une puissance d'un nombre premier quelconque. Soit $k \in \mathds{N}$, tel que $pgcd(k, q-1) > 1$. Alors, il n'existe pas de polynôme exceptionnel à coefficients dans $\Fq$ de degré $k$.
+\end{crit}
+
 
 \subsection{Polynômes linéarisés}
 
@@ -619,8 +660,6 @@ Dans $F_5 \simeq \mathds{Z}/5\mathds{Z}$, $-3 = 2$ qui n'est pas un carré, donc
 
 \section*{Conclusion}
 \addcontentsline{toc}{part}{Conclusion}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
