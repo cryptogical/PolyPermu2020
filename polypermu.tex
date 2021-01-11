@@ -376,10 +376,13 @@ De manière plus élégante, nous avons
 \end{prop}
 
 \begin{proof}De manière générale, nous avons que $X^q - X = \displaystyle\prod_{c \in \Fq} (X-c)$, donc \newline
-
-
-
-En appliquant l'égalité précédente pour $x = d$, on obtient que \begin{center} $\displaystyle\prod_{c \in \Fq, c \ne d }(d - c) = -1$ \end{center}
+	\begin{align*} 
+		\displaystyle\prod_{c \in \Fq, c \ne d}(x - c) &= \frac{\displaystyle\prod_{c \in \Fq}(x - c)}{x - d}\\
+		 &= \displaystyle\frac{x^q - x}{x-d} \\
+		 &= \displaystyle\frac{x^q - d^q - (x-d)}{x-d} \\
+		 &= (x-d)^{q-1} - 1
+	\end{align*}
+En appliquant cette égalité pour $x = d$, on obtient que \begin{center} $\displaystyle\prod_{c \in \Fq, c \ne d }(d - c) = -1$ \end{center}
 Finalement, on obtient que 
 \begin{center} $ \displaystyle\sum_{d \in \Fq} \phi(d).\displaystyle\frac{\displaystyle\prod_{c \in \Fq, c \ne d }(x - c)}{\displaystyle\prod_{c \in \Fq, c \ne d}(d -c)} =  \displaystyle \sum_{d \in \Fq } \phi(d) (1 - (x-d)^{q-1})$  \end{center}
 et la proposition est ainsi prouvée.
@@ -404,7 +407,7 @@ De cette remarque découle le fait que pour travailler sur des polynômes de per
 \subsubsection{Un groupe, enfin!} 
 
 \begin{prop}
-L'ensemble $\mathbbm{Poly}$ des polynômes de permutation sur $\Fq$ muni de la loi de composition $\circ$ est un groupe, i.e, $(\mathbbm{Poly}, \circ)$ est un groupe.
+L'ensemble $\mathbbm{Poly}$ des polynômes de permutation  à coefficient dans $\Fq$ et de degré inférieur à $q$ muni de la loi de composition $\circ$ est un groupe, i.e, $(\mathbbm{Poly}, \circ)$ est un groupe.
 \end{prop}
 
 \begin{proof}
@@ -482,7 +485,7 @@ Remarquons tout d'abord que, pour $a, b \in \Fq$,
 	\begin{itemize}
 		\item $<aX> = <\alpha^mX> = <\alpha X>^m$ (cette dernière égalité découle de la loi de composition)
 		\item $<\alpha X>^{m-n}<X+1><\alpha X>^n  \newline
-		= <\alpha X>^{m-n}<\alpha^n + 1> \newline
+		= <\alpha X>^{m-n}<\alpha^nX + 1> \newline
 		= <\alpha^{m-n} X ><\alpha^n X+ 1> \newline
 		= <\alpha^{m-n}(\alpha^n X+ 1)> \newline
 		= <\alpha^mX+\alpha^{m-n}>$ , ce qui nous donne un générateur de la forme $<aX + b>$
@@ -497,9 +500,8 @@ Il est ensuite aisé de construire n'importe quel polynôme de permutation en sa
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Premiers critères d'identifications avec implémentations}
 
-\section{Critères de reconnaissances}
-Il est plus que nécessaire, avant de se lancer dans la tâche ardue qu'est l'étude des polynômes de permutation, de se donner les moyens de les identifier, ou tout du moins de savoir les reconnaître. Cette partie y sera entièrement consacrée. Nous n'aurons pas la prétention de donner une liste exhaustive de critères ; cependant dans ce premier rendu nous donnerons les plus élémentaires. Une étude plus approfondie sera faite au second semestre.
 
 \subsection{Considérations triviales}
 Une manière bien simple de reconnaitre un polynôme de permutation consiste à en calculer toute les images, puis de les comparer une à une. Si une image est égale à une autre, i.e. l'application n'est pas injective, alors le polynôme ne sera pas de permutation. On obtient dès lors le critère suivant :
@@ -520,10 +522,26 @@ $P$ est un polynôme de permutation si et seulement si $\forall \alpha \in \Fq$,
 \end{crit}
 
 \begin{proof}
-En effet, le fait que $deg((X^q -X) \wedge (P(X)-a)) \neq 1$ signifie que $X^q - X$ et $P(X) - a$ ont $\displaystyle\prod_{c \in \Fq, P(c) = a}(X-c)$ en commun, donc $P(X) - a$ s'annule en plusieurs points et finalement $P$ n'est pas une bijection. \newline
+En effet, le fait que $deg((X^q -X) \wedge (P(X)-a)) \neq 1$ signifie que $X^q - X$ et $P(X) - a$ ont comme facteur commun $\displaystyle\prod_{c \in \Fq, P(c) = a}(X-c)$, donc $P(X) - a$ s'annule en plusieurs points et finalement $P$ n'est pas une bijection. \newline
 Réciproquement, si $deg((X^q -X) \wedge (P(X)-a)) = 1$, alors le seul facteur commun à $X^q - X$ et $P(X) - a$ est $X-c$, où $c$ est tel que $P(c) = a$. La conclusion s'ensuit.
 \end{proof}
 
+
+\subsection{Implémentations}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Classes de polynômes}
+Il est plus que nécessaire, avant de se lancer dans la tâche ardue qu'est l'étude des polynômes de permutation, de se donner les moyens de les identifier, ou tout du moins de savoir les reconnaître. Cette partie y sera entièrement consacrée. Nous n'aurons pas la prétention de donner une liste exhaustive de critères ; cependant dans ce premier rendu nous donnerons les plus élémentaires. Une étude plus approfondie sera faite au second semestre.
 
 \subsection{Polynômes exceptionnels}
 Avant de commencer, rappelons la 
@@ -590,7 +608,17 @@ De l'exemple précédent, il découle que $P := X^3 +3X^2 + 3X$ est un polynôme
 Dans $F_5 \simeq \mathds{Z}/5\mathds{Z}$, $-3 = 2$ qui n'est pas un carré, donc $P$ est un polynôme de permutation. En revanche, dans $F_3 \simeq \mathds{Z}/ 3\mathds{Z}$, $-3 = 0 = 9 = 3^2$, donc $P$ n'est pas un polynôme de permutation.
 \end{example}
 
-%\section{Familles de polynômes de permutation} Nom de section à changer
+
+\subsection{Polynômes linéarisés}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Conclusion}
+\addcontentsline{toc}{part}{Conclusion}
 
 
 
