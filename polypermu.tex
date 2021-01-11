@@ -1,3 +1,4 @@
+  
 \documentclass[12pt]{article}
 \usepackage[francais]{babel}
 \usepackage{natbib}
@@ -18,8 +19,6 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{pifont}
-\usepackage{minted}
-\definecolor{LightGray}{gray}{0.95}
 
 \title{Polynômes de Permutations}
 \author{PIARD A. - JACQUET R. - CARVAILLO T.}
@@ -501,7 +500,7 @@ Il est ensuite aisé de construire n'importe quel polynôme de permutation en sa
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Premiers critères d'identifications\\avec implémentations}
+\section{Premiers critères d'identifications avec implémentations}
 Nous venons de voir les premières définitions et propriétés sur les polynômes de permutation. Il est plus que nécessaire, avant de se lancer dans la tâche ardue qu'est l'étude des polynômes de permutations, de se donner les moyens de les identifier, ou tout du moins de savoir les reconnaître. 
 Dans cette partie, nous verrons trois premiers critères triviaux, qui seront implémentés en \textit{Python} via \textit{Sagemath}.
 
@@ -545,100 +544,19 @@ $P$ est un polynôme de permutation si et seulement si les deux conditions suiva
 
 \begin{bg}
 Possiblement implémentable ?\newline
-Si oui, \textbf{Arthur : oui il est implémentable mais je verrai si ça n'est pas trop compliqué}
+Si oui,
 \end{bg}
 Nous implémenterons ce critère dans un prochain rendu.
 
 \subsection{Implémentations}
 
-Commençons par ce premier algorithme de test pour trouver les polynômes de permutations. Cet algorithme est développé en \textit{Sage}.
 
-\begin{minted}
-[
-frame=lines,
-framesep=2mm,
-baselinestretch=1,
-bgcolor=LightGray,
-fontsize=\footnotesize,
-linenos
-]
-{python}
-def estDePermutation(f, q):
-    R.<x> = GF(q) # Corps fini à q éléments
-    S.<t> = PolynomialRing(R) # Anneau de polynômes sur F_q en l'indéterminées t
-    f = S(f)
-    image = []
-    for i in R:
-        temp = f(i)
-        if temp in image: # si l'application n'est pas injective 
-        		  # le polynôme ne peut être de permutation
-            return(False)
-        else:
-            image.append(temp)
-    return(True)
-    
-q = 2
-deg = 4
-R.<x> = GF(q)
-S.<t> = PolynomialRing(R)
-print(" Les polynômes de permutations sur à coefficients dans F_" + str(q) + 
-" de degré au plus " + str(deg) + " sont :")
-for f in S.polynomials(of_degree=deg):
-    if estDePermutation(f, q):
-       print( f )
-\end{minted}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=1\textwidth]{appercu.png}
-\caption{Affichage de l'éxécution}
-\end{figure}
-\pagebreak
-Maintenant nous allons présenter un algorithme permettant une implémentation du \textbf{Critère 2}. Il a été lui aussi développé en \textit{Sage}.
 
-\begin{minted}
-[
-frame=lines,
-framesep=2mm,
-baselinestretch=1,
-bgcolor=LightGray,
-fontsize=\footnotesize,
-linenos
-]
-{python}
-def estDePermutation(f, q):
-    R.<x> = GF(q) # Corps fini à q éléments
-    S.<t> = PolynomialRing(R) # Anneau de polynômes sur F_q en l'indéterminées t
-    f = S(f)
-    a = t**q - t
-    for element in R:
-        if (a.gcd(f - element)).degree() != 1:
-            return (False)
-    return(True)
 
-q = 2
-deg = 4
-R.<x> = GF(q)
-S.<t> = PolynomialRing(R)
-test1 = t**4 + t**3 + t**2 + 1
-test2 = t**4 + t**3 + 1
-answer = "non"
-answer2 = "non"
-if estDePermutation(test1,2):
-    answer = "oui"
-if estDePermutation(test2,2):
-    answer2 = "oui"
-print(str(test1) + " est de permutation ? " + answer)
-print(str(test2) + " est de permutation ? " + answer2)
-\end{minted}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{appercu2.png}
-\caption{Affichage de l'éxécution}
-\end{figure}
 
-Cet algorithme est assez intéressant car il permet de tester directement un polynôme bien spécifique, plutôt que le premier qui lui permet de lister les polynômes de permutations de degré précisé.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -725,7 +643,7 @@ Soit $q = p^n$ une puissance d'un nombre premier quelconque. Soit $P := X^p$, no
 	\end{align*}
 Or, les $(X-Y)$ sont évidemment irréductibles sur toute extension de $\Fq$, donc $P$ n'est pas un polynôme exceptionnel.
 \end{example}
-Nous allons maintenant énoncé un non-critère fort, qui sera admis pour le moment. Sa démonstration s'appuie sur des éléments complexes de la théorie de \textit{Galois}; nous nous laissons l'opportunité de le démontrer en ce second semestre.
+Nous allons maintenant énoncer un non-critère fort, qui sera admis pour le moment. Sa démonstration s'appuie sur des éléments complexes de la théorie de \textit{Galois}; nous nous laissons l'opportunité de le démontrer en ce second semestre.
 
 \begin{crit}[non-critère]
 Soit $q = p^n$ une puissance d'un nombre premier quelconque. Soit $k \in \mathds{N}$, tel que $pgcd(k, q-1) > 1$. Alors, il n'existe pas de polynôme exceptionnel à coefficients dans $\Fq$ de degré $k$.
@@ -734,7 +652,28 @@ Soit $q = p^n$ une puissance d'un nombre premier quelconque. Soit $k \in \mathds
 
 \subsection{Polynômes linéarisés}
 
+{\color{red} La notion de polynôme linéarisé n'est peut-être pas super à employer ! Il faudrait faire des recherches plus approfondies dessus mais pour l'instant je n'ai trouvé des applications qu'en trigonométrie avec la linéarisation de polynômes en cosinus et sinus par la formule d'Euler, etc}
 
+Un polynôme linéarisé correspond à une application linéaire de $\mathbb{F}_q$ dans lui-même et est de la forme $f(x) = \sum_{i=0}^{k} a_i x^{p^i} \in \mathbb{F}_{p^n}[x] $, où $\mathbb{F}_{p^n}[x] = \mathbb{F}_q$. Ce polynôme est de permutation si et seulement s'il admet 0 comme unique racine dans $\mathbb{F}_q$.\\
+Beaucoup d'exemples de polynômes de permutations peuvent être générés à partir de ce type de polynômes, c'est pourquoi nous les introduisons ici avec les théorèmes suivants :\\
+
+\begin{theorem}
+Un polynôme de permutation de $\mathbb{F}_q$ est de permutation sur toutes les extensions finies de $\mathbb{F}_q$ si et seulement s'il est de la forme $ax^{p^h} + b$ avec $a \neq 0$ et $h \geq 0$.
+\end{theorem}
+
+{\color{red} Je ne trouve pas le théorème suivant très pertinent}
+
+\begin{theorem}
+Si $f\in \mathbb{F}_q[x]$ n'est pas de la forme $ax^{p^h} + b$, il existe une infinité d'extensions finies $\mathbb{F}_{q^r}$ de $\mathbb{F}_q$ telles que $f$ ne soient pas un polynôme de permutation de $\mathbb{F}_{q^r}$.
+\end{theorem}
+
+\begin{theorem}
+Pour tout polynôme linéarisé $L \in \mathbb{F}_q[x]$, il existe $a \in \mathbb{F}_q$ tel que $L(x) - ax$ soit un polynôme de permutation.
+\end{theorem}
+
+Pour montrer que ces polynômes sont de permutation, il suffit bien évidemment de montrer leur bijectivité, ce qui se fait assez aisément.
+
+{\color{red} \textbf{Raph} : Je chercherai une démonstration correcte, au moins pour un des types de polynôme énoncés.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
