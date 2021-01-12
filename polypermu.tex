@@ -528,10 +528,6 @@ Un polynôme $P \in \Fq[X]$ est une permutation de $\Fq$ si et seulement si \beg
 \end{crit}
 En plus d'être très peu élégante, cette méthode requiert une puissance de calcul, croissante et en le degré du polynôme et en le cardinal du corps dans lequel on se place. 
 
-\begin{bg}
-Inclut-on les raisonnement sur la complexité du calcul ?
-\end{bg}
-
 Il est également possible de faire la démarche en sens inverse, et de considérer les antécédents. %On obtient dès lors le
 
 \begin{crit}
@@ -558,12 +554,6 @@ $P$ est un polynôme de permutation si et seulement si les deux conditions suiva
 	\item $deg(\overline{(P(X))^{q-1}}) = q-1$
 \end{enumerate}
 \end{crit}
-
-\begin{bg}
-Possiblement implémentable ?\newline
-Si oui, \textbf{Arthur : oui il est implémentable mais je verrai si ça n'est pas trop compliqué}
-\end{bg}
-Nous implémenterons ce critère dans un prochain rendu.
 
 \subsection{Implémentations}
 
@@ -610,7 +600,56 @@ for f in S.polynomials(of_degree=deg):
 \caption{Affichage de l'éxécution}
 \end{figure}
 \pagebreak
-Maintenant nous allons présenter un algorithme permettant une implémentation du \textbf{Critère 2}. Il a été lui aussi développé en \textit{Sage}.
+Nous allons ensuite présenter une implémentation sous forme algorithmique le \textbf{Critère 1} présenté précédemment. Cet algorithme est développé en \textit{Sage}.
+\begin{minted}
+[
+frame=lines,
+framesep=2mm,
+baselinestretch=1,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+linenos
+]
+{python}
+def estDePermutation(f, q):
+    R.<x> = GF(q) # Corps fini à q éléments
+    S.<t> = PolynomialRing(R) # Anneau de polynômes sur F_q en l'indéterminées t
+    f = S(f)
+    temp = t - f(R(0)) # R(0) désigne le premier élément du corps F_q
+    for i in R:
+        if R(0) == i:
+            continue
+        temp = temp * (t - f(i))
+    if temp == t**q - t:
+        return (True)
+    return (False)
+    
+q = 2
+deg = 4
+R.<x> = GF(q)
+S.<t> = PolynomialRing(R)
+test1 = t**4 + t**3 + t
+test2 = t**4 + t**3 + 1
+answer1 = "non"
+answer2 = "non"
+if estDePermutation(test1, q):
+    answer1 = "oui"
+if estDePermutation(test2, q):
+    answer1 = "oui"
+print("Critère 1 :")
+print("Le polynôme " + str(test1)  + " est de permutation ? " + answer1)
+print("Le polynôme " + str(test2)  + " est de permutation ? " + answer2)
+\end{minted}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.68\textwidth]{appercu3.png}
+\caption{Affichage de l'éxécution}
+\end{figure}
+Cet algorithme nécessite plus de calculs que le précédent mais permet de donner une réponse directe à la question "Est ce que $P \in \mathbbm{F}_q [X]$ est de permutation ?". \#TODO: Donner la complexité de ces algorithmes.
+\pagebreak
+
+Nous allons présenter aussi un algorithme permettant une implémentation du \textbf{Critère 2}. Il a été lui aussi développé en \textit{Sage}.
 
 \begin{minted}
 [
@@ -633,16 +672,15 @@ def estDePermutation(f, q):
     return(True)
 
 q = 2
-deg = 4
 R.<x> = GF(q)
 S.<t> = PolynomialRing(R)
 test1 = t**4 + t**3 + t**2 + 1
 test2 = t**4 + t**3 + 1
 answer = "non"
 answer2 = "non"
-if estDePermutation(test1,2):
+if estDePermutation(test1, q):
     answer = "oui"
-if estDePermutation(test2,2):
+if estDePermutation(test2, q):
     answer2 = "oui"
 print(str(test1) + " est de permutation ? " + answer)
 print(str(test2) + " est de permutation ? " + answer2)
@@ -656,6 +694,60 @@ print(str(test2) + " est de permutation ? " + answer2)
 
 Cet algorithme est assez intéressant car il permet de tester directement un polynôme bien spécifique, plutôt que le premier qui lui permet de lister les polynômes de permutations de degré précisé.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+
+Enfin nous allons présenter une implémentation du \textbf{Critère de Hermite-Dickson}. Cette implémentation a été réalisée elle aussi en \textit{Sage}.
+
+\begin{minted}
+[
+frame=lines,
+framesep=2mm,
+baselinestretch=1,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+linenos
+]
+{python}
+def estDePermutation(f, q):
+    R.<x> = GF(q) # Corps fini à q éléments
+    S.<t> = PolynomialRing(R) # Anneau de polynômes sur F_q en l'indéterminées t
+    f = S(f)
+    a_pk = []
+    for i in range(0, q-2):
+        if p % k != 0:
+            a_pk.append(i)
+    for j in a_pk:
+        if (f(t)**j % (t**q - t)).degree() > q - 1:
+            return (False)
+    if (f(t)**(q-1) % (t**q - t)).degree() == q - 1:
+        return (True)
+    return (False)
+    
+q = 2
+deg = 4
+R.<x> = GF(q)
+S.<t> = PolynomialRing(R)
+test1 = t**4 + t**3 + t
+test2 = t**4 + t**3 + 1
+answer1 = "non"
+answer2 = "non"
+if estDePermutation(test1, q):
+    answer1 = "oui"
+if estDePermutation(test2, q):
+    answer1 = "oui"
+print("Critère Hermite-Dickson :")
+print("Le polynôme " + str(test1)  + " est de permutation ? " + answer1)
+print("Le polynôme " + str(test2)  + " est de permutation ? " + answer2)
+\end{minted}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{appercu4.png}
+\caption{Affichage de l'éxécution}
+\end{figure}
+
+Cet algorithme est le plus complexe et est celui qui nécessite le plus d'opérations (normalement?). Il est en revanche plus intéressant en termes de développement et de structures car il utilise des calculs plus conséquents.
+
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
