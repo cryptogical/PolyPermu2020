@@ -21,6 +21,7 @@
 \usepackage[cache=false]{minted}
 \definecolor{LightGray}{gray}{0.95}
 
+
 \title{Polynômes de Permutations}
 \author{PIARD A. - JACQUET R. - CARVAILLO T.}
 \date{\today}
@@ -134,27 +135,32 @@
 
 \tableofcontents
 \pagebreak
+\section*{\Huge Notation}
 
-\section*{\huge{Notations}}
-\vspace{36pt}
-$\mathbb{F}_q$ \hspace{84pt} Corps de \textit{Galois} à $q$ éléments.\\
-$\mathbb{F}_q$* \hspace{79pt} Ensemble des éléments inversibles de $\mathbb{F}_q$\\
-$\overline{\mathbb{F}_p}$ \hspace{84pt} Clôture algébrique de $\mathbb{F}_p$.\\
-$\mathbb{F}_q[X]$\hspace{71pt} Anneau des polynômes en l'indéterminée $X$ à coefficients dans $\mathbb{F}_q$.\\
-$\mathbbm{Poly}$ \hspace{71pt} Ensemble des polynômes de permutation (définir sur quel corps).\\
-$deg(f)$ \hspace{63pt} Degré du polynôme $f$.\\
-$P(X) \wedge Q(X)$ \hspace{25pt} PGCD de $P$ et $Q$.\\
-$\mathbb{F}_p(\alpha)$ \\
+\vspace{3cm}
+\begin{tabular}{p{4cm}p{15cm}}
+$\mathbbm{F}_q$ & Corps de \textit{Galois} à $q$ éléments.\\
+$\mathbbm{F}_q$* & Ensemble des éléments inversibles de $\mathbbm{F}_q$\\
+$\overline{\mathbb{F}_p}$ & Clôture algébrique de $\mathbbm{F}_p$.\\
+$\mathbbm{F}_q[X]$ & Anneau des polynômes en l'indéterminée $X$ à coefficients dans $\mathbb{F}_q$.\\
+$\c{Poly}$ & Ensemble des polynômes de permutation sur $\mathbbm{F}_q$\\
+$deg(f)$ & Degré du polynôme $f$.\\
+$P(X) \wedge Q(X)$ & PGCD de $P$ et $Q$.\\
+$\mathbbm{F}_p(\alpha)$ & Corps de décomposition de  $\alpha$\\
+\end{tabular}
+
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
 \addcontentsline{toc}{part}{Introduction}
+\begin{figure}[h]
 La structure de groupe, qui paraît si simple en apparence, est à la base du développement de théories bien moins triviales. De cette notion est née celle d’anneau, puis de corps. L’étude des groupes finis permet de formaliser rigoureusement des concepts naturels comme ceux de symétries, de permutations, ... Ce dernier point est celui qui nous intéressera. Bien que nous soyons déjà grandement familier avec le groupe des permutations $S_n$ de l’ensemble à $n$ éléments, en tant qu’algébriste nous trouvons plaisir à exhiber de nouveaux moyens d'entrevoir des notions fondamentales, tout en les reliant à des structures agréables. \newline
 Dans cet ersatz de mémoire, nous nous concentrerons sur une modélisation bien particulière des permutations. \newline
 Nous nous donnerons pour cela les moyens théoriques nécessaire. L’ensemble à permuter sera représenté par le corps fini à $q = p^n$ éléments $\Fq$, avec $p$ premier et $n \in \mathbb{N}$. Quant aux permutations, elles seront « représentées » par un objet assez surprenant au vu de notre étude ; les polynômes. Nous verrons que certains polynômes permettent une permutation de $\Fq$, ils seront donc dit de permutation. On munira ensuite cet ensemble de polynômes d'une structure bien connue...\newline
 \break
 Dans une première partie, nous effectuerons l’essentiel des rappels de théorie des corps nécessaire à notre étude. Dans une seconde, seront exhibées les premières propriétés fondamentales des polynômes de permutations. Dans une troisième, nous verrons des premiers critères d’identifications, avec une implémentation pour certains d'entre eux. Et enfin, une dernière sera articulée par la présentation de « grandes familles » de polynômes de permutations.
+\end{figure}
 
 \vfill \eject
 
@@ -192,7 +198,7 @@ est appelée sous-corps de $\K$.
 Soit $\K$ un corps quelconque.
 \begin{itemize}
 \item $\K$ est dit premier s'il ne contient aucun sous-corps strict.
-\item Si $\K$ est un corps, le sous-corps de $\K$ engendré par $1_{K}$ est un corps premier, c'est le sous-corps premier de $\K$.
+\item Si $\K$ est un corps, le sous-corps de $\K$ engendré par $1_{\mathbbm{K}}$ est un corps premier, c'est le sous-corps premier de $\K$.
 \end{itemize}
 \end{definition}
 \vspace{12pt}
