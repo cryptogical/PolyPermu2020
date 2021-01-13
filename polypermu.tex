@@ -48,7 +48,7 @@
 \newcommand{\G}{\mathbbm{G}}
 \newcommand{\K}{\mathbbm{K}}
 \newcommand{\F}{\mathbbm{F}}
-\newcommand{\Fq}{\mathds{F}_q}
+\newcommand{\Fq}{\mathbbm{F}_q}
 
 %définition commande présentation fonction
 \newcommand{\fonction}[5]{
@@ -588,7 +588,7 @@ q = 2
 deg = 4
 R.<x> = GF(q)
 S.<t> = PolynomialRing(R)
-print(" Les polynômes de permutations sûr à coefficients dans F_" + str(q) + 
+print(" Les polynômes de permutations à coefficients dans F_" + str(q) + 
 " de degré au plus " + str(deg) + " sont :")
 for f in S.polynomials(of_degree=deg):
     if estDePermutation(f, q):
@@ -747,7 +747,7 @@ print("Le polynôme " + str(test2)  + " est de permutation ? " + answer2)
 \caption{Affichage de l'exécution}
 \end{figure}
 
-Cet algorithme est le plus complexe et est celui qui nécessite le plus d'opérations (normalement?). Il est en revanche plus intéressant en termes de développement et de structures car il utilise des calculs plus conséquents.
+Cet algorithme est le plus complexe et est celui qui nécessite le plus d'opérations. Il est en revanche plus intéressant en termes de développement et de structures car il utilise des calculs plus conséquents.
 
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -764,16 +764,22 @@ L'ensemble $\Fq[X,Y]$ des polynômes en les indéterminées $X$ et $Y$ à coeffi
 \end{prop}
 
 \begin{definition}
-Un polynôme en les deux indéterminées $X$ et $Y$ est dit absolument irréductible s'il est irréductible sur toute extension de $\Fq$. En d'autres termes, s'il est irréductible sur la clôture algébrique $\bar{\Fq}$ de $\Fq$. 
+Un polynôme en les deux indéterminées $X$ et $Y$ est dit absolument irréductible s'il est irréductible sur toute extension de $\Fq$. En d'autres termes, s'il est irréductible sur la clôture algébrique $\overline{\Fq}$ de $\Fq$. 
 
 \begin{rem}
 On rappelle que toute extension de $\Fq$ est algébrique, il en va de même de sa clôture.
 \end{rem}
 
-\begin{bg}
-{\color{red} On rappelle ce qu'est  $\bar{\Fq}$ ?}
-\end{bg}
-
+\end{definition}
+On se donne une suite d'entiers $(m_i)_{i \geq 1}$ avec $m_i \geq 1$ qui tend vers $+ \infty$. On la construit en outre de telle sorte que $\forall i \geq 1$, $m_i$ divise $m_{i+1}$ et $i$ divise $m_i$. Pour fixer les idées on prend $m_i = i !$. On pose $K_0 = \mathbbm{F}_p$ et pour tout $i \geq 1$, soit $K_i$ un corps de décomposition sur $K_{i-1}$ du polynôme $X^{p^{m_i}} - X$. Alors $K_i \cong \mathbbm{F}_{p^{m_i}}$ et on a une suite croissante
+\begin{center}
+$K_0 \subseteq K_1 \subseteq K_2 \subseteq ...$
+\end{center}
+\begin{definition}
+On appelle clôture algébrique de $\mathbbm{F}_p$ notée $\overline{\mathbbm{F}_p}$ la réunion des $K_i$ :
+\begin{center}
+$\overline{\mathbbm{F}_p} = \displaystyle \bigcup_{i \geq 1} K_i$.
+\end{center}
 \end{definition}
 
 \begin{definition}
@@ -817,7 +823,7 @@ Tout polynôme exceptionnel à coefficients dans $\Fq[X]$ est un polynôme de pe
 
 \begin{example}
 De l'exemple précédent, il découle que $P := X^3 +3X^2 + 3X$ est un polynôme de permutation si $-3$ n'est pas un carré dans $\Fq$. \newline
-Dans $F_5 \simeq \mathds{Z}/5\mathds{Z}$, $-3 = 2$ qui n'est pas un carré, donc $P$ est un polynôme de permutation. En revanche, dans $F_3 \simeq \mathds{Z}/ 3\mathds{Z}$, $-3 = 0 = 9 = 3^2$, donc $P$ n'est pas un polynôme de permutation.
+Dans $\mathbbm{F}_5 \simeq \mathbbm{Z}/5\mathbbm{Z}$, $-3 = 2$ qui n'est pas un carré, donc $P$ est un polynôme de permutation. En revanche, dans $\mathbbm{F}_3 \simeq \mathbbm{Z}/ 3\mathbbm{Z}$, $-3 = 0 = 9 = 3^2$, donc $P$ n'est pas un polynôme de permutation.
 \end{example}
 
 \begin{rem}
@@ -829,7 +835,7 @@ Soit $q = p^n$ une puissance d'un nombre premier quelconque. Soit $P := X^p$, no
 	\begin{align*}
 \Psi(X,Y) &= \displaystyle\frac{P(X) - P(Y)}{X-Y} \\
 &= \displaystyle\frac{X^p - Y^p}{X-Y} \\
-&= \displaystyle\frac{(X-Y)^p}{X-Y} \text{(on travaille sur un corps de caracteristique $p$)} \\
+&= \displaystyle\frac{(X-Y)^p}{X-Y} \hspace{0,5cm} \text{(on travaille sur un corps de caracteristique $p$)} \\
 &= (X-Y)^{p-1}
 	\end{align*}
 Or, les $(X-Y)$ sont évidemment irréductibles sur toute extension de $\Fq$, donc $P$ n'est pas un polynôme exceptionnel.
@@ -860,6 +866,7 @@ Un polynôme de permutation de $\mathbb{F}_q$ est de permutation sur toutes les 
 %\begin{theorem}
 %Si $f\in \mathbb{F}_q[x]$ n'est pas de la forme $ax^{p^h} + b$, il existe une infinité d'extensions finies $\mathbb{F}_{q^r}$ de $\mathbb{F}_q$ telles que $f$ ne soient pas un polynôme de permutation de $\mathbb{F}_{q^r}$.
 %\end{theorem}
+\pagebreak
 Avec ce critère peuvent venir quelques théorèmes permettant d'identifier des polynômes de permutations, tels que :
 \begin{theorem}
 Pour tout polynôme linéarisé $L \in \mathbb{F}_q[x]$, il existe $a \in \mathbb{F}_q$ tel que $L(x) - ax$ soit un polynôme de permutation.
