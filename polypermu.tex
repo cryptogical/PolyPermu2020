@@ -143,7 +143,7 @@ $\mathbbm{F}_q$ & Corps de \textit{Galois} à $q$ éléments.\\
 $\mathbbm{F}_q$* & Ensemble des éléments inversibles de $\mathbbm{F}_q$\\
 $\overline{\mathbb{F}_p}$ & Clôture algébrique de $\mathbbm{F}_p$.\\
 $\mathbbm{F}_q[X]$ & Anneau des polynômes en l'indéterminée $X$ à coefficients dans $\mathbbm{F}_q$.\\
-$\c{Poly}$ & Ensemble des polynômes de permutation sur $\mathbbm{F}_q$\\
+$\mathbbm{Poly}$ & Ensemble des polynômes de permutation sur $\mathbbm{F}_q$\\
 $deg(f)$ & Degré du polynôme $f$.\\
 $P(X) \wedge Q(X)$ & PGCD de $P$ et $Q$.\\
 $\mathbbm{F}_p(\alpha)$ & Corps de décomposition de  $\alpha$\\
@@ -495,7 +495,7 @@ Il est facile de le vérifier dans le cas où $a = 1$. On considère le corps $\
     \end{array}
 \right.
 $$
-On en déduit alors que $\displaystyle \mathbbm{g}_0  (x)- x = (ax + b) +  \prod_{k=2}^{p-1} (x-k)$
+On en déduit alors que $\displaystyle \mathbbm{g}_1  (x)- x = (ax + b) +  \prod_{k=2}^{p-1} (x-k)$
 
 En appliquant notre égalité pour $x=1$ et $x=0$ on obtient le système suivant,
 \begin{center}
@@ -767,6 +767,10 @@ print("Le polynôme " + str(test2)  + " est de permutation ? " + answer2)
 
 Cet algorithme est le plus complexe et est celui qui nécessite le plus d'opérations. Il est en revanche plus intéressant en termes de développement et de structures car il utilise des calculs plus conséquents.
 
+\subsection*{Remarque}
+
+Il existe des algorithmes déterministes et probabilistes de polynômes de permutation, que nous verrons au semestre 2.
+
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -871,7 +875,7 @@ Nous allons maintenant nous intéresser à la notion de polynômes linéarisés 
 %{\color{red} La notion de polynôme linéarisé n'est peut-être pas super à employer ! Il faudrait faire des recherches plus approfondies dessus mais pour l'instant je n'ai trouvé des applications qu'en trigonométrie avec la linéarisation de polynômes en cosinus et sinus par la formule d'Euler, etc}
 
 \begin{definition}
-On appelle polynômes linéarisés de $\mathbb{F}_{p^n} = \mathbb{F}_q$ les polynômes de la forme $\sum_{i=0}^{k} a_iX^{p^i} \in \mathbb{F}_{p^n}$.
+On appelle polynômes linéarisés de $\mathbb{F}_{p^n} = \mathbb{F}_q$ les polynômes de la forme $\displaystyle \sum_{i=0}^{k} a_iX^{p^i} \in \mathbb{F}_{p^n}$, $n \in \mathbbm{N}$ et $p$ premier.
 \end{definition}
 Ces polynômes correspondent aux applications $\mathbb{F}_q$-linéaires.\\
 Beaucoup d'exemples de polynômes de permutations peuvent être générés à partir de ce type de polynômes, c'est pourquoi nous introduisons maintenant le critère suivant :\\
@@ -888,6 +892,16 @@ Avec ce critère peuvent venir quelques théorèmes permettant d'identifier des 
 \begin{prop}
 Un polynôme linéarisé est de permutation si et seulement si $0$ est son unique racine dans $\mathbb{F}_{p^n}$.
 \end{prop}
+
+\begin{proof}
+Soit $L$ un polynôme linéarisé de $\mathbbm{F}_{p^n} = \Fq$. Il est évident que $0$ est racine de $L$.\\
+$\Rightarrow$ On va supposer que $L$ est de permutation. Par définition, l'application associée \fonction{L}{\Fq}{\Fq}{X}{L(X)} est bijective, donc injective donc $0$ admet un antécédent unique.\\
+
+$\Leftarrow$ Par contraposée.\\
+On va montrer que si $0$ n'est pas racine unique de $L$, alors $L$ n'est pas de permutation.\\
+Si $0$ n'est pas racine unique de $L$, alors $0$ admet plusieurs antécédents par $L$ et l'application associée n'est donc pas injective. La conclusion s'ensuit.
+\end{proof}
+
 \begin{theorem}[Admis]
 Pour tout polynôme linéarisé $L \in \mathbb{F}_q[x]$, il existe $a \in \mathbb{F}_q$ tel que $L(x) - ax$ soit un polynôme de permutation.
 \end{theorem}
