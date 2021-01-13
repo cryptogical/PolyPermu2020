@@ -150,7 +150,7 @@ $\mathbb{F}_p(\alpha)$ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
 \addcontentsline{toc}{part}{Introduction}
-La structure de groupe, qui paraît si simple en apparence, est à la base du développement de théories bien moins triviales. De cette notion est née celle d’anneau, puis de corps. L’étude des groupes finis permet de formaliser rigoureusement des concepts naturels comme ceux de symétries, de permutations, … Ce dernier point est celui qui nous intéressera. Bien que nous soyons déjà grandement familier avec le groupe des permutations $S_n$ de l’ensemble à $n$ éléments, en tant qu’algébriste nous trouvons plaisir à exhiber de nouveaux moyens d'entrevoir des notions fondamentales, tout en les reliant à des structures agréables. \newline
+La structure de groupe, qui paraît si simple en apparence, est à la base du développement de théories bien moins triviales. De cette notion est née celle d’anneau, puis de corps. L’étude des groupes finis permet de formaliser rigoureusement des concepts naturels comme ceux de symétries, de permutations, ... Ce dernier point est celui qui nous intéressera. Bien que nous soyons déjà grandement familier avec le groupe des permutations $S_n$ de l’ensemble à $n$ éléments, en tant qu’algébriste nous trouvons plaisir à exhiber de nouveaux moyens d'entrevoir des notions fondamentales, tout en les reliant à des structures agréables. \newline
 Dans cet ersatz de mémoire, nous nous concentrerons sur une modélisation bien particulière des permutations. \newline
 Nous nous donnerons pour cela les moyens théoriques nécessaire. L’ensemble à permuter sera représenté par le corps fini à $q = p^n$ éléments $\Fq$, avec $p$ premier et $n \in \mathbb{N}$. Quant aux permutations, elles seront « représentées » par un objet assez surprenant au vu de notre étude ; les polynômes. Nous verrons que certains polynômes permettent une permutation de $\Fq$, ils seront donc dit de permutation. On munira ensuite cet ensemble de polynômes d'une structure bien connue...\newline
 \break
@@ -852,11 +852,11 @@ Soit $q = p^n$ une puissance d'un nombre premier quelconque. Soit $P := X^p$, no
 	\end{align*}
 Or, les $(X-Y)$ sont évidemment irréductibles sur toute extension de $\Fq$, donc $P$ n'est pas un polynôme exceptionnel.
 \end{example}
-Nous allons maintenant énoncer un non-critère fort, qui sera admis pour le moment. Sa démonstration s'appuie sur des éléments complexes de la théorie de \textit{Galois}. Nous nous laissons l'opportunité de le démontrer en ce second semestre.
+Nous allons maintenant énoncer une proposition, qui sera admise pour le moment. Sa démonstration s'appuie sur des éléments complexes de la théorie de \textit{Galois}. Nous nous laissons l'opportunité de le démontrer en ce second semestre.
 
-\begin{crit}[non-critère]
+\begin{prop}
 Soit $q = p^n$ une puissance d'un nombre premier quelconque. Soit $k \in \mathds{N}$ tel que $pgcd(k, q-1) > 1$. Alors, il n'existe pas de polynôme exceptionnel à coefficients dans $\Fq$ de degré $k$.
-\end{crit}
+\end{prop}
 
 
 \subsection{Polynômes linéarisés}
@@ -882,13 +882,10 @@ Avec ce critère peuvent venir quelques théorèmes permettant d'identifier des 
 \begin{prop}
 Un polynôme linéarisé est de permutation si et seulement si $0$ est son unique racine dans $\mathbb{F}_{p^n}$.
 \end{prop}
-\begin{theorem}
+\begin{theorem}[Admis]
 Pour tout polynôme linéarisé $L \in \mathbb{F}_q[x]$, il existe $a \in \mathbb{F}_q$ tel que $L(x) - ax$ soit un polynôme de permutation.
 \end{theorem}
 
-\begin{proof}
-Si $L$ est un monôme, alors $a=0$ convient. On admettra que les polynômes du type $\frac{L(X)}{X}$, où $L(X)$ est un polynôme linéarisé, ne sont de permutation que si ce sont des monômes. Il existe donc au moins une valeur $a$ qui n'est pas prise par ce polynôme, et le polynôme linéarisé $$X(\frac{L(X)}{X}-a) = L(X)-aX$$ n'a alors que $0$ comme racine et est donc de permutation.
-\end{proof}
 Pour montrer que ces polynômes sont de permutation, il suffit bien évidemment de montrer leur bijectivité, ce qui se fait assez aisément.
 
 
@@ -903,9 +900,7 @@ Les rappels sur les corps finis étaient primordiaux . Il était nécessaire de 
 \break
 Il est fréquent qu'un polynôme de permutation présentant une apparence complexe, ne correspond finalement qu’à une permutation simple. Et réciproquement, une permutation compliquée sera généralement « représentable » par un polynôme de permutation simple. En tant qu’étudiant en cryptologie, cela ne peut que nous ravir. L’implémentation en sera d’autant plus facile, et ainsi l’application en cryptologie. \newline
 Ceci nous a conduit, tout du long, à exhiber différents critères d’identifications et à implémenter certains d’entre eux. Ces derniers permettent de décider quels polynômes sont, ou non, de permutations ; et donc à fortiori d'en trouver de « bons » pour une application en cryptologie. \newline
-Notre principale préoccupation est de trouver des algorithmes déterministes efficaces.  C’est à dire effectuant les calculs souhaités en un temps au plus polynomial. Notons toutefois que les algorithmes actuels commencent à donner des résultats en temps satisfaisant.
-
-\\
+Notre principale préoccupation est de trouver des algorithmes déterministes efficaces.  C’est à dire effectuant les calculs souhaités en un temps au plus polynomial. Notons toutefois que les algorithmes actuels commencent à donner des résultats en temps satisfaisant.\\
 {\color{red} Guys, il faudrait présenter des algorithmes probabilistes aussi, non ? Mais S2 j'imagine ?
 Répondez directement en-dessous de ce message}
 
