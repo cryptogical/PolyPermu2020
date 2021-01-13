@@ -142,7 +142,7 @@
 $\mathbbm{F}_q$ & Corps de \textit{Galois} à $q$ éléments.\\
 $\mathbbm{F}_q$* & Ensemble des éléments inversibles de $\mathbbm{F}_q$\\
 $\overline{\mathbb{F}_p}$ & Clôture algébrique de $\mathbbm{F}_p$.\\
-$\mathbbm{F}_q[X]$ & Anneau des polynômes en l'indéterminée $X$ à coefficients dans $\mathbb{F}_q$.\\
+$\mathbbm{F}_q[X]$ & Anneau des polynômes en l'indéterminée $X$ à coefficients dans $\mathbbm{F}_q$.\\
 $\c{Poly}$ & Ensemble des polynômes de permutation sur $\mathbbm{F}_q$\\
 $deg(f)$ & Degré du polynôme $f$.\\
 $P(X) \wedge Q(X)$ & PGCD de $P$ et $Q$.\\
@@ -213,8 +213,8 @@ Soient $L$ et $\K$ deux corps. Si $L/K$ est une extension de corps alors $L$ est
 \begin{definition}
 Soit $P$ un polynôme sur un corps $K$. On appelle corps de décomposition de $P$ sur $K$ une extension $L$ de $K$ telle que :
 \begin{itemize}
-\item dans $L[X]$, $P$ est produit de facteurs de degré $1$,
-\item les racines de $P$ engendrent $L$.
+\item dans $L[X]$, $P(X)$ est produit de facteurs de degré $1$,
+\item les racines de $P(X)$ engendrent $L$.
 \end{itemize}
 \end{definition}
 \vspace{12pt}
@@ -255,7 +255,7 @@ $\displaystyle X^{p^n} - X = \prod_{d | n} \prod_{P \in \mathcal{P}(n,p)} P.$
 \begin{proof}
 \begin{itemize}
 \item Soit $P$ un facteur irréductible de $X^{p^n} - X$ sur $\F_p$ de degré $d$. Le corps de rupture de $P$ sur $\F_p$ est de cardinal $p^d$ du corps de décomposition $X^{p^n} - X$ sur $\F_p$, c'est-à-dire $F_{p^n}$, donc $d$ divise $n$.
-\item Réciproquement, on suppose que $d$ divise $n$ et soit $P \in \mathcal{P} (n,p)$. Soit $\alpha$ une racine de $P$ dans le corps de rupture de $P$ sur $\F_p$. Alors par le théorème ? on a $\F_p (\alpha) \simeq \F_{p^d}$. D'où $\alpha$ est racine de $X^{p^n} - X$. Or, puisque $P$ est irréductible, alors $P$ est le polynôme minimal de $\alpha$ sur $\F_p$ donc $P$ divise $X^{p^n} - X$. En outre les facteurs irréductible de$X^{p^n} - X$ sur $\F_p$ sont simples puisque $P$ est le polynôme minimal de $\alpha$ et que $P$ divise $X^{p^n} - X$.
+\item Réciproquement, on suppose que $d$ divise $n$ et soit $P \in \mathcal{P} (n,p)$. Soit $\alpha$ une racine de $P$ dans le corps de rupture de $P$ sur $\F_p$. Alors on a $\F_p (\alpha) \simeq \F_{p^d}$. D'où $\alpha$ est racine de $X^{p^n} - X$. Or, puisque $P$ est irréductible, alors $P$ est le polynôme minimal de $\alpha$ sur $\F_p$ donc $P$ divise $X^{p^n} - X$. En outre les facteurs irréductible de$X^{p^n} - X$ sur $\F_p$ sont simples puisque $P$ est le polynôme minimal de $\alpha$ et que $P$ divise $X^{p^n} - X$.
 \end{itemize}
 \end{proof}
 \begin{coro}
