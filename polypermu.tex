@@ -135,6 +135,18 @@
 \tableofcontents
 \pagebreak
 
+\section*{\huge{Notations}}
+\vspace{36pt}
+$\mathbb{F}_q$ \hspace{84pt} Corps de \textit{Galois} à $q$ éléments.\\
+$\mathbb{F}_q$* \hspace{79pt} Ensemble des éléments inversibles de $\mathbb{F}_q$\\
+$\overline{\mathbb{F}_p}$ \hspace{84pt} Clôture algébrique de $\mathbb{F}_p$.\\
+$\mathbb{F}_q[X]$\hspace{71pt} Anneau des polynômes en l'indéterminée $X$ à coefficients dans $\mathbb{F}_q$.\\
+$\mathbbm{Poly}$ \hspace{71pt} Ensemble des polynômes de permutation (définir sur quel corps).\\
+$deg(f)$ \hspace{63pt} Degré du polynôme $f$.\\
+$P(X) \wedge Q(X)$ \hspace{25pt} PGCD de $P$ et $Q$.\\
+$\mathbb{F}_p(\alpha)$ \\
+\pagebreak
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
 \addcontentsline{toc}{part}{Introduction}
@@ -855,7 +867,7 @@ Nous allons maintenant nous intéresser à la notion de polynômes linéarisés 
 \begin{definition}
 On appelle polynômes linéarisés de $\mathbb{F}_{p^n} = \mathbb{F}_q$ les polynômes de la forme $\sum_{i=0}^{k} a_iX^{p^i} \in \mathbb{F}_{p^n}$.
 \end{definition}
-Ces polynômes correspondent aux applications $\mathbb{F}_q$ linéaires.\\
+Ces polynômes correspondent aux applications $\mathbb{F}_q$-linéaires.\\
 Beaucoup d'exemples de polynômes de permutations peuvent être générés à partir de ce type de polynômes, c'est pourquoi nous introduisons maintenant le critère suivant :\\
 \begin{crit}
 Un polynôme de permutation de $\mathbb{F}_q$ est de permutation sur toutes les extensions finies de $\mathbb{F}_q$ si et seulement s'il est de la forme $ax^{p^h} + b$ avec $a \neq 0$ et $h \geq 0$.
@@ -866,20 +878,20 @@ Un polynôme de permutation de $\mathbb{F}_q$ est de permutation sur toutes les 
 %\begin{theorem}
 %Si $f\in \mathbb{F}_q[x]$ n'est pas de la forme $ax^{p^h} + b$, il existe une infinité d'extensions finies $\mathbb{F}_{q^r}$ de $\mathbb{F}_q$ telles que $f$ ne soient pas un polynôme de permutation de $\mathbb{F}_{q^r}$.
 %\end{theorem}
-\pagebreak
 Avec ce critère peuvent venir quelques théorèmes permettant d'identifier des polynômes de permutations, tels que :
+\begin{prop}
+Un polynôme linéarisé est de permutation si et seulement si $0$ est son unique racine dans $\mathbb{F}_{p^n}$.
+\end{prop}
 \begin{theorem}
 Pour tout polynôme linéarisé $L \in \mathbb{F}_q[x]$, il existe $a \in \mathbb{F}_q$ tel que $L(x) - ax$ soit un polynôme de permutation.
 \end{theorem}
 
 \begin{proof}
-Voir page 37 du rapport sujet tel.archives et internet
+Si $L$ est un monôme, alors $a=0$ convient. On admettra que les polynômes du type $\frac{L(X)}{X}$, où $L(X)$ est un polynôme linéarisé, ne sont de permutation que si ce sont des monômes. Il existe donc au moins une valeur $a$ qui n'est pas prise par ce polynôme, et le polynôme linéarisé $$X(\frac{L(X)}{X}-a) = L(X)-aX$$ n'a alors que $0$ comme racine et est donc de permutation.
 \end{proof}
 Pour montrer que ces polynômes sont de permutation, il suffit bien évidemment de montrer leur bijectivité, ce qui se fait assez aisément.
 
-\begin{prop}
-Un polynôme linéarisé est de permutation si et seulement si $0$ est son unique racine dans $\mathbb{F}_{p^n}$.
-\end{prop}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
