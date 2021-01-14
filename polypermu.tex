@@ -537,7 +537,7 @@ Il est ensuite aisé de construire n'importe quel polynôme de permutation en sa
 
 \section{Premiers critères d'identifications\\avec implémentations}
 Nous venons de voir les premières définitions et propriétés sur les polynômes de permutation. Il est plus que nécessaire, avant de se lancer dans la tâche ardue qu'est l'étude des polynômes de permutations, de se donner les moyens de les identifier, ou tout du moins de savoir les reconnaître. 
-Dans cette partie, nous verrons trois premiers critères triviaux, qui seront implémentés en \textit{Python} via \textit{Sagemath}.
+Dans cette partie, nous verrons plusieurs critères triviaux, qui seront implémentés en \textit{Python} via \textit{Sagemath}.
 
 \subsection{Considérations triviales}
 Une manière bien simple de reconnaître un polynôme de permutation consiste à en calculer toutes les images, puis de les comparer une à une. Si une image est égale à une autre, i.e. l'application n'est pas injective, alors le polynôme ne sera pas de permutation. On obtient dès lors le critère suivant :
@@ -664,7 +664,7 @@ print("Le polynôme " + str(test2)  + " est de permutation ? " + answer2)
 \includegraphics[width=0.68\textwidth]{appercu3.png}
 \caption{Affichage de l'exécution}
 \end{figure}
-Cet algorithme nécessite plus de calculs que le précédent mais permet de donner une réponse directe à la question "Est ce que $P \in \mathbbm{F}_q [X]$ est de permutation ?". {\color{red} \#TODO: Donner la complexité de ces algorithmes.}
+Cet algorithme nécessite plus de calculs que le précédent mais permet de donner une réponse directe à la question "Est ce que $P \in \mathbbm{F}_q [X]$ est de permutation ?". %{\color{red} \#TODO: Donner la complexité de ces algorithmes.}
 \pagebreak
 
 Nous allons présenter aussi un algorithme permettant une implémentation du \textbf{Critère 2}. Il a été lui aussi développé en \textit{Sage}.
@@ -921,8 +921,6 @@ Les rappels sur les corps finis étaient primordiaux . Il était nécessaire de 
 Il est fréquent qu'un polynôme de permutation présentant une apparence complexe, ne correspond finalement qu’à une permutation simple. Et réciproquement, une permutation compliquée sera généralement « représentable » par un polynôme de permutation simple. En tant qu’étudiant en cryptologie, cela ne peut que nous ravir. L’implémentation en sera d’autant plus facile, et ainsi l’application en cryptologie. \newline
 Ceci nous a conduit, tout du long, à exhiber différents critères d’identifications et à implémenter certains d’entre eux. Ces derniers permettent de décider quels polynômes sont, ou non, de permutations ; et donc à fortiori d'en trouver de « bons » pour une application en cryptologie. \newline
 Notre principale préoccupation est de trouver des algorithmes déterministes efficaces.  C’est à dire effectuant les calculs souhaités en un temps au plus polynomial. Notons toutefois que les algorithmes actuels commencent à donner des résultats en temps satisfaisant.\\
-{\color{red} Guys, il faudrait présenter des algorithmes probabilistes aussi, non ? Mais S2 j'imagine ?
-Répondez directement en-dessous de ce message}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
