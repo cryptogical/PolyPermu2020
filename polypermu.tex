@@ -189,7 +189,7 @@ Soit $\K$ un corps quelconque. Toute partie $\mathcal{P}$ de $\K$ vérifiant :
 \begin{itemize}
 \item $\mathcal{P}$ est non vide et est une partie stable pour $+$ et $\times$ de $\K$ et $\mathcal{P}$ muni des lois induites par celles de $\K$ est lui-même un corps.
 \item $\mathcal{P}$ est un sous-anneau de $\K$, $1 \in \mathcal{P}$ et $(p \in \mathcal{P}^{*} = \mathcal{P} - \{0 \} \Rightarrow p^{-1} \in \mathcal{P}^{*})$.
-\item $\mathcal{P}$ est un sous groupe de $(\K, +)$ et $\mathcal{P}^{*}$ muni de la loi $\times$ est un sous groupe multiplicatif $(\K^{*}, \times)$.
+\item $\mathcal{P}$ est un sous-groupe de $(\K, +)$ et $\mathcal{P}^{*}$ muni de la loi $\times$ est un sous-groupe multiplicatif $(\K^{*}, \times)$.
 \end{itemize}
 est appelée sous-corps de $\K$.
 \end{definition}
@@ -233,7 +233,7 @@ Soit $P$ un polynôme sur un corps $K$. Alors $P$ admet un corps de décompositi
 \begin{proof}\hspace{12pt}
 \begin{itemize}
 \item Puisque le sous-corps premier de $\K$ est isomorphe à $\Z / p \Z$, alors $\K$ est naturellement muni d'une structure de $\Z / p \Z$-espace vectoriel. On note $n = [ \K : \Z / p \Z ]$. Alors $\# \K = \# (\Z / p \Z)^n = p^n$.
-\item Soit $n \in \N^{*}$. Si $\K$ est un corps fini de cardinal $p^n$, alors $\K$ est le corps de décomposition de $X^{p^n} - X$ sur $\Z / p \Z$ : en effet, puisque pour tout $x \in \K$, $x$ est racine de $X^{p^n} - X$ donc $X^{p^n} - X$ possède ses $p^n$ racines dans $\K$.\\
+\item Soit $n \in \N^{*}$. Si $\K$ est un corps fini de cardinal $p^n$, alors $\K$ est le corps de décomposition de $X^{p^n} - X$ sur $\Z / p \Z$ : en effet, puisque pour tout $x \in \K$, $x$ est racine de $X^{p^n} - X$ alors $X^{p^n} - X$ possède ses $p^n$ racines dans $\K$.\\
 Réciproquement, soit $K$ le corps de décomposition de $X^{p^n}$ sur $\Z / p \Z$. Soit $\mathcal{K}$ l'ensemble des éléments de $K$ qui sont racines de $X^{p^n} - X$. On vérifie que $\mathcal{K}$ est un sous-corps de $K$. Puisque $1_K \in \mathcal{K}$, et si $x,y \in \mathcal{K}$ alors $x^{p^n}= x$ et $y^{p^n} = y$, donc $(x+y)^{p^n} x + y$ et $(xy^{-1})^{p^n} = xy^{-1}$, si bien que $x + y, xy^{-1} \in \mathcal{K}$. Par ailleurs la dérivée formelle, $(X^{p^n} - X)' = -1$ est premier avec $X^{p^n} - X$ donc les racines de $X^{p^n} - X$ sont simples. On en déduit alors que $\# \mathcal{K} = p^n$. Finalement $K = \mathcal{K}$ est un corps à $p^n$ éléments et il est unique à isomorphisme près en vertu de l'unicité du corps de décomposition de $X^{p^n} - X$ sur $\Z / p \Z$.
 \end{itemize}
 \end{proof}
@@ -245,7 +245,7 @@ Soit $P \in \F_p [X]$ un polynôme irréductible sur $\F_p$. On note $n = $ deg$
 \begin{prop}
 Soit $n \in \N^{*}$, on définit $\mathcal{P} (n,p)$ par
 \begin{center}
-$\mathcal{P} (n,p) = \{ P \in \F_p [X]$, $P$ unitaire , irréductible de degré $n \}$.
+$\mathcal{P} (n,p) = \{ P \in \F_p [X]$, $P$ unitaire, irréductible de degré $n \}$.
 \end{center}
 Alors pour tout $n \in \N^{*}$ on a,
 \begin{center}
@@ -255,7 +255,7 @@ $\displaystyle X^{p^n} - X = \prod_{d | n} \prod_{P \in \mathcal{P}(n,p)} P.$
 \begin{proof}
 \begin{itemize}
 \item Soit $P$ un facteur irréductible de $X^{p^n} - X$ sur $\F_p$ de degré $d$. Le corps de rupture de $P$ sur $\F_p$ est de cardinal $p^d$ du corps de décomposition $X^{p^n} - X$ sur $\F_p$, c'est-à-dire $F_{p^n}$, donc $d$ divise $n$.
-\item Réciproquement, on suppose que $d$ divise $n$ et soit $P \in \mathcal{P} (n,p)$. Soit $\alpha$ une racine de $P$ dans le corps de rupture de $P$ sur $\F_p$. Alors on a $\F_p (\alpha) \simeq \F_{p^d}$. D'où $\alpha$ est racine de $X^{p^n} - X$. Or, puisque $P$ est irréductible, alors $P$ est le polynôme minimal de $\alpha$ sur $\F_p$ donc $P$ divise $X^{p^n} - X$. En outre les facteurs irréductible de$X^{p^n} - X$ sur $\F_p$ sont simples puisque $P$ est le polynôme minimal de $\alpha$ et que $P$ divise $X^{p^n} - X$.
+\item Réciproquement, on suppose que $d$ divise $n$ et soit $P \in \mathcal{P} (n,p)$. Soit $\alpha$ une racine de $P$ dans le corps de rupture de $P$ sur $\F_p$. Alors on a $\F_p (\alpha) \simeq \F_{p^d}$. D'où $\alpha$ est racine de $X^{p^n} - X$. Or, puisque $P$ est irréductible, alors $P$ est le polynôme minimal de $\alpha$ sur $\F_p$ donc $P$ divise $X^{p^n} - X$. En outre les facteurs irréductible de $X^{p^n} - X$ sur $\F_p$ sont simples puisque $P$ est le polynôme minimal de $\alpha$ et que $P$ divise $X^{p^n} - X$.
 \end{itemize}
 \end{proof}
 \begin{coro}
@@ -297,7 +297,7 @@ $
 \begin{array}{l|rcl}
 \displaystyle
 P : & K & \longrightarrow & K \\
-    & X & \longmapsto & \sum_{i=0}^n a_iX^i,  a_i \in K.
+    & X & \longmapsto & \sum_{i=0}^n a_iX^i$, $ a_i \in K.
 \end{array}
 $
 \end{center}
@@ -359,7 +359,6 @@ $X^k$ est un polynôme de permutation de $\Fq$ si et seulement si $pgcd(k, q-1) 
 \end{prop}
 
 \begin{proof}
-
 $\Leftarrow$ Supposons que $pcgd(k,q-1)$ = 1.
 Soit
 \begin{center}
@@ -372,7 +371,7 @@ P : & \F _q & \longrightarrow & \F _q \\
 $
 \end{center}
 Si $pcgd(k,q-1)=1$, i.e. si $k \nmid q-1$ ou $q-1 \nmid k$ , il est évident que $\forall x \in \Fq \backslash\{0\}$, $x^k \neq 0$. Donc $0$ est le seul antécédent de $0$.
-$\Fq$ étant un corps, on a $\Fq^* = \Fq^{\times}$, donc $|\Fq^*| = q-1$. Soit $\alpha$ un générateur de $\Fq^*$. La théorie élémentaire des groupes nous donne $|<\alpha^k>| = \frac{q-1}{pcgd(k,q-1)}$. Et donc par hypothèse, $|<\alpha^k>| =  q-1$.  Donc $P(\alpha)$ engendre $P(\Fq^*)$ et par cardinalité nous obtenons la conclusion voulue.\newline
+$\Fq$ étant un corps, on a $\Fq^* = \Fq^{\times}$, donc $|\Fq^*| = q-1$. Soit $\alpha$ un générateur de $\Fq^*$. La théorie élémentaire des groupes nous donne $|<\alpha^k>| = \frac{q-1}{pcgd(k,q-1)}$. Et donc par hypothèse, $|<\alpha^k>| =  q-1$.  Donc $P(\alpha)$ engendre $P(\Fq^*)$ et par cardinalité nous obtenons la conclusion voulue.\newline \\
 $\Rightarrow$ Nous allons raisonner par contraposée, i.e. montrer que $pcgd(k,q-1) \ne 1 \Rightarrow$ $x^k$ n'est pas un polynôme de permutation.\newline
 Supposons donc $pcgd(k,q-1) = m$, où $m \in \mathds{N}$. On obtient donc 
 $$
@@ -397,7 +396,7 @@ Les motivations et descriptions analytiques détaillées de cette notion n'entre
 Soit
 \fonction{\phi}{\Fq}{\Fq}{x}{\phi(x)}
 Le problème est de trouver un polynôme $P$, de degré minimal $\le q$, tel que 
-	\begin{center} $P(x) = \phi(x)$, $\forall  \in  x \in \Fq$. \end{center}
+	\begin{center} $P(x) = \phi(x)$, $\forall  x \in \Fq$. \end{center}
 \end{definition}
 
 \begin{prop}[Admise]
@@ -466,7 +465,7 @@ puis,
 donc la loi $\circ$ est associative.
 	\item Le neutre est évidemment le polynôme constant égal à $1$.
 	\item Rappelons que, par définition, un polynôme de permutation est une application bijective de $\Fq$. Il suffit donc de considérer son application réciproque $P^{-1}$ pour obtenir $Q$ tel que $P\circ Q = 1$. Ceci nous donne l'élément neutre. Ceci marche toujours modulo $X^q - X$ car
-	\fonction{\Pi}{\Fq[X]}{\Fq[X] \backslash (X^q - X)}{P}{[P]_{X^q - X}} est un morphisme d'anneaux.
+	\fonction{\Pi}{\Fq[X]}{\Fq[X] / (X^q - X)}{P}{[P]_{X^q - X}} est un morphisme d'anneaux.
 	\end{enumerate}	
 Il s'ensuit que $(\mathbbm{Poly}, \circ)$ est un groupe. 
 \end{proof}
@@ -512,14 +511,14 @@ Or, puisque dans $\mathbbm{F}_p$ on a $(p-1)! = -1$ et $(p-2)! = 1$ alors on en 
 \end{proof}
 
 \begin{prop}
-Soit $\alpha$ un élément primitif de $\Fq$, alors $(\mathbbm{Poly}, \circ)$ est engendré par $\{ \alpha X, X+1, X^{q-2}\}$
+Soit $\alpha$ un élément primitif de $\Fq$, alors $(\mathbbm{Poly}, \circ)$ est engendré par $\{ \alpha X$, $X+1$, $X^{q-2}\}$
 \end{prop}
 
 \begin{proof}
 Remarquons tout d'abord que, pour $a, b \in \Fq$, 
 	\begin{itemize}
 		\item $<aX> = <\alpha^mX> = <\alpha X>^m$ (cette dernière égalité découle de la loi de composition)
-		\item $<\alpha X>^{m-n}<X+1><\alpha X>^n  \newline
+		\item $<\alpha X>^{m-n}<X+1><\alpha X>^n \newline
 		= <\alpha X>^{m-n}<\alpha^nX + 1> \newline
 		= <\alpha^{m-n} X ><\alpha^n X+ 1> \newline
 		= <\alpha^{m-n}(\alpha^n X+ 1)> \newline
@@ -561,7 +560,7 @@ Réciproquement, si $deg((X^q-X) \wedge (P(X)-\alpha))=1$, alors le seul facteur
 
 \subsection{Le critère d'Hermite-Dickson}
 Soit $q = p^n$ une puissance d'un nombre premier quelconque. On rappelle que la fonction
-\fonction{\Pi}{\Fq[X]}{\Fq[X] \backslash (X^q - X)}{P}{[P]_{X^q - X}} 
+\fonction{\Pi}{\Fq[X]}{\Fq[X] / (X^q - X)}{P}{[P]_{X^q - X}} 
 définit un morphisme d'anneaux, de sorte que, $\overline{(P(X))^k} = \overline{P(X)}^k \pmod{X^q - X}$.
 On se donne également un polynôme $P$ à coefficients dans $\Fq$, et l'ensemble 
 \begin{center} $A_{p,q} := \{ k\in \llbracket 1, q-2 \rrbracket$ tels que $p\nmid k\}$ \end{center}
@@ -769,7 +768,7 @@ Cet algorithme est le plus complexe et est celui qui nécessite le plus d'opéra
 
 \subsection*{Remarque}
 
-Les algorithmes que nous vennons de concevoir présentent une caractéristique commune, et non des moindres, ils sont déterministes. Un polynôme entré en paramètre est ou n'est pas de permutation. Cela paraît évident, les algorithmes implémentés décident selon des critères rigoureusement démontrés. Cependant, la compléxité de ces derniers n'est pas des plus optimales si l'on est tenté de les éprouver sur des valeurs de $q$ ou même de $n$ extrêment grandes. Il est aisé de remarquer cela en considérant le \textit{critère 2}. Soyons fou, et mettons que l'on veuille tester si le polynôme $X^987654321 + X^12345678 + X^3 + 1$ est de permutation dans le corps à $37475885787509434483956560357213697214708001058977$ éléments selon ce même critère. Il faudrait donc dans la pire des situations (qui ici correspond à celle où le polynôme est de permutation !) effectuer ce nombre astronomique de calculs de pgcd. Cet algorithme peut être amélioré, selon le sens que l'on donne à ce terme. La première considération qui nous vient à l'esprit est de se demander s'il est réellement nécessaire de tester toutes les valeurs de cet affreux corps fini, si en tester une partie suffirait à nous indiquer avec une forte \textit{probabilité} si un polynôme est, ou non, de permutation. C'est dans ce contexte qu'interviennent les méthodes probabilistes, qui améliorent, au sens de la compléxité, nos algorithmes. Elles ne sont certes pas exactes, mais les applications à la cryptologie sont une de nos principales sources de motivations. Notre intérêt est donc également portés sur l'efficacité des algorithmes.
+Les algorithmes que nous venons de concevoir présentent une caractéristique commune, et non des moindres, ils sont déterministes. Un polynôme entré en paramètre est ou n'est pas de permutation. Cela paraît évident, les algorithmes implémentés décident selon des critères rigoureusement démontrés. Cependant, la complexité de ces derniers n'est pas des plus optimales si l'on est tenté de les éprouver sur des valeurs de $q$ ou même de $n$ extrêmement grandes. Il est aisé de remarquer cela en considérant le \textit{critère 2}. Soyons fou, et mettons que l'on veuille tester si le polynôme $X^{987654321} + X^{12345678} + X^3 + 1$ est de permutation dans le corps à $3^{757} = 1481113296616977741464105532513750734030421355207$ éléments selon ce même critère. Il faudrait donc dans la pire des situations (qui ici correspond à celle où le polynôme est de permutation !) effectuer ce nombre astronomique de calculs de pgcd. Cet algorithme peut être amélioré, selon le sens que l'on donne à ce terme. La première considération qui nous vient à l'esprit est de se demander s'il est réellement nécessaire de tester toutes les valeurs de cet affreux corps fini, si en tester une partie suffirait à nous indiquer avec une forte \textit{probabilité} si un polynôme est, ou non, de permutation. C'est dans ce contexte qu'interviennent les méthodes probabilistes, qui améliorent, au sens de la complexité, nos algorithmes. Elles ne sont certes pas exactes, mais les applications à la cryptologie sont une de nos principales sources de motivations. Notre intérêt est donc également portés sur l'efficacité des algorithmes.
 Nous détaillerons quelques une de ces méthodes dans un prochain rendu.
 
 \pagebreak
