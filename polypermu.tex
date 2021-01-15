@@ -441,26 +441,26 @@ De cette remarque découle le fait que pour travailler sur des polynômes de per
 \subsubsection{Un groupe, enfin!} 
 
 \begin{prop}
-L'ensemble $\mathbbm{Poly}$ des polynômes de permutation  à coefficient dans $\Fq$ et de degré inférieur à $q$ muni de la loi de composition $\circ$ est un groupe, i.e, $(\mathbbm{Poly}, \circ)$ est un groupe.
+L'ensemble $\mathbbm{Poly}$ des polynômes de permutation  à coefficients dans $\Fq$ et de degré inférieur à $q$ muni de la loi de composition $\circ$ est un groupe, i.e, $(\mathbbm{Poly}, \circ)$ est un groupe.
 \end{prop}
 
 \begin{proof}
-Soient $ P = \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i X^i$ , $Q = \displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j X^j$ et $R = \displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k$ des polynômes à coefficients dans $\Fq$. \newline
+Soient $ P = \displaystyle\sum_{i \in \llbracket 0, q-1 \rrbracket} A_i X^i$ , $Q = \displaystyle\sum_{j \in \llbracket 0, q-1 \rrbracket} B_j X^j$ et $R = \displaystyle\sum_{k \in \llbracket 0, q-1 \rrbracket} C_k X^k$ des polynômes à coefficients dans $\Fq$. \newline
 \break
 	\begin{enumerate}[label=$\clubsuit$, font=\small  \color{black}]
-		\item La composée de deux polynômes est encore un polynôme. Il est de plus facile de remarquer que si l'on permute un ensemble deux foix, cela reste un ensemble permuté. La composition de deux polynômes de permutation est donc un polynôme de permutation. Nous avons donc notre loi interne.
+		\item La composée de deux polynômes est encore un polynôme. Il est de plus facile de remarquer que si l'on permute un ensemble deux fois, cela reste un ensemble permuté. La composition de deux polynômes de permutation est donc un polynôme de permutation. Nous avons donc notre loi interne.
 		\item Montrons son associativité : \newline
 D'une part, on a
 			\begin{center} $\left( P\circ Q \right) \circ R$ \end{center}
 			\begin{align*} 
-&= \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i\left(\displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j X^j\right)^i \circ \left(\displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k\right) \\ 
-&= \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i\left(\displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k\right)\right)^j\right)^i
+&= \displaystyle\sum_{i \in \llbracket 0, q-1 \rrbracket} A_i\left(\displaystyle\sum_{j \in \llbracket 0, q-1 \rrbracket} B_j X^j\right)^i \circ \left(\displaystyle\sum_{k \in \llbracket 0, q-1 \rrbracket} C_k X^k\right) \\ 
+&= \displaystyle\sum_{i \in \llbracket 0, q-1 \rrbracket} A_i\left(\displaystyle\sum_{j \in \llbracket 0, q-1 \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q-1 \rrbracket} C_k X^k\right)\right)^j\right)^i
 			\end{align*} 
 puis, 
 			\begin{center} $P\circ \left(Q \circ R\right)$ \end{center}
 			\begin{align*} 
-&= \left(\displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i X^i\right) \circ \left(\displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k\right)\right)^j\right) \\
-&=  \displaystyle\sum_{i \in \llbracket 0, q \rrbracket} A_i\left(\displaystyle\sum_{j \in \llbracket 0, q \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q \rrbracket} C_k X^k\right)\right)^j\right)^i
+&= \left(\displaystyle\sum_{i \in \llbracket 0, q-1 \rrbracket} A_i X^i\right) \circ \left(\displaystyle\sum_{j \in \llbracket 0, q-1 \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q-1 \rrbracket} C_k X^k\right)\right)^j\right) \\
+&=  \displaystyle\sum_{i \in \llbracket 0, q-1 \rrbracket} A_i\left(\displaystyle\sum_{j \in \llbracket 0, q-1 \rrbracket} B_j \left(\left(\displaystyle\sum_{k \in \llbracket 0, q-1 \rrbracket} C_k X^k\right)\right)^j\right)^i
 			\end{align*} 
 donc la loi $\circ$ est associative.
 	\item Le neutre est évidemment le polynôme constant égal à $1$.
@@ -906,7 +906,6 @@ Si $0$ n'est pas racine unique de $L$, alors $0$ admet plusieurs antécédents p
 Pour tout polynôme linéarisé $L \in \mathbb{F}_q[x]$, il existe $a \in \mathbb{F}_q$ tel que $L(x) - ax$ soit un polynôme de permutation.
 \end{theorem}
 
-Pour montrer que ces polynômes sont de permutation, il suffit bien évidemment de montrer leur bijectivité, ce qui se fait assez aisément.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
