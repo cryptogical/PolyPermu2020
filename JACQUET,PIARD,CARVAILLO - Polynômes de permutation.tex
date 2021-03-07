@@ -911,11 +911,14 @@ Pour tout polynôme linéarisé $L \in \mathbb{F}_q[x]$, il existe $a \in \mathb
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Applications en cryptographie}
-La cryptologie, étant le nom donné à la « science du secret », est un terme englobant à la fois la cryptographie, discipline servant à protéger des messages, et la cryptanalyse, discipline servant à déchiffrer des messages codés par des techniques cryptographiques, sans en connaître la méthode de chiffrement qui a été utilisée.\\
+
+\textsl{Cette partie est très largement inspirée de notre référence numéro 2 en raison de la qualité de celle-ci et du manque de ressources sur internet à ce sujet.}
+
+La cryptologie, étant le nom donné à la « science du secret », est un terme englobant à la fois la cryptographie, discipline servant à protéger des messages, et la cryptanalyse, discipline servant à déchiffrer des messages codés par des techniques cryptographiques, sans en connaître la méthode de chiffrement utilisée.\\
 Nous allons donc commencer par quelques applications de polynômes de permutation en cryptographie.\\\\
 La cryptographie se divise en deux grandes parties : la cryptographie à clé publique et la cryptographie à clé secrète.\\
 La cryptographie à clé publique utilise deux clés distinctes. Une pour chiffrer et une pour déchiffrer. On parle alors de chiffrement asymétrique car les deux clés sont différentes. Le terme clé publique vient du fait qu'on peut rendre publique la clé de chiffrement étant donné que celle-ci n'est pas censée donner d'informations sur la clé de déchiffrement, ni en être son sosie.\\
-Quant à elle, la cryptographie à clé secrète utilise la même clé pour chiffrer et déchiffrer. On parle alors de chiffrement à clé secrète, car rendre publique la clé de chiffrement impliquerait que n'importe qui puisse déchiffrer les messages qui ne lui sont pas destinés. Cela briserait donc la \textit{confidentialité} censé être assurée par la cryptographie.
+Quant à elle, la cryptographie à clé secrète utilise la même clé pour chiffrer et déchiffrer. On parle alors de chiffrement à clé secrète, car rendre publique la clé de chiffrement impliquerait que n'importe qui puisse déchiffrer les messages qui ne lui sont pas destinés. Cela briserait donc le principe de \textit{confidentialité} censé être assuré par la cryptographie.
 \subsection{À clé publique}
 
 L'application des polynômes de permutation en cryptographie a majoritairement vu le jour aux alentours de $1978$ avec l'apparition du cryptosystème RSA pour la signature et le chiffrement à clé publique. Bien que certains mathématiciens, tels que Levine et Brawley, avait commencé à s'intéresser aux polynômes de permutation et à leurs applications en cryptographie légèrement plus tôt.
@@ -945,8 +948,42 @@ Un principe d'attaque en cryptanalyse différentielle est d'identifier des coupl
 Pour définir ce que sont les fonctions APN, et ensuite expliquer leur lien avec les polynômes de permutation et la cryptographie, nous devons d'abord introduire la notion de dérivée d'une fonction discrète.
 
 \begin{definition}
-Soient $n \in \mathbbm{N}$, $p$ un nombre premier et $f$ une fonction de $\mathbbm{F}_{p^n}$ dans $\mathbbm{F}_{p^n}$. Pour tout $a \in \mathbbm{F}_{p^n}$, la dérivée de $f$ au point $a$ est : \fonction{D_af}{\F_{p^n}}{\F_{p^n}}{x}{f(x+a)+f(x)}.
+Soient $n \in \mathbbm{N}$, $p$ un nombre premier et $f$ une fonction de $\mathbbm{F}_{p^n}$ dans $\mathbbm{F}_{p^n}$. Pour tout $a \in \mathbbm{F}_{p^n}$, la dérivée de $f$ au point $a$ est : \fonction{D_af}{\F_{p^n}}{\F_{p^n}}{x}{f(x+a)+f(x).}
 \end{definition}
+
+\begin{definition}
+Soit $f$ une fonction de $\mathbbm{F}_{p^n}$ dans $\mathbbm{F}_{p^n}$. Pour tout $a$, $b \in \mathbbm{F}_{p^n}$, on définit 
+$$\delta_f(a,b)=#\lbrace x\in \mathbbm{F}_{p^n}|D_af(x)=b\rbrace$$
+et
+$$\delta(f)=\max_{a\neq 0,b\in \mathbbm{F}_{p^n}} \delta_f(a,b).$$
+\end{definition}
+
+Lorsque la caractéristique est supérieure à $2$, il est possible d'avoir $\delta_f$ égal à $1$. Les fonctions vérifiant cette valeur de $\delta$ sont appelées fonctions Parfaitement Non-linéaires, ou \mathbb{PN}.\\
+En caractéristique égale à $2$, c'est à dire dans les $\F_{2^n}$, on a 
+$$D_af(x)=f(x+a)+f(x)=D_af(x+a)$$
+car 
+\begin{eqnarray}
+\nonumber
+D_af(x+a) &=& f(x+a+a)+f(x+a) \\ \nonumber
+&=& f(x+2a)+f(x+a)  \\ \nonumber
+&=& f(x)+f(x+a)\\ \nonumber
+&=& D_af(x) \nonumber
+\end{eqnarray}
+Ce résultat implique que $\delta(f)$ est supérieur ou égal à $2$.\\
+Les fonctions dites \mathbb{APN}, pour Almost Perfect Nonlinear, sont les fonctions pour lesquelles cette borne est atteinte.
+
+\begin{prop}
+Soit $f$ définie par la définition $13$. La fonction $f$ est APN si et seulement si le polynôme
+$$Q(X)=\frac{f(X)}{X^2}= \displaystyle\sum_{i=1}^{n-1} c_i x^{2^i-1}, c_i \in \F_{2^n}$$
+est un polynôme de permutation.
+\end{prop}
+
+\begin{proof}
+
+\end{proof}
+
+\subsubsection{Les fonctions courbes}
+Autres que les fonctions APN, il existe également les fonctions courbes, importantes en cryptographie à clé secrète.
 
 \section{Applications en cryptanalyse}
 
