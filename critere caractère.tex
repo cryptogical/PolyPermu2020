@@ -1,0 +1,276 @@
+\documentclass[12pt]{article}
+%\usepackage{natbib}
+\usepackage[french]{babel}
+\usepackage{url}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{vmargin}
+\usepackage{xcolor}
+\usepackage{bbm}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{stmaryrd}
+\usepackage{systeme}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{pifont}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+\title{Caractères additifs}
+\author{CARVAILLO T.}
+\date{\today}
+
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\theauthor}
+\lhead{\thetitle}
+\cfoot{\thepage}
+\def\dotfill#1{\cleaders\hbox to #1{.}\hfill}
+\newcommand\dotline[2][.5em]{\leavevmode\hbox to #2{\dotfill{#1}\hfil}}
+
+\newcommand{\jL}{\mathbbm{L}}
+\newcommand{\Z}{\mathbbm{Z}}
+\newcommand{\Q}{\mathbbm{Q}}
+\newcommand{\R}{\mathbbm{R}}
+\newcommand{\C}{\mathbbm{C}}
+\newcommand{\K}{\mathbbm{K}}
+\newcommand{\F}{\mathbbm{F}}
+\newcommand{\Fp}{\mathbbm{F}_p}
+\newcommand{\Fq}{\mathbbm{F}_q}
+\newcommand{\Fqn}{\mathbbm{F}_{q^n}}
+
+%définition commande présentation fonction
+\newcommand{\fonction}[5]{
+\begin{displaymath}
+\begin{array}{l|rcl}
+\displaystyle
+#1 : & #2 & \longrightarrow & #3 \\
+    & #4 & \longmapsto & #5
+\end{array}
+\end{displaymath}
+}
+%fin définition
+
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Théorème}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\theoremstyle{definition}\newtheorem{defn}{Définition}
+\theoremstyle{definition}\newtheorem{exm}{Exemple}
+\theoremstyle{definition}\newtheorem{rem}{Remarque}
+\theoremstyle{definition}\newtheorem{algo}{Algorithme}
+\theoremstyle{remark}\newtheorem{exo}{Exercice}
+\theoremstyle{remark}\newtheorem{note}{Note}
+\theoremstyle{remark}\newtheorem{nota}{Notation}
+
+
+
+\begin{document}
+
+Nous avons terminé le premier chapitre de ce rendu par la présentation de diverses familles -ou classes- de polynôme de permutation. Une fois la ''forme'' d'un polynôme établit, moulte résultats nous permette de dire si le polynôme est ou non de permutations; et ce avec efficacité. \newline
+Nous allons ici revenir un tantinet en arrière et présenter un critère qui ne sera pas des plus convenant dans la pratique; mais qui a le mérite de s'appuyer sur une belle théorie, celle des caractères sur un corps fini.
+
+\begin{defn}
+Soit $G$ un groupe abélien fini d'ordre $n$. On appelle caractère additif de $G$ tout homomorphisme $\chi$ de $G$ dans le groupe $W_n$ des racines n-ièmes de l'unité.
+\end{defn}
+
+Nous admettrons ici la 
+
+\begin{prop}
+L'ensemble $\hat{G}$ des caractères additifs sur un groupe $G$ forme un groupe multiplicatif.
+\end{prop}
+
+Par conséquent, nous avons aussi la 
+
+\begin{prop}[admise]
+$\forall \chi \in \hat{G}$, $\chi^{-1} = \overline{\chi}$, où $\overline{\chi(x)}$ est définit comme le conjugué complexe de $\chi(x)$ dans $W_n$.
+\end{prop}
+
+\begin{nota}
+On notera $ \chi_0 := 1_{\hat{G}}$  le caractère trivial, définit comme $\forall g \in G, \chi_0(g) = 1$.
+\end{nota}
+
+Avant d'exhiber le lien entre polynômes de permutations et caractère additif, nous allons donner un résultat élémentaire.
+
+\begin{thm}
+Soit $G$ un groupe abélien fini d'ordre $n$, alors
+	\begin{enumerate}[label = \roman*)]
+		\item Pour $g \in G$ fixé,   
+				$$
+				\displaystyle\sum_{\chi \in \hat{G}} \chi(g) = \left\{
+				    \begin{array}{ll}
+				        n & \mbox{si } g = 1_G \\
+				        0 & \mbox{sinon.}
+				    \end{array}
+				\right.
+				$$
+et de manière similaire
+		\item Pour $\chi \in \hat{G}$ fixé,
+				$$
+				\displaystyle\sum_{g \in G} \chi(g) = \left\{
+				    \begin{array}{ll}
+				        n & \mbox{si } \chi = 1_{\hat{G}} \\
+				        0 & \mbox{sinon.}
+				    \end{array}
+				\right.
+				$$						
+	\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Utile ?
+\end{proof}
+
+Ce résultat nous sera utile pour démontrer notre critère, mais avant concentrons nous sur le cas où $G$ est le groupe additif de $\Fq$, que nous noterons ici de manière abusive $\Fq^{+}$. Nous allons donner aux caractères additifs une forme plus familière.
+
+On rappelle la 
+
+\begin{defn}
+On note $\Fp$ le sous-corps premier de $\Fq$. L'application trace est définit comme \fonction{Tr}{\Fq}{\Fp}{\alpha}{\displaystyle\sum_{i=0}^{n-1} \alpha^{q^i}}
+\end{defn}
+
+\begin{prop}
+Soit la fonction $\chi_\alpha$ définit par \fonction{\chi_\alpha}{\Fq}{W_n}{c}{e^{\frac{2\pi.i.Tr(\alpha.c)}{p}}}, alors $\chi_\alpha$ est un caractère additif de $\Fq$.
+\end{prop}
+
+\begin{proof}
+$\chi_\alpha(c_1 + c_2) = e^{\frac{2\pi.i.Tr(\alpha.(c_1 + c_2))}{p}} = e^{\frac{2\pi.i.[Tr(\alpha.(c_1))+Tr(\alpha.(c_2))]}{p}}=\chi_\alpha(c_1)\chi_\alpha(c_2)$. Les autres propriétés de morphisme sont toutes aussi claires.
+\end{proof}
+
+\begin{rem}
+Précisons que $e^{\frac{2\pi.i.Tr(\alpha.c)}{p}}$ a bien un sens, car la trace est par définition à valeur dans $\Fp$ et que $\Fp \simeq \Z\backslash p\Z$.
+\end{rem}
+
+\begin{defn}
+En particulier, remarquons que $\chi_1(c) = e^{\frac{2\pi.i.Tr(c)}{p}}$. Ce caractère sera appellé caractère additif canonique.
+\end{defn}
+
+\begin{prop}[Admise]
+L'application \fonction{\phi}{\Fq^+}{\hat{\Fq^+}}{\alpha}{\chi_\alpha} est un isomorphisme de groupes.
+\end{prop}
+
+\begin{cor}
+On en déduit donc qu'il n'existe qu'un nombre fini de caractères additifs de $\Fq^+$, et que ces derniers sont exactement les $\chi_\alpha$. Ceci étant admis, remarquons que $\chi_\alpha(c) = e^{\frac{2\pi.i.Tr(\alpha.c)}{p}} = e^{\frac{2\pi.i.Tr(1.(\alpha.c))}{p}} = \chi_1(\alpha.c)$. Tout caractère additif peut ainsi être exprimé en fonction de $\chi_1$, d'où l'appellation canonique.
+\end{cor}
+
+\begin{prop}
+Soient $\alpha$, $c$ et $d \in \Fq$, alors
+$$
+\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)} = \left\{
+    \begin{array}{ll}
+        0 & \mbox{si } c \ne d \\
+        q & \mbox{sinon.}
+    \end{array}
+\right.
+$$
+\end{prop}
+
+\begin{proof}
+De simples calculs suffisent, de par(t?) le corollaire 1:
+\begin{center}$\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)}$\end{center}
+\begin{align*} 
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.c)/p}.\overline{e^{2i\pi Tr(\alpha.d)/p}} \\
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.c)/p}.{e^{-2i\pi Tr(\alpha.d)/p}} \\
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.(c-d))/p}
+\end{align*} 
+Ceci est immédiatement égal à $q$ si $c=d$, $\Fq$ étant le corps à $q$ éléments. Si $c\ne d$, remarquons que \fonction{\phi}{\Fq}{\Fq}{\alpha}{\alpha(c-d)} constitue un isomorphisme (car $c\ne d$), de sorte que pour $\alpha$ parcourant $\Fq$, on a que $\alpha(c-d)$ parcours également $\Fq$. On obtient dès lors que 
+\begin{center}$\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)}$\end{center}
+\begin{align*} 
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha)/p} \\
+&= \displaystyle\sum_{\alpha \in \Fq} \chi_1(\alpha) \\
+&= 0
+\end{align*}
+car $\chi_1(\alpha) \ne 1_{\hat{\Fq}^+}$
+\end{proof}
+
+\begin{rem}
+Il est également possible de conclure directement via le théorème 1, en notant que si $c=d$, $\chi_\alpha(c).\overline{\chi_\alpha(d)} = \chi_\alpha(c).\chi_\alpha^{-1}(c) = 1_{\hat{\Fq}^+}$...
+\end{rem}
+
+Une dernière proposition est requise avant d'énoncer notre critère. Elle sera considérée comme admise, sa démonstration dépassant le cadre de ce projet et nécessitant surement un projet à elle seule.
+
+\begin{prop}
+Soient $P \in \Fq[X]$ et $\alpha \in \Fq$, alors le nombre $N$ de solution de $P(x) = \alpha$ est \begin{center} $N = \displaystyle \frac{1}{q} \sum_{c\in\Fq}\sum_{\chi \in \hat{Fq}^+} \chi(P(c)).\overline{\chi(\alpha)}$ \end{center}
+\end{prop}  
+
+Donnons nous quelques exemples simples, mettons pour $q=3$ et $q=4$:
+
+\begin{exm}
+	\begin{enumerate}[label = \roman*)]
+	\item Soit $P(X) := X^3$; on a bien une unique solution à l'équation $x^3 = 2$, qui est $x=2$. Vérifions cela à l'aide de la proposition précédente: 
+$N = \displaystyle\frac{1}{3}\sum_{c\in F3}\sum_{\chi\in\hat{(F3)}^+} \chi(c^3)\overline{\chi(2)} \newline
+=\displaystyle\frac{1}{3}\sum_{\chi\in\hat{(F3)}^+}\overline{\chi(2)}(\chi(0) + \chi(1) + \chi(2))\newline
+=\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_2(2)}(\chi_2(0) + \chi_2(1) + \chi_2(2)) + \overline{\chi_3(2)}(\chi_3(0) + \chi_3(1) + \chi_3(2))\right]\newline
+=\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_1(4)}(\chi_1(0) + \chi_1(2) + \chi_1(4)) + \overline{\chi_1(6)}(\chi_1(0) + \chi_1(3) + \chi_1(6))\right]$\newline
+or  dans F3 6=0 et 4=1, d'ou\newline
+$\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_1(1)}(\chi_1(0) + \chi_1(2) + \chi_1(1)) + \overline{\chi_1(6)}(\chi_1(0) + \chi_1(0) + \chi_1(0))\right]$ \newline
+Or, $\chi_1(0) = e^{2\pi.i.Tr(0)/3} = 1$, $\chi_1(1) = e^{2\pi.i.Tr(1)/3} = e^{2\pi.i/3}$ et  $\chi_2(1) = e^{2\pi.i.Tr(2)/3} = e^{2\pi.i.2/3}$ donc $\chi_1(0)+\chi_1(1)+\chi_1(2) = 0$.\newline
+On obtient finalement que \newline
+$N = 1/3 (\overline{\chi_1(0)}(\chi_1(0)+ \chi_1(0) + \chi_1(0))) = 3/3 = 1$
+On retrouve bien notre nombre de solution 
+	\item 
+On peut faire de même pour le cas F4 et $P := X^2$
+Je l'ai fais sur papier, flemme pour le moment 
+	\end{enumerate}
+
+\end{exm}
+
+Nous pouvons enfin énoncer notre critère:
+
+\begin{thm}[Critère]
+Soit $P$ un polynôme à coefficients dans $\Fq$, alors $P$ est de permutation si et seulement si $\displaystyle\sum_{\alpha \in \Fq} \chi(P(\alpha)) = 0$ pour tout caractère additif non-trivial.
+\end{thm}
+
+\begin{proof}
+	\begin{enumerate}[label = \roman*)]
+		\item De gauche à droite : Supposons que $P$ soit de permutation; il réalise donc une bijection et il s'ensuit que l'équation $P(x) = \alpha$ admet une unique solution. Soit $\chi \neq \chi_0$, donc $\exists \alpha \in \Fq$ tel que $\chi(\alpha)\neq 1$. On peut même supposer $\alpha$ non nul. Comme $P$ est une bijection; si $c$ parcourt $\Fq$, alors $P(c)$ aussi, de sorte que l'on a $\displaystyle\sum_{c\in\Fq}\chi(P(c)) = \displaystyle\sum_{c\in\Fq}\chi(c)$. \newline
+Remarquons de plus que
+\begin{center}$\chi(\alpha)\displaystyle\sum_{c\in\Fq}\chi(c) = \displaystyle\sum_{c\in\Fq}\chi(c)\chi(\alpha) \displaystyle\sum_{c\in\Fq}\chi(c.\alpha) =\displaystyle\sum_{c\in\Fq}\chi(c)$\end{center}
+car $\chi$ est un morphisme et que $\phi :c \longmapsto \alpha.c$ est une bijection pour $\alpha$ non nul.
+On obtient dès lors que
+\begin{center} 
+$\chi(\alpha)\displaystyle\sum_{c\in\Fq}\chi(c) - \displaystyle\sum_{c\in\Fq}\chi(c) =0$
+\end{center}
+i.e.
+\begin{center}
+$\displaystyle\sum_{c\in\Fq}\chi(c)(\chi(\alpha) -1) = 0$
+\end{center}
+Or, comme $
+\chi$ est supposé non trivial, $\chi(\alpha) \neq 1$ et donc $\displaystyle\sum_{c\in\Fq}\chi(c) = 0$ pour tout caractère $\chi$ non trivial.
+		\item De droite à gauche : Supposons que $\displaystyle\sum_{\alpha \in \Fq} \chi(P(\alpha)) = 0$ pour tout caractère additif non-trivial, i.e. 
+		\begin{center} $\displaystyle	\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}=0$ \end{center}
+De la proposition précédente, nous avons que 
+\begin{center} $N = \displaystyle \frac{1}{q} \sum_{c\in\Fq}\sum_{\chi \in \hat{Fq}^+} \chi(P(c)).\overline{\chi(\alpha)}$ \end{center}
+\begin{align*}
+&= \displaystyle \frac{1}{q}\sum_{\chi \in \hat{Fq}^+}  \sum_{c\in\Fq}\chi(P(c)).\overline{\chi(\alpha)}\\
+&= \displaystyle \frac{1}{q}\left[\sum_{c\in\Fq} \chi_0(P(c)).\overline{\chi_0(\alpha)}+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]\\
+&= \displaystyle \frac{1}{q}\left[\sum_{c\in\Fq} \chi_1(0).\overline{\chi_1(0)}+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]\\
+&= \displaystyle \frac{1}{q}\left[q+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]  \text{   (par la proposition 5)}\\
+&= \displaystyle \frac{1}{q}\left[q+\sum_{\chi \in \hat{Fq}^+/\chi_0} \overline{\chi(\alpha)}\sum_{c\in\Fq} \chi(P(c))\right]\\
+&= 1 + 0  \text{   (par hypothèse)}
+\end{align*}
+Il n'existe alors qu'une seule solution à l'équation pour tout $\alpha \in \Fq$. Il s'ensuit que $P$ réalise une bijection et est donc de permutation.
+
+
+	\end{enumerate}
+\end{proof}
+
+\pagebreak
+
+\section{Références}
+\url{http://www.numdam.org/article/CIF_1971__4__A5_0.pdf} \\
+
+\url{https://theses.univ-oran1.dz/document/TH4747.pdf}
+
+\end{document}
