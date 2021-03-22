@@ -10,8 +10,7 @@
 \usepackage{vmargin}
 \usepackage{xcolor}
 \usepackage{bbm}
-\usepackage{amsmath,amssymb}
-\usepackage{amsthm}
+\usepackage{amsmath,amsthm,amssymb,latexsym,amsfonts}
 \usepackage{dsfont}
 \usepackage{stmaryrd}
 \usepackage{systeme}
@@ -20,7 +19,7 @@
 \usepackage{pifont}
 \usepackage[cache=false]{minted}
 \definecolor{LightGray}{gray}{0.95}
-
+\usepackage{autobreak}
 
 \title{Polynômes de Permutations}
 \author{PIARD A. - JACQUET R. - CARVAILLO T.}
@@ -40,17 +39,6 @@
 \def\dotfill#1{\cleaders\hbox to #1{.}\hfill}
 \newcommand\dotline[2][.5em]{\leavevmode\hbox to #2{\dotfill{#1}\hfil}}
 
-\newcommand{\M}{\mathbbm{M}}
-\newcommand{\N}{\mathbbm{N}}
-\newcommand{\Z}{\mathbbm{Z}}
-\newcommand{\Q}{\mathbbm{Q}}
-\newcommand{\R}{\mathbbm{R}}
-\newcommand{\C}{\mathbbm{C}}
-\newcommand{\G}{\mathbbm{G}}
-\newcommand{\K}{\mathbbm{K}}
-\newcommand{\F}{\mathbbm{F}}
-\newcommand{\Fq}{\mathbbm{F}_q}
-
 %définition commande présentation fonction
 \newcommand{\fonction}[5]{
 \begin{displaymath}
@@ -61,6 +49,22 @@
 \end{array}
 \end{displaymath}
 }
+%fin définition
+\theoremstyle{remark}\newtheorem{note}{Note}
+\theoremstyle{remark}\newtheorem{nota}{Notation}
+
+\newcommand{\M}{\mathbbm{M}}
+\newcommand{\N}{\mathbbm{N}}
+\newcommand{\Z}{\mathbbm{Z}}
+\newcommand{\Q}{\mathbbm{Q}}
+\newcommand{\R}{\mathbbm{R}}
+\newcommand{\C}{\mathbbm{C}}
+\newcommand{\G}{\mathbbm{G}}
+\newcommand{\K}{\mathbbm{K}}
+\newcommand{\F}{\mathbbm{F}}
+\newcommand{\Fq}{\mathbbm{F}_q}
+\newcommand{\Fqn}{\mathbbm{F}_{q^n}}
+\newcommand{\Fp}{\mathbbm{F}_p}
 
 %fin définition
 
@@ -94,7 +98,6 @@
 \newtheorem{bg}{A l'attention des bg, question}
 
 \begin{document}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{titlepage}
@@ -573,7 +576,7 @@ $P$ est un polynôme de permutation si et seulement si les deux conditions suiva
 
 \subsection{Implémentations}
 
-Commençons par ce premier algorithme de test pour trouver les polynômes de permutations. Cet algorithme est développé en \textit{Sage}.
+Commençons par ce premier algoritheoreme de test pour trouver les polynômes de permutations. Cet algoritheoreme est développé en \textit{Sage}.
 
 \begin{minted}
 [
@@ -616,7 +619,7 @@ for f in S.polynomials(of_degree=deg):
 \caption{Affichage de l'exécution}
 \end{figure}
 \pagebreak
-Nous allons ensuite présenter une implémentation sous forme algorithmique du \textbf{Critère 1} présenté précédemment. Cet algorithme est développé en \textit{Sage}.
+Nous allons ensuite présenter une implémentation sous forme algoritheoremique du \textbf{Critère 1} présenté précédemment. Cet algoritheoreme est développé en \textit{Sage}.
 \begin{minted}
 [
 frame=lines,
@@ -662,10 +665,10 @@ print("Le polynôme " + str(test2)  + " est de permutation ? " + answer2)
 \includegraphics[width=0.68\textwidth]{appercu3.png}
 \caption{Affichage de l'exécution}
 \end{figure}
-Cet algorithme nécessite plus de calculs que le précédent mais permet de donner une réponse directe à la question "Est ce que $P \in \mathbbm{F}_q [X]$ est de permutation ?". %{\color{red} \#TODO: Donner la complexité de ces algorithmes.}
+Cet algoritheoreme nécessite plus de calculs que le précédent mais permet de donner une réponse directe à la question "Est ce que $P \in \mathbbm{F}_q [X]$ est de permutation ?". %{\color{red} \#TODO: Donner la complexité de ces algorithmes.}
 \pagebreak
 
-Nous allons présenter aussi un algorithme permettant une implémentation du \textbf{Critère 2}. Il a été lui aussi développé en \textit{Sage}.
+Nous allons présenter aussi un algoritheoreme permettant une implémentation du \textbf{Critère 2}. Il a été lui aussi développé en \textit{Sage}.
 
 \begin{minted}
 [
@@ -708,7 +711,7 @@ print(str(test2) + " est de permutation ? " + answer2)
 \caption{Affichage de l'exécution}
 \end{figure}
 
-Cet algorithme est assez intéressant car il permet de tester directement un polynôme bien spécifique, à l'instar du premier qui permet de lister les polynômes de permutations de degré précisé.
+Cet algoritheoreme est assez intéressant car il permet de tester directement un polynôme bien spécifique, à l'instar du premier qui permet de lister les polynômes de permutations de degré précisé.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
 
@@ -762,11 +765,11 @@ print("Le polynôme " + str(test2)  + " est de permutation ? " + answer2)
 \caption{Affichage de l'exécution}
 \end{figure}
 
-Cet algorithme est le plus complexe et est celui qui nécessite le plus d'opérations. Il est en revanche plus intéressant en termes de développement et de structures car il utilise des calculs plus conséquents.
+Cet algoritheoreme est le plus complexe et est celui qui nécessite le plus d'opérations. Il est en revanche plus intéressant en termes de développement et de structures car il utilise des calculs plus conséquents.
 
 \subsection*{Remarque}
 
-Les algorithmes que nous venons de concevoir présentent une caractéristique commune, et non des moindres, ils sont déterministes. Un polynôme entré en paramètre est ou n'est pas de permutation. Cela paraît évident, les algorithmes implémentés décident selon des critères rigoureusement démontrés. Cependant, la complexité de ces derniers n'est pas des plus optimales si l'on est tenté de les éprouver sur des valeurs de $q$ ou même de $n$ extrêmement grandes. Il est aisé de remarquer cela en considérant le \textit{critère 2}. Soyons fou, et mettons que l'on veuille tester si le polynôme $X^{987654321} + X^{12345678} + X^3 + 1$ est de permutation dans le corps à $3^{757} = 1481113296616977741464105532513750734030421355207$ éléments selon ce même critère. Il faudrait donc dans la pire des situations (qui ici correspond à celle où le polynôme est de permutation !) effectuer ce nombre astronomique de calculs de pgcd. Cet algorithme peut être amélioré, selon le sens que l'on donne à ce terme. La première considération qui nous vient à l'esprit est de se demander s'il est réellement nécessaire de tester toutes les valeurs de cet affreux corps fini, si en tester une partie suffirait à nous indiquer avec une forte \textit{probabilité} si un polynôme est, ou non, de permutation. C'est dans ce contexte qu'interviennent les méthodes probabilistes, qui améliorent, au sens de la complexité, nos algorithmes. Elles ne sont certes pas exactes, mais les applications à la cryptologie sont une de nos principales sources de motivations. Notre intérêt est donc également portés sur l'efficacité des algorithmes.
+Les algorithmes que nous venons de concevoir présentent une caractéristique commune, et non des moindres, ils sont déterministes. Un polynôme entré en paramètre est ou n'est pas de permutation. Cela paraît évident, les algorithmes implémentés décident selon des critères rigoureusement démontrés. Cependant, la complexité de ces derniers n'est pas des plus optimales si l'on est tenté de les éprouver sur des valeurs de $q$ ou même de $n$ extrêmement grandes. Il est aisé de remarquer cela en considérant le \textit{critère 2}. Soyons fou, et mettons que l'on veuille tester si le polynôme $X^{987654321} + X^{12345678} + X^3 + 1$ est de permutation dans le corps à $3^{757} = 1481113296616977741464105532513750734030421355207$ éléments selon ce même critère. Il faudrait donc dans la pire des situations (qui ici correspond à celle où le polynôme est de permutation !) effectuer ce nombre astronomique de calculs de pgcd. Cet algoritheoreme peut être amélioré, selon le sens que l'on donne à ce terme. La première considération qui nous vient à l'esprit est de se demander s'il est réellement nécessaire de tester toutes les valeurs de cet affreux corps fini, si en tester une partie suffirait à nous indiquer avec une forte \textit{probabilité} si un polynôme est, ou non, de permutation. C'est dans ce contexte qu'interviennent les méthodes probabilistes, qui améliorent, au sens de la complexité, nos algorithmes. Elles ne sont certes pas exactes, mais les applications à la cryptologie sont une de nos principales sources de motivations. Notre intérêt est donc également portés sur l'efficacité des algorithmes.
 Nous détaillerons quelques une de ces méthodes dans un prochain rendu.
 
 \pagebreak
@@ -944,10 +947,10 @@ où ce polynôme représente la clé publique.\\
 Ce polynôme assure la bijectivité et offre une représentation assez compacte de la clé. 
 \begin{bg}{Est-ce qu'on en parle ?}
 En effet, en prenant un polynôme de degré algébrique $2$, on est assuré que la clé publique obtenue est de la forme 
-$$\displaystyle\sum_{0\geq i,j<n} a_{i,j}X^{q^i+q^j} + \displaystyle\sum_{0\geq k<n} b_{k}X^{q^k}$$
+$$\displaystyle\sum_{0\leq i,j<n} a_{i,j}X^{q^i+q^j} + \displaystyle\sum_{0\leq k<n} b_{k}X^{q^k}$$
 Il suffit donc de $\frac{n(n+1)}{2}$ éléments de $\Fq$ pour définir ce polynôme, à comparer aux $q^{n-2}$ coefficients pour un polynôme de permutation en général.
 \end{bg}
-Cependant, ce schéma fut rapidement cryptanalysé. La référence [5] est un scan de l'article de \textbf{Jacques PATARIN} sur sa cryptanalyse de ce schéma. Malgré tout, le système présenté par \textbf{Matsumoto} et \textbf{Imai} a inspiré de nombreuses variantes de schémas dont \textsf{HFE} (pour \textit{Hidden Field Equations}), notamment introduit par \textbf{Jacques PATARIN}, et par extensions %suite à des perturbations (v pour vinaigre)
+Cependant, ce schéma fut rapidement cryptanalysé. La référence [5] est un scan de l'article de \textbf{Jacques PATARIN} sur sa cryptanalyse de ce schéma, si le lecteur est intéressé. Malgré tout, le système présenté par \textbf{Matsumoto} et \textbf{Imai} a inspiré de nombreuses variantes de schémas dont \textsf{HFE} (pour \textit{Hidden Field Equations}), notamment introduit par \textbf{Jacques PATARIN}, et par extensions %suite à des perturbations (v pour vinaigre)
 \textsf{HFE-v} qui regroupe plusieurs algorithmes tel que \textit{quartz}. Cette famille de chiffrement connaît des attaques de complexité exponentielle alors que la signature ne coûte presque rien pour la personne qui signe. De plus, ces schémas ont les signatures les plus courtes parmi tous les schémas de signature à clé publique connus. Par conséquent, parvenir à effectuer ces algorithmes avec des polynômes de permutations pourraient accroître les performances mais ceci reste une supposition, à l'heure d'aujourd'hui.\\
 
 
@@ -991,13 +994,218 @@ est un polynôme de permutation.
 \begin{proof}
 
 \end{proof}
+\section{Application des caractères additifs aux groupes abéliens finis}
 
-\subsubsection{Les fonctions courbes}
-Autres que les fonctions APN, il existe également les fonctions courbes, importantes en cryptographie à clé secrète.
+Nous avons terminé le premier chapitre de ce rendu par la présentation de diverses familles -ou classes- de polynôme de permutation. Une fois la ''forme'' d'un polynôme établit, moulte résultats nous permette de dire si le polynôme est ou non de permutations; et ce avec efficacité. \newline
+Nous allons ici revenir un tantinet en arrière et présenter un critère qui ne sera pas des plus convenant dans la pratique; mais qui a le mérite de s'appuyer sur une belle théorie, celle des caractères sur un corps fini.
 
-\section{Applications en cryptanalyse}
+\begin{definition}
+Soit $G$ un groupe abélien fini d'ordre $n$. On appelle caractère additif de $G$ tout homomorphisme $\chi$ de $G$ dans le groupe $W_n$ des racines n-ièmes de l'unité.
+\end{definition}
 
-\section{Applications dans d'autres domaines}
+Nous admettrons ici la 
+
+\begin{prop}
+L'ensemble $\hat{G}$ des caractères additifs sur un groupe $G$ forme un groupe multiplicatif.
+\end{prop}
+
+Par conséquent, nous avons aussi la 
+
+\begin{prop}[admise]
+$\forall \chi \in \hat{G}$, $\chi^{-1} = \overline{\chi}$, où $\overline{\chi(x)}$ est définit comme le conjugué complexe de $\chi(x)$ dans $W_n$.
+\end{prop}
+
+\begin{nota}
+On notera $ \chi_0 := 1_{\hat{G}}$  le caractère trivial, définit comme $\forall g \in G, \chi_0(g) = 1$.
+\end{nota}
+
+Avant d'exhiber le lien entre polynômes de permutations et caractère additif, nous allons donner un résultat élémentaire.
+
+\begin{theorem}
+Soit $G$ un groupe abélien fini d'ordre $n$, alors
+	\begin{enumerate}[label = \roman*)]
+		\item Pour $g \in G$ fixé,   
+				$$
+				\displaystyle\sum_{\chi \in \hat{G}} \chi(g) = \left\{
+				    \begin{array}{ll}
+				        n & \mbox{si } g = 1_G \\
+				        0 & \mbox{sinon.}
+				    \end{array}
+				\right.
+				$$
+et de manière similaire
+		\item Pour $\chi \in \hat{G}$ fixé,
+				$$
+				\displaystyle\sum_{g \in G} \chi(g) = \left\{
+				    \begin{array}{ll}
+				        n & \mbox{si } \chi = 1_{\hat{G}} \\
+				        0 & \mbox{sinon.}
+				    \end{array}
+				\right.
+				$$						
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Utile ?
+\end{proof}
+
+Ce résultat nous sera utile pour démontrer notre critère, mais avant concentrons nous sur le cas où $G$ est le groupe additif de $\Fq$, que nous noterons ici de manière abusive $\Fq^{+}$. Nous allons donner aux caractères additifs une forme plus familière.
+
+\pagebreak
+
+On rappelle la 
+
+\begin{definition}
+On note $\Fp$ le sous-corps premier de $\Fq$. L'application trace est définit comme \fonction{Tr}{\Fq}{\Fp}{\alpha}{\displaystyle\sum_{i=0}^{n-1} \alpha^{q^i}}
+\end{definition}
+
+\begin{prop}
+Soit la fonction $\chi_\alpha$ définit par \fonction{\chi_\alpha}{\Fq}{W_n}{c}{e^{\frac{2\pi.i.Tr(\alpha.c)}{p}}} alors $\chi_\alpha$ est un caractère additif de $\Fq$.
+\end{prop}
+
+\begin{proof}
+$\chi_\alpha(c_1 + c_2) = e^{\frac{2\pi.i.Tr(\alpha.(c_1 + c_2))}{p}} = e^{\frac{2\pi.i.[Tr(\alpha.(c_1))+Tr(\alpha.(c_2))]}{p}}=\chi_\alpha(c_1)\chi_\alpha(c_2)$. Les autres propriétés de morphisme sont toutes aussi claires.
+\end{proof}
+
+\begin{rem}
+Précisons que $e^{\frac{2\pi.i.Tr(\alpha.c)}{p}}$ a bien un sens, car la trace est par définition à valeur dans $\Fp$ et que $\Fp \simeq \Z / p\Z$.
+\end{rem}
+
+\begin{definition}
+En particulier, remarquons que $\chi_1(c) = e^{\frac{2\pi.i.Tr(c)}{p}}$. Ce caractère sera appellé caractère additif canonique.
+\end{definition}
+
+\begin{prop}[Admise]
+L'application \fonction{\phi}{\Fq^+}{\hat{\Fq^+}}{\alpha}{\chi_\alpha} est un isomorphisme de groupes.
+\end{prop}
+
+\begin{coro}
+On en déduit donc qu'il n'existe qu'un nombre fini de caractères additifs de $\Fq^+$, et que ces derniers sont exactement les $\chi_\alpha$. Ceci étant admis, remarquons que $\chi_\alpha(c) = e^{\frac{2\pi.i.Tr(\alpha.c)}{p}} = e^{\frac{2\pi.i.Tr(1.(\alpha.c))}{p}} = \chi_1(\alpha.c)$. Tout caractère additif peut ainsi être exprimé en fonction de $\chi_1$, d'où l'appellation canonique.
+\end{coro}
+
+\begin{prop}
+Soient $\alpha$, $c$ et $d \in \Fq$, alors
+$$
+\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)} = \left\{
+    \begin{array}{ll}
+        0 & \mbox{si } c \ne d \\
+        q & \mbox{sinon.}
+    \end{array}
+\right.
+$$
+\end{prop}
+
+\begin{proof}
+De simples calculs suffisent, de par le corollaire 1:
+\begin{center}$\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)}$\end{center}
+\begin{align*} 
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.c)/p}.\overline{e^{2i\pi Tr(\alpha.d)/p}} \\
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.c)/p}.{e^{-2i\pi Tr(\alpha.d)/p}} \\
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.(c-d))/p}
+\end{align*} 
+Ceci est immédiatement égal à $q$ si $c=d$, $\Fq$ étant le corps à $q$ éléments. Si $c\ne d$, remarquons que \fonction{\phi}{\Fq}{\Fq}{\alpha}{\alpha(c-d)} constitue un isomorphisme (car $c\ne d$), de sorte que pour $\alpha$ parcourant $\Fq$, on a que $\alpha(c-d)$ parcours également $\Fq$. On obtient dès lors que 
+\begin{center}$\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)}$\end{center}
+\begin{align*} 
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha)/p} \\
+&= \displaystyle\sum_{\alpha \in \Fq} \chi_1(\alpha) \\
+&= 0
+\end{align*}
+car $\chi_1(\alpha) \ne 1_{\hat{\Fq}^+}$
+\end{proof}
+
+\begin{rem}
+Il est également possible de conclure directement via le théorème 1, en notant que si $c=d$, $\chi_\alpha(c).\overline{\chi_\alpha(d)} = \chi_\alpha(c).\chi_\alpha^{-1}(c) = 1_{\hat{\Fq}^+}$...
+\end{rem}
+
+Une dernière proposition est requise avant d'énoncer notre critère. Elle sera considérée comme admise, sa démonstration dépassant le cadre de ce projet et nécessitant surement un projet à elle seule.
+
+\begin{prop}
+Soient $P \in \Fq[X]$ et $\alpha \in \Fq$, alors le nombre $N$ de solution de $P(x) = \alpha$ est \begin{center} $N = \displaystyle \frac{1}{q} \sum_{c\in\Fq}\sum_{\chi \in \hat{Fq}^+} \chi(P(c)).\overline{\chi(\alpha)}$ \end{center}
+\end{prop}  
+\pagebreak
+
+Donnons nous quelques exemples simples, mettons pour $q=3$ et $q=4$:
+
+\begin{examples}
+	\begin{enumerate}[label = \roman*)]
+	\item Soit $P(X) := X^3$; on a bien une unique solution à l'équation $x^3 = 2$, qui est $x=2$. Vérifions cela à l'aide de la proposition précédente:
+\begin{align*}
+N &= \displaystyle\frac{1}{3}\sum_{c\in F3}\sum_{\chi\in\hat{(F3)}^+} \chi(c^3)\overline{\chi(2)}\\
+
+&=\displaystyle\frac{1}{3}\sum_{\chi\in\hat{(F3)}^+}\overline{\chi(2)}(\chi(0) + \chi(1) + \chi(2))\\
+
+&=\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_2(2)}(\chi_2(0) + \chi_2(1) + \chi_2(2))\right]\\ 
+
+&+\displaystyle\frac{1}{3} \left[\overline{\chi_3(2)}(\chi_3(0) + \chi_3(1) + \chi_3(2))\right]\\
+
+&=\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_1(4)}(\chi_1(0) + \chi_1(2) + \chi_1(4))\right]\\
+
+&+\displaystyle\frac{1}{3}\left[\overline{\chi_1(6)}(\chi_1(0) + \chi_1(3) + \chi_1(6))\right]
+\end{align*}
+
+Or  dans $\F_3$, $6=0$ et $4=1$, d'où
+\begin{align*}
+\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_1(1)}(\chi_1(0) + \chi_1(2) + \chi_1(1))\right]\\
++\displaystyle\frac{1}{3}\left[\overline{\chi_1(6)}(\chi_1(0) + \chi_1(0) + \chi_1(0))\right]
+\end{align*}
+Or, $\chi_1(0) = e^{2\pi.i.Tr(0)/3} = 1$, $\chi_1(1) = e^{2\pi.i.Tr(1)/3} = e^{2\pi.i/3}$ et\\  $\chi_2(1) = e^{2\pi.i.Tr(2)/3} = e^{2\pi.i.2/3}$ donc $\chi_1(0)+\chi_1(1)+\chi_1(2) = 0$.\newline
+On obtient finalement que \newline
+$N = \frac{1}{3} (\overline{\chi_1(0)}(\chi_1(0)+ \chi_1(0) + \chi_1(0))) = 3/3 = 1$.\\
+On retrouve bien notre nombre de solutions. 
+	\item 
+On peut faire de même pour le cas $\F_4$ et $P := X^2$.
+	\end{enumerate}
+
+\end{examples}
+
+Nous pouvons enfin énoncer notre critère:
+
+\begin{theorem}[Critère]
+Soit $P$ un polynôme à coefficients dans $\Fq$, alors $P$ est de permutation si et seulement si $\displaystyle\sum_{\alpha \in \Fq} \chi(P(\alpha)) = 0$ pour tout caractère additif non-trivial.
+\end{theorem}
+
+\begin{proof}
+	\begin{enumerate}[label = \roman*)]
+		\item De gauche à droite : Supposons que $P$ soit de permutation; il réalise donc une bijection et il s'ensuit que l'équation $P(x) = \alpha$ admet une unique solution. Soit $\chi \neq \chi_0$, donc $\exists \alpha \in \Fq$ tel que $\chi(\alpha)\neq 1$. On peut même supposer $\alpha$ non nul. Comme $P$ est une bijection; si $c$ parcourt $\Fq$, alors $P(c)$ aussi, de sorte que l'on a $\displaystyle\sum_{c\in\Fq}\chi(P(c)) = \displaystyle\sum_{c\in\Fq}\chi(c)$. \newline
+Remarquons de plus que
+\begin{center}$\chi(\alpha)\displaystyle\sum_{c\in\Fq}\chi(c) = \displaystyle\sum_{c\in\Fq}\chi(c)\chi(\alpha) \displaystyle\sum_{c\in\Fq}\chi(c.\alpha) =\displaystyle\sum_{c\in\Fq}\chi(c)$\end{center}
+car $\chi$ est un morphisme et que $\phi :c \longmapsto \alpha.c$ est une bijection pour $\alpha$ non nul.
+On obtient dès lors que
+\begin{center} 
+$\chi(\alpha)\displaystyle\sum_{c\in\Fq}\chi(c) - \displaystyle\sum_{c\in\Fq}\chi(c) =0$
+\end{center}
+i.e.
+\begin{center}
+$\displaystyle\sum_{c\in\Fq}\chi(c)(\chi(\alpha) -1) = 0$
+\end{center}
+Or, comme $
+\chi$ est supposé non trivial, $\chi(\alpha) \neq 1$ et donc $\displaystyle\sum_{c\in\Fq}\chi(c) = 0$ pour tout caractère $\chi$ non trivial.
+		\item De droite à gauche : Supposons que $\displaystyle\sum_{\alpha \in \Fq} \chi(P(\alpha)) = 0$ pour tout caractère additif non-trivial, i.e. 
+		\begin{center} $\displaystyle	\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}=0$ \end{center}
+De la proposition précédente, nous avons que 
+\begin{center} $N = \displaystyle \frac{1}{q} \sum_{c\in\Fq}\sum_{\chi \in \hat{Fq}^+} \chi(P(c)).\overline{\chi(\alpha)}$ \end{center}
+\begin{align*}
+&= \displaystyle \frac{1}{q}\sum_{\chi \in \hat{Fq}^+}  \sum_{c\in\Fq}\chi(P(c)).\overline{\chi(\alpha)}\\
+&= \displaystyle \frac{1}{q}\left[\sum_{c\in\Fq} \chi_0(P(c)).\overline{\chi_0(\alpha)}+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]\\
+&= \displaystyle \frac{1}{q}\left[\sum_{c\in\Fq} \chi_1(0).\overline{\chi_1(0)}+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]\\
+&= \displaystyle \frac{1}{q}\left[q+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]  \text{   (par la proposition 5)}\\
+&= \displaystyle \frac{1}{q}\left[q+\sum_{\chi \in \hat{Fq}^+/\chi_0} \overline{\chi(\alpha)}\sum_{c\in\Fq} \chi(P(c))\right]\\
+&= 1 + 0  \text{   (par hypothèse)}
+\end{align*}
+Il n'existe alors qu'une seule solution à l'équation pour tout $\alpha \in \Fq$. Il s'ensuit que $P$ réalise une bijection et est donc de permutation.
+
+
+	\end{enumerate}
+\end{proof}
+
+\pagebreak
+
+\section{Applications des polynômes de permutations}
+
+\subsection{Applications en cryptographie}
+
+\subsection{Autres applications}
 
 \vfill \eject
 \section*{Conclusion}
@@ -1030,17 +1238,23 @@ Notre principale préoccupation est de trouver des algorithmes déterministes ef
 	Décembre 2009.
 
 	\bibitem{wikipedia}
-	Wikipedia,
-	https://fr.wikipedia.org/wiki/Interpolation\_lagrangienne
+	Wikipedia,\\
+	\url{https://fr.wikipedia.org/wiki/Interpolation_lagrangienne}
 	
 	\bibitem{archive}
 	Matsumoto-Imai Cryptosystems // Paragraphe 2.1 (page 12, ...)\\
-	https://bilder.buecher.de/zusatz/20/20816/20816314\_lese\_1.pdf
+	\url{https://bilder.buecher.de/zusatz/20/20816/20816314\_lese\_1.pdf}
 	
 	\bibitem{archive}
 	PATARIN Jacques,
 	Cryptanalysis of the Matsumoto and Imai Public Key Scheme of Eurocrypt'88,\\
-	https://link.springer.com/content/pdf/10.1007/3-540-44750-4\_20.pdf
+	\url{https://link.springer.com/content/pdf/10.1007/3-540-44750-4\_20.pdf}
+	
+	\bibitem{archive}
+	JEAN-RENÉ JOLY\\
+	Chapitre 5 Caractères des corps finis Sommes de Gauss et de Jacobi\\
+	Cours de l’institut Fourier, tome 4 (1971), p. 1-26\\
+	\url{http://www.numdam.org/article/CIF_1971__4__A5_0.pdf}
 	
 \end{thebibliography}
 
