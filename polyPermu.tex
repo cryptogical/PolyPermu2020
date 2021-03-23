@@ -1204,7 +1204,28 @@ Il n'existe alors qu'une seule solution à l'équation pour tout $\alpha \in \Fq
 \section{Applications des polynômes de permutations}
 
 \subsection{Applications en cryptographie}
+Les applications en cryptographie symétriques ou mêmes asymétriques sont assez diverses et certaines sont loin d'être triviales. C'est pourquoi nous allons concentrer notre étude sur les polynômes dit de \textsl{DICKSON}. Introduisons cette notion. Les polynômes de Dickson sont des suites de polynômes composées d'une indéterminée et d'un paramètre que l'on notera dans la suite, respectivement, $X$ et $\alpha$. Ces polynômes interviennent dans divers sujets mathématiques comme les permutations sur des corps finis et également sur des algorithmes de factorisations. Il est intéressant de remarquer que les polynômes de Dickson peuvent être identifiés aux polynômes de Tchebychev dès lors que $\alpha$ est un carré. Toutefois dans un aspect cryptographique il est primordial pour certaines applications que $\alpha$ ne soit pas un carré. Dans la suite on notera $\mathbbm{D}_n$ et $\mathbbm{E}_n$ les polynômes de première et deuxième espèce. A noter que les polynômes de deuxième espèce sont habituellement indexés par leur degré mais il est pratique d'introduire un polynôme de deuxième espèce réduit par $\mathbbm{E}_n = \mathbbm{E}_{n-1}$, en posant $\mathbbm{E}_0 = 0$. On définit les coefficients de ces polynômes de la sorte,
+\begin{center}
+$
+\mathbbm{D}_0(X, \alpha) = 2 \hspace{0,2cm} \text{,} \hspace{0,2cm} \mathbbm{E}_0(X, \alpha) = 1 \linebreak
+\mathbbm{D}_n(X, \alpha) = \displaystyle \sum_{k=0}^{\left\lfloor n/2 \right\rfloor} \frac{n}{n-k} \binom{n-k}{k}(-\alpha)^k X^{n-2k} \hspace{0,2cm} \text{,} \hspace{0,2cm} \textbf{si} \hspace{0,2cm} n \hspace{0,2cm} \textbf{est positif} \linebreak
+\mathbbm{E}_n(X, \alpha) = \displaystyle \displaystyle \sum_{k=0}^{\left\lfloor n/2 \right\rfloor} \binom{n-k}{k}(-\alpha)^k X^{n-2k} \hspace{0,2cm} \text{,} \hspace{0,2cm} \textbf{si} \hspace{0,2cm} n \hspace{0,2cm} \textbf{est positif}
+$
+\end{center}
 
+On obtient alors les relations de récurrences suivante,
+\begin{center}
+$
+\mathbbm{D}_n(X, \alpha) = X \mathbbm{D}_{n-1}(X, \alpha) - \alpha 	\mathbbm{D}_{n-2}(X, \alpha) \linebreak
+\mathbbm{E}_n(X, \alpha) = X \mathbbm{E}_{n-1}(X, \alpha) - \alpha 	\mathbbm{E}_{n-2}(X, \alpha)
+$
+\end{center}
+
+Ces polynômes ont un lien étroit avec les polynômes de permutations. On peut en effet voir qu'il existe une condition nécessaire et suffisante entre eux grâce à la proposition suivante,
+\begin{prop}
+Soit $a \in \F_q^{*}$, le polynôme $\mathbbm{D}_n(X, a)$ est de permutation sur $\F_q$ si et seulement si pgcd$(n, q^2 -1) = 1$.
+\end{prop}
+Le cas où $a = 0$ est trivial puisque $\mathbbm{D}_n(X, 0) = X^n$. Pour le cas général il suffit de remarquer que l'ensemble $ \{ \mathbbm{D}_n(X, a) :  $ pgcd$(n, q^2 -1) = 1 \}$ est stable par composition si et seulement si $a \in \{ 0 , 1, -1 \}$. Ces polynômes ont permis la création d'un nouveau système cryptographique à clé publique, baptisé \textsf{LUC} par Smith et Lenon dans les années 90.
 \subsection{Autres applications}
 
 \vfill \eject
