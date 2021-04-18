@@ -775,6 +775,208 @@ Nous détaillerons quelques une de ces méthodes dans un prochain rendu.
 \pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\section{Application des caractères additifs aux groupes abéliens finis}
+
+Nous avons terminé le premier chapitre de ce rendu par la présentation de diverses familles -ou classes- de polynôme de permutation. Une fois la ''forme'' d'un polynôme établit, moulte résultats nous permette de dire si le polynôme est ou non de permutations; et ce avec efficacité. \newline
+Nous allons ici revenir un tantinet en arrière et présenter un critère qui ne sera pas des plus convenant dans la pratique; mais qui a le mérite de s'appuyer sur une belle théorie, celle des caractères sur un corps fini.
+
+\begin{definition}
+Soit $G$ un groupe abélien fini d'ordre $n$. On appelle caractère additif de $G$ tout homomorphisme $\chi$ de $G$ dans le groupe $W_n$ des racines n-ièmes de l'unité.
+\end{definition}
+
+Nous admettrons ici la 
+
+\begin{prop}
+L'ensemble $\hat{G}$ des caractères additifs sur un groupe $G$ forme un groupe multiplicatif.
+\end{prop}
+
+Par conséquent, nous avons aussi la 
+
+\begin{prop}[admise]
+$\forall \chi \in \hat{G}$, $\chi^{-1} = \overline{\chi}$, où $\overline{\chi(x)}$ est définit comme le conjugué complexe de $\chi(x)$ dans $W_n$.
+\end{prop}
+
+\begin{nota}
+On notera $ \chi_0 := 1_{\hat{G}}$  le caractère trivial, définit comme $\forall g \in G, \chi_0(g) = 1$.
+\end{nota}
+
+Avant d'exhiber le lien entre polynômes de permutations et caractère additif, nous allons donner un résultat élémentaire.
+
+\begin{theorem}
+Soit $G$ un groupe abélien fini d'ordre $n$, alors
+	\begin{enumerate}[label = \roman*)]
+		\item Pour $g \in G$ fixé,   
+				$$
+				\displaystyle\sum_{\chi \in \hat{G}} \chi(g) = \left\{
+				    \begin{array}{ll}
+				        n & \mbox{si } g = 1_G \\
+				        0 & \mbox{sinon.}
+				    \end{array}
+				\right.
+				$$
+et de manière similaire
+		\item Pour $\chi \in \hat{G}$ fixé,
+				$$
+				\displaystyle\sum_{g \in G} \chi(g) = \left\{
+				    \begin{array}{ll}
+				        n & \mbox{si } \chi = 1_{\hat{G}} \\
+				        0 & \mbox{sinon.}
+				    \end{array}
+				\right.
+				$$						
+	\end{enumerate}
+\end{theorem}
+
+Ce résultat nous sera utile pour démontrer notre critère, mais avant concentrons nous sur le cas où $G$ est le groupe additif de $\Fq$, que nous noterons ici de manière abusive $\Fq^{+}$. Nous allons donner aux caractères additifs une forme plus familière.
+
+\pagebreak
+
+On rappelle la 
+
+\begin{definition}
+On note $\Fp$ le sous-corps premier de $\Fq$. L'application trace est définit comme \fonction{Tr}{\Fq}{\Fp}{\alpha}{\displaystyle\sum_{i=0}^{n-1} \alpha^{q^i}}
+\end{definition}
+
+\begin{prop}
+Soit la fonction $\chi_\alpha$ définit par \fonction{\chi_\alpha}{\Fq}{W_n}{c}{e^{\frac{2\pi.i.Tr(\alpha.c)}{p}}} alors $\chi_\alpha$ est un caractère additif de $\Fq$.
+\end{prop}
+
+\begin{proof}
+$\chi_\alpha(c_1 + c_2) = e^{\frac{2\pi.i.Tr(\alpha.(c_1 + c_2))}{p}} = e^{\frac{2\pi.i.[Tr(\alpha.(c_1))+Tr(\alpha.(c_2))]}{p}}=\chi_\alpha(c_1)\chi_\alpha(c_2)$. Les autres propriétés de morphisme sont toutes aussi claires.
+\end{proof}
+
+\begin{rem}
+Précisons que $e^{\frac{2\pi.i.Tr(\alpha.c)}{p}}$ a bien un sens, car la trace est par définition à valeur dans $\Fp$ et que $\Fp \simeq \Z / p\Z$.
+\end{rem}
+
+\begin{definition}
+En particulier, remarquons que $\chi_1(c) = e^{\frac{2\pi.i.Tr(c)}{p}}$. Ce caractère sera appellé caractère additif canonique.
+\end{definition}
+
+\begin{prop}[Admise]
+L'application \fonction{\phi}{\Fq^+}{\hat{\Fq^+}}{\alpha}{\chi_\alpha} est un isomorphisme de groupes.
+\end{prop}
+
+\begin{coro}
+On en déduit donc qu'il n'existe qu'un nombre fini de caractères additifs de $\Fq^+$, et que ces derniers sont exactement les $\chi_\alpha$. Ceci étant admis, remarquons que $\chi_\alpha(c) = e^{\frac{2\pi.i.Tr(\alpha.c)}{p}} = e^{\frac{2\pi.i.Tr(1.(\alpha.c))}{p}} = \chi_1(\alpha.c)$. Tout caractère additif peut ainsi être exprimé en fonction de $\chi_1$, d'où l'appellation canonique.
+\end{coro}
+
+\begin{prop}
+Soient $\alpha$, $c$ et $d \in \Fq$, alors
+$$
+\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)} = \left\{
+    \begin{array}{ll}
+        0 & \mbox{si } c \ne d \\
+        q & \mbox{sinon.}
+    \end{array}
+\right.
+$$
+\end{prop}
+
+\begin{proof}
+De simples calculs suffisent, de par le corollaire 1:
+\begin{center}$\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)}$\end{center}
+\begin{align*} 
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.c)/p}.\overline{e^{2i\pi Tr(\alpha.d)/p}} \\
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.c)/p}.{e^{-2i\pi Tr(\alpha.d)/p}} \\
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.(c-d))/p}
+\end{align*} 
+Ceci est immédiatement égal à $q$ si $c=d$, $\Fq$ étant le corps à $q$ éléments. Si $c\ne d$, remarquons que \fonction{\phi}{\Fq}{\Fq}{\alpha}{\alpha(c-d)} constitue un isomorphisme (car $c\ne d$), de sorte que pour $\alpha$ parcourant $\Fq$, on a que $\alpha(c-d)$ parcours également $\Fq$. On obtient dès lors que 
+\begin{center}$\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)}$\end{center}
+\begin{align*} 
+&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha)/p} \\
+&= \displaystyle\sum_{\alpha \in \Fq} \chi_1(\alpha) \\
+&= 0
+\end{align*}
+car $\chi_1(\alpha) \ne 1_{\hat{\Fq}^+}$
+\end{proof}
+
+\begin{rem}
+Il est également possible de conclure directement via le théorème 1, en notant que si $c=d$, $\chi_\alpha(c).\overline{\chi_\alpha(d)} = \chi_\alpha(c).\chi_\alpha^{-1}(c) = 1_{\hat{\Fq}^+}$...
+\end{rem}
+
+Une dernière proposition est requise avant d'énoncer notre critère. Elle sera considérée comme admise, sa démonstration dépassant le cadre de ce projet et nécessitant surement un projet à elle seule.
+
+\begin{prop}
+Soient $P \in \Fq[X]$ et $\alpha \in \Fq$, alors le nombre $N$ de solution de $P(x) = \alpha$ est \begin{center} $N = \displaystyle \frac{1}{q} \sum_{c\in\Fq}\sum_{\chi \in \hat{Fq}^+} \chi(P(c)).\overline{\chi(\alpha)}$ \end{center}
+\end{prop}  
+\pagebreak
+
+Donnons nous quelques exemples simples, mettons pour $q=3$ et $q=4$:
+
+\begin{examples}
+	\begin{enumerate}[label = \roman*)]
+	\item Soit $P(X) := X^3$; on a bien une unique solution à l'équation $x^3 = 2$, qui est $x=2$. Vérifions cela à l'aide de la proposition précédente:
+\begin{align*}
+N &= \displaystyle\frac{1}{3}\sum_{c\in F3}\sum_{\chi\in\hat{(F3)}^+} \chi(c^3)\overline{\chi(2)}\\
+
+&=\displaystyle\frac{1}{3}\sum_{\chi\in\hat{(F3)}^+}\overline{\chi(2)}(\chi(0) + \chi(1) + \chi(2))\\
+
+&=\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_2(2)}(\chi_2(0) + \chi_2(1) + \chi_2(2))\right]\\ 
+
+&+\displaystyle\frac{1}{3} \left[\overline{\chi_3(2)}(\chi_3(0) + \chi_3(1) + \chi_3(2))\right]\\
+
+&=\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_1(4)}(\chi_1(0) + \chi_1(2) + \chi_1(4))\right]\\
+
+&+\displaystyle\frac{1}{3}\left[\overline{\chi_1(6)}(\chi_1(0) + \chi_1(3) + \chi_1(6))\right]
+\end{align*}
+
+Or  dans $\F_3$, $6=0$ et $4=1$, d'où
+\begin{align*}
+\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_1(1)}(\chi_1(0) + \chi_1(2) + \chi_1(1))\right]\\
++\displaystyle\frac{1}{3}\left[\overline{\chi_1(6)}(\chi_1(0) + \chi_1(0) + \chi_1(0))\right]
+\end{align*}
+Or, $\chi_1(0) = e^{2\pi.i.Tr(0)/3} = 1$, $\chi_1(1) = e^{2\pi.i.Tr(1)/3} = e^{2\pi.i/3}$ et\\  $\chi_2(1) = e^{2\pi.i.Tr(2)/3} = e^{2\pi.i.2/3}$ donc $\chi_1(0)+\chi_1(1)+\chi_1(2) = 0$.\newline
+On obtient finalement que \newline
+$N = \frac{1}{3} (\overline{\chi_1(0)}(\chi_1(0)+ \chi_1(0) + \chi_1(0))) = 3/3 = 1$.\\
+On retrouve bien notre nombre de solutions. 
+	\item 
+On peut faire de même pour le cas $\F_4$ et $P := X^2$.
+	\end{enumerate}
+
+\end{examples}
+
+Nous pouvons enfin énoncer notre critère:
+
+\begin{theorem}[Critère]
+Soit $P$ un polynôme à coefficients dans $\Fq$, alors $P$ est de permutation si et seulement si $\displaystyle\sum_{\alpha \in \Fq} \chi(P(\alpha)) = 0$ pour tout caractère additif non-trivial.
+\end{theorem}
+
+\begin{proof}
+	\fbox{$\Rightarrow$} Supposons que $P$ soit de permutation; il réalise donc une bijection et il s'ensuit que l'équation $P(x) = \alpha$ admet une unique solution. Soit $\chi \neq \chi_0$, donc $\exists \alpha \in \Fq$ tel que $\chi(\alpha)\neq 1$. On peut même supposer $\alpha$ non nul. Comme $P$ est une bijection; si $c$ parcourt $\Fq$, alors $P(c)$ aussi, de sorte que l'on a $\displaystyle\sum_{c\in\Fq}\chi(P(c)) = \displaystyle\sum_{c\in\Fq}\chi(c)$. \newline
+Remarquons de plus que
+\begin{center}$\chi(\alpha)\displaystyle\sum_{c\in\Fq}\chi(c) = \displaystyle\sum_{c\in\Fq}\chi(c)\chi(\alpha) \displaystyle\sum_{c\in\Fq}\chi(c.\alpha) =\displaystyle\sum_{c\in\Fq}\chi(c)$\end{center}
+car $\chi$ est un morphisme et que $\phi :c \longmapsto \alpha.c$ est une bijection pour $\alpha$ non nul.
+On obtient dès lors que
+\begin{center} 
+$\chi(\alpha)\displaystyle\sum_{c\in\Fq}\chi(c) - \displaystyle\sum_{c\in\Fq}\chi(c) =0$
+\end{center}
+i.e.
+\begin{center}
+$\displaystyle\sum_{c\in\Fq}\chi(c)(\chi(\alpha) -1) = 0$
+\end{center}
+Or, comme $
+\chi$ est supposé non trivial, $\chi(\alpha) \neq 1$ et donc $\displaystyle\sum_{c\in\Fq}\chi(c) = 0$ pour tout caractère $\chi$ non trivial.\\
+ \fbox{$\Leftarrow$} Supposons que $\displaystyle\sum_{\alpha \in \Fq} \chi(P(\alpha)) = 0$ pour tout caractère additif non-trivial, i.e. 
+		\begin{center} $\displaystyle	\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}=0$ \end{center}
+De la proposition précédente, nous avons que 
+\begin{center} $N = \displaystyle \frac{1}{q} \sum_{c\in\Fq}\sum_{\chi \in \hat{Fq}^+} \chi(P(c)).\overline{\chi(\alpha)}$ \end{center}
+\begin{align*}
+&= \displaystyle \frac{1}{q}\sum_{\chi \in \hat{Fq}^+}  \sum_{c\in\Fq}\chi(P(c)).\overline{\chi(\alpha)}\\
+&= \displaystyle \frac{1}{q}\left[\sum_{c\in\Fq} \chi_0(P(c)).\overline{\chi_0(\alpha)}+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]\\
+&= \displaystyle \frac{1}{q}\left[\sum_{c\in\Fq} \chi_1(0).\overline{\chi_1(0)}+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]\\
+&= \displaystyle \frac{1}{q}\left[q+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]  \text{   (par la proposition 5)}\\
+&= \displaystyle \frac{1}{q}\left[q+\sum_{\chi \in \hat{Fq}^+/\chi_0} \overline{\chi(\alpha)}\sum_{c\in\Fq} \chi(P(c))\right]\\
+&= 1 + 0  \text{   (par hypothèse)}
+\end{align*}
+Il n'existe alors qu'une seule solution à l'équation pour tout $\alpha \in \Fq$. Il s'ensuit que $P$ réalise une bijection et est donc de permutation.
+
+\end{proof}
+
+\pagebreak
+
+
 \section{Classes de polynômes}
 Les méthodes d'identifications que nous venons de voir sont certes fonctionnelles, mais non raffinées. Elles sont extrêmement coûteuses en terme de puissance de calcul. Il est donc primordial d'établir une liste de critères permettant d'accélérer le processus. Cette partie y sera entièrement consacrée. Pour ce faire, nous travaillons sur des ''familles'' de polynômes. Nous n'aurons pas la prétention d'en donner une liste exhaustive; cependant dans ce premier rendu nous donnerons les plus élémentaires. Une étude plus approfondie sera faite au second semestre.
 
@@ -940,18 +1142,40 @@ De plus, le chiffrement est « relativement » efficace car il s'agit d'une simp
 
 \subsubsection{Cryptographie multivariée et polynômes de permutation}
 
-
 la cryptographie multivariée repose sur l'utilisation de polynômes multivariés à coefficients dans un corps fini. Il s'agit d'ailleurs d'une des directions de recherches considérées pour développer des algorithmes de cryptographies post-quantiques.\\
 Le premier schéma de chiffrement de cette famille fut élaboré en 1988 par \textbf{Tsutomu Matsumoto} et \textbf{Hideki Imai}. Dans ce système, un polynôme central $X^{q^n+1} \in \Fq$ va être masqué par deux applications linéaires bijectives $S$ et $T$. La partie chiffrement ne sera que la composition (dans $\Fq$) suivante : $$S\circ X^{q^n+1} \circ T,$$
 où ce polynôme représente la clé publique.\\
-Ce polynôme assure la bijectivité et offre une représentation assez compacte de la clé. 
-\begin{bg}{Est-ce qu'on en parle ?}
-En effet, en prenant un polynôme de degré algébrique $2$, on est assuré que la clé publique obtenue est de la forme 
-$$\displaystyle\sum_{0\leq i,j<n} a_{i,j}X^{q^i+q^j} + \displaystyle\sum_{0\leq k<n} b_{k}X^{q^k}$$
-Il suffit donc de $\frac{n(n+1)}{2}$ éléments de $\Fq$ pour définir ce polynôme, à comparer aux $q^{n-2}$ coefficients pour un polynôme de permutation en général.
-\end{bg}
+Ce polynôme assure la bijectivité et offre une représentation assez compacte de la clé. \vspace{12pt} \\
 Cependant, ce schéma fut rapidement cryptanalysé. La référence [5] est un scan de l'article de \textbf{Jacques PATARIN} sur sa cryptanalyse de ce schéma, si le lecteur est intéressé. Malgré tout, le système présenté par \textbf{Matsumoto} et \textbf{Imai} a inspiré de nombreuses variantes de schémas dont \textsf{HFE} (pour \textit{Hidden Field Equations}), notamment introduit par \textbf{Jacques PATARIN}, et par extensions %suite à des perturbations (v pour vinaigre)
 \textsf{HFE-v} qui regroupe plusieurs algorithmes tel que \textit{quartz}. Cette famille de chiffrement connaît des attaques de complexité exponentielle alors que la signature ne coûte presque rien pour la personne qui signe. De plus, ces schémas ont les signatures les plus courtes parmi tous les schémas de signature à clé publique connus. Par conséquent, parvenir à effectuer ces algorithmes avec des polynômes de permutations pourraient accroître les performances mais ceci reste une supposition, à l'heure d'aujourd'hui.\\
+
+\subsubsection{LUC et les polynômes de permutation}
+
+Les applications en cryptographie symétriques ou mêmes asymétriques sont assez diverses et certaines sont loin d'être triviales. C'est pourquoi nous allons concentrer notre étude sur les polynômes dit de \textsl{DICKSON}. Introduisons cette notion.\\
+Les polynômes de Dickson sont des suites de polynômes composées d'une indéterminée, notée X, et d'un paramètre, noté $\alpha$. Ces polynômes interviennent dans divers sujets mathématiques comme les permutations sur des corps finis et également sur des algorithmes de factorisations. Il est intéressant de remarquer que les polynômes de Dickson peuvent être identifiés aux polynômes de Tchebychev dès lors que $\alpha$ est un carré. Toutefois, dans un aspect cryptographique il est primordial pour certaines applications que $\alpha$ ne soit pas un carré. Dans la suite on notera $\mathbbm{D}_n$ et $\mathbbm{E}_n$ les polynômes de première et deuxième espèce. A noter que les polynômes de deuxième espèce sont habituellement indexés par leur degré mais il est pratique d'introduire un polynôme de deuxième espèce réduit par $\mathbbm{E}_n = \mathbbm{E}_{n-1}$, en posant $\mathbbm{E}_0 = 0$. On définit les coefficients de ces polynômes de la sorte,
+\begin{center}
+$
+\mathbbm{D}_0(X, \alpha) = 2 \hspace{0,2cm} \text{,} \hspace{0,2cm} \mathbbm{E}_0(X, \alpha) = 1 \linebreak
+\mathbbm{D}_n(X, \alpha) = \displaystyle \sum_{k=0}^{\left\lfloor n/2 \right\rfloor} \frac{n}{n-k} \binom{n-k}{k}(-\alpha)^k X^{n-2k} \hspace{0,2cm} \text{,} \hspace{0,2cm} \textbf{si} \hspace{0,2cm} n \hspace{0,2cm} \textbf{est positif} \linebreak
+\mathbbm{E}_n(X, \alpha) = \displaystyle \displaystyle \sum_{k=0}^{\left\lfloor n/2 \right\rfloor} \binom{n-k}{k}(-\alpha)^k X^{n-2k} \hspace{0,2cm} \text{,} \hspace{0,2cm} \textbf{si} \hspace{0,2cm} n \hspace{0,2cm} \textbf{est positif}
+$
+\end{center}
+
+On obtient alors les relations de récurrences suivante,
+\begin{center}
+$
+\mathbbm{D}_n(X, \alpha) = X \mathbbm{D}_{n-1}(X, \alpha) - \alpha 	\mathbbm{D}_{n-2}(X, \alpha) \linebreak
+\mathbbm{E}_n(X, \alpha) = X \mathbbm{E}_{n-1}(X, \alpha) - \alpha 	\mathbbm{E}_{n-2}(X, \alpha)
+$
+\end{center}
+
+Ces polynômes ont un lien étroit avec les polynômes de permutations. On peut en effet voir qu'il existe une condition nécessaire et suffisante entre eux grâce à la proposition suivante,
+\begin{prop}
+Soit $a \in \F_q^{*}$, le polynôme $\mathbbm{D}_n(X, a)$ est de permutation sur $\F_q$ si et seulement si pgcd$(n, q^2 -1) = 1$.
+\end{prop}
+Le cas où $a = 0$ est trivial puisque $\mathbbm{D}_n(X, 0) = X^n$. Pour le cas général, il suffit de remarquer que l'ensemble $ \{ \mathbbm{D}_n(X, a) :  $ pgcd$(n, q^2 -1) = 1 \}$ est stable par composition si et seulement si $a \in \{ 0 , 1, -1 \}$. Ces polynômes ont permis la création d'un nouveau système cryptographique à clé publique, baptisé \textsf{LUC} par Smith et Lenon dans les années 90.
+
+\vfill \eject
 
 
 \subsection{À clé secrète}
@@ -992,243 +1216,34 @@ est un polynôme de permutation.
 \end{prop}
 
 \begin{proof}
-
-\end{proof}
-\section{Application des caractères additifs aux groupes abéliens finis}
-
-Nous avons terminé le premier chapitre de ce rendu par la présentation de diverses familles -ou classes- de polynôme de permutation. Une fois la ''forme'' d'un polynôme établit, moulte résultats nous permette de dire si le polynôme est ou non de permutations; et ce avec efficacité. \newline
-Nous allons ici revenir un tantinet en arrière et présenter un critère qui ne sera pas des plus convenant dans la pratique; mais qui a le mérite de s'appuyer sur une belle théorie, celle des caractères sur un corps fini.
-
-\begin{definition}
-Soit $G$ un groupe abélien fini d'ordre $n$. On appelle caractère additif de $G$ tout homomorphisme $\chi$ de $G$ dans le groupe $W_n$ des racines n-ièmes de l'unité.
-\end{definition}
-
-Nous admettrons ici la 
-
-\begin{prop}
-L'ensemble $\hat{G}$ des caractères additifs sur un groupe $G$ forme un groupe multiplicatif.
-\end{prop}
-
-Par conséquent, nous avons aussi la 
-
-\begin{prop}[admise]
-$\forall \chi \in \hat{G}$, $\chi^{-1} = \overline{\chi}$, où $\overline{\chi(x)}$ est définit comme le conjugué complexe de $\chi(x)$ dans $W_n$.
-\end{prop}
-
-\begin{nota}
-On notera $ \chi_0 := 1_{\hat{G}}$  le caractère trivial, définit comme $\forall g \in G, \chi_0(g) = 1$.
-\end{nota}
-
-Avant d'exhiber le lien entre polynômes de permutations et caractère additif, nous allons donner un résultat élémentaire.
-
-\begin{theorem}
-Soit $G$ un groupe abélien fini d'ordre $n$, alors
-	\begin{enumerate}[label = \roman*)]
-		\item Pour $g \in G$ fixé,   
-				$$
-				\displaystyle\sum_{\chi \in \hat{G}} \chi(g) = \left\{
-				    \begin{array}{ll}
-				        n & \mbox{si } g = 1_G \\
-				        0 & \mbox{sinon.}
-				    \end{array}
-				\right.
-				$$
-et de manière similaire
-		\item Pour $\chi \in \hat{G}$ fixé,
-				$$
-				\displaystyle\sum_{g \in G} \chi(g) = \left\{
-				    \begin{array}{ll}
-				        n & \mbox{si } \chi = 1_{\hat{G}} \\
-				        0 & \mbox{sinon.}
-				    \end{array}
-				\right.
-				$$						
-	\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-Utile ?
-\end{proof}
-
-Ce résultat nous sera utile pour démontrer notre critère, mais avant concentrons nous sur le cas où $G$ est le groupe additif de $\Fq$, que nous noterons ici de manière abusive $\Fq^{+}$. Nous allons donner aux caractères additifs une forme plus familière.
-
-\pagebreak
-
-On rappelle la 
-
-\begin{definition}
-On note $\Fp$ le sous-corps premier de $\Fq$. L'application trace est définit comme \fonction{Tr}{\Fq}{\Fp}{\alpha}{\displaystyle\sum_{i=0}^{n-1} \alpha^{q^i}}
-\end{definition}
-
-\begin{prop}
-Soit la fonction $\chi_\alpha$ définit par \fonction{\chi_\alpha}{\Fq}{W_n}{c}{e^{\frac{2\pi.i.Tr(\alpha.c)}{p}}} alors $\chi_\alpha$ est un caractère additif de $\Fq$.
-\end{prop}
-
-\begin{proof}
-$\chi_\alpha(c_1 + c_2) = e^{\frac{2\pi.i.Tr(\alpha.(c_1 + c_2))}{p}} = e^{\frac{2\pi.i.[Tr(\alpha.(c_1))+Tr(\alpha.(c_2))]}{p}}=\chi_\alpha(c_1)\chi_\alpha(c_2)$. Les autres propriétés de morphisme sont toutes aussi claires.
-\end{proof}
-
-\begin{rem}
-Précisons que $e^{\frac{2\pi.i.Tr(\alpha.c)}{p}}$ a bien un sens, car la trace est par définition à valeur dans $\Fp$ et que $\Fp \simeq \Z / p\Z$.
-\end{rem}
-
-\begin{definition}
-En particulier, remarquons que $\chi_1(c) = e^{\frac{2\pi.i.Tr(c)}{p}}$. Ce caractère sera appellé caractère additif canonique.
-\end{definition}
-
-\begin{prop}[Admise]
-L'application \fonction{\phi}{\Fq^+}{\hat{\Fq^+}}{\alpha}{\chi_\alpha} est un isomorphisme de groupes.
-\end{prop}
-
-\begin{coro}
-On en déduit donc qu'il n'existe qu'un nombre fini de caractères additifs de $\Fq^+$, et que ces derniers sont exactement les $\chi_\alpha$. Ceci étant admis, remarquons que $\chi_\alpha(c) = e^{\frac{2\pi.i.Tr(\alpha.c)}{p}} = e^{\frac{2\pi.i.Tr(1.(\alpha.c))}{p}} = \chi_1(\alpha.c)$. Tout caractère additif peut ainsi être exprimé en fonction de $\chi_1$, d'où l'appellation canonique.
-\end{coro}
-
-\begin{prop}
-Soient $\alpha$, $c$ et $d \in \Fq$, alors
-$$
-\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)} = \left\{
-    \begin{array}{ll}
-        0 & \mbox{si } c \ne d \\
-        q & \mbox{sinon.}
-    \end{array}
-\right.
-$$
-\end{prop}
-
-\begin{proof}
-De simples calculs suffisent, de par le corollaire 1:
-\begin{center}$\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)}$\end{center}
-\begin{align*} 
-&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.c)/p}.\overline{e^{2i\pi Tr(\alpha.d)/p}} \\
-&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.c)/p}.{e^{-2i\pi Tr(\alpha.d)/p}} \\
-&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha.(c-d))/p}
-\end{align*} 
-Ceci est immédiatement égal à $q$ si $c=d$, $\Fq$ étant le corps à $q$ éléments. Si $c\ne d$, remarquons que \fonction{\phi}{\Fq}{\Fq}{\alpha}{\alpha(c-d)} constitue un isomorphisme (car $c\ne d$), de sorte que pour $\alpha$ parcourant $\Fq$, on a que $\alpha(c-d)$ parcours également $\Fq$. On obtient dès lors que 
-\begin{center}$\displaystyle\sum_{\alpha \in \Fq}\chi_\alpha(c).\overline{\chi_\alpha(d)}$\end{center}
-\begin{align*} 
-&= \displaystyle\sum_{\alpha \in \Fq} e^{2i\pi Tr(\alpha)/p} \\
-&= \displaystyle\sum_{\alpha \in \Fq} \chi_1(\alpha) \\
-&= 0
-\end{align*}
-car $\chi_1(\alpha) \ne 1_{\hat{\Fq}^+}$
-\end{proof}
-
-\begin{rem}
-Il est également possible de conclure directement via le théorème 1, en notant que si $c=d$, $\chi_\alpha(c).\overline{\chi_\alpha(d)} = \chi_\alpha(c).\chi_\alpha^{-1}(c) = 1_{\hat{\Fq}^+}$...
-\end{rem}
-
-Une dernière proposition est requise avant d'énoncer notre critère. Elle sera considérée comme admise, sa démonstration dépassant le cadre de ce projet et nécessitant surement un projet à elle seule.
-
-\begin{prop}
-Soient $P \in \Fq[X]$ et $\alpha \in \Fq$, alors le nombre $N$ de solution de $P(x) = \alpha$ est \begin{center} $N = \displaystyle \frac{1}{q} \sum_{c\in\Fq}\sum_{\chi \in \hat{Fq}^+} \chi(P(c)).\overline{\chi(\alpha)}$ \end{center}
-\end{prop}  
-\pagebreak
-
-Donnons nous quelques exemples simples, mettons pour $q=3$ et $q=4$:
-
-\begin{examples}
-	\begin{enumerate}[label = \roman*)]
-	\item Soit $P(X) := X^3$; on a bien une unique solution à l'équation $x^3 = 2$, qui est $x=2$. Vérifions cela à l'aide de la proposition précédente:
+Pour tout $a$ non nul dans $\F_{2^n}$,
 \begin{align*}
-N &= \displaystyle\frac{1}{3}\sum_{c\in F3}\sum_{\chi\in\hat{(F3)}^+} \chi(c^3)\overline{\chi(2)}\\
-
-&=\displaystyle\frac{1}{3}\sum_{\chi\in\hat{(F3)}^+}\overline{\chi(2)}(\chi(0) + \chi(1) + \chi(2))\\
-
-&=\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_2(2)}(\chi_2(0) + \chi_2(1) + \chi_2(2))\right]\\ 
-
-&+\displaystyle\frac{1}{3} \left[\overline{\chi_3(2)}(\chi_3(0) + \chi_3(1) + \chi_3(2))\right]\\
-
-&=\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_1(4)}(\chi_1(0) + \chi_1(2) + \chi_1(4))\right]\\
-
-&+\displaystyle\frac{1}{3}\left[\overline{\chi_1(6)}(\chi_1(0) + \chi_1(3) + \chi_1(6))\right]
+D_af(x) &= f(x+a) + f(x)\\
+&= \displaystyle\sum_{i=1}^{n-1} c_i(x+a)^{2^i+1}+\sum_{i=1}^{n-1} c_ix^{2^i+1}\\
+&= \displaystyle\sum_{i=1}^{n-1} c_i(x+a)^{2^i}(x+a)+\sum_{i=1}^{n-1} c_ix^{2^i+1}\\
+&= \displaystyle\sum_{i=1}^{n-1} c_i(x^{2^i}+a^{2^i})(x+a)+\sum_{i=1}^{n-1} c_ix^{2^i+1} \text{   car caractéristique 2}\\
+&= \displaystyle\sum_{i=1}^{n-1} c_i(x^{2^i+1}+ax^{2^i}+xa^{2^i}+a^{2^i+1})+\sum_{i=1}^{n-1} c_ix^{2^i+1} \\
+&= \displaystyle\sum_{i=1}^{n-1} c_ix^{2^i+1}+\displaystyle\sum_{i=1}^{n-1} c_i(ax^{2^i}+xa^{2^i})+\displaystyle\sum_{i=1}^{n-1} c_i a^{2^i+1}+\sum_{i=1}^{n-1} c_ix^{2^i+1} \\
+&=  \displaystyle\sum_{i=1}^{n-1} c_i(ax^{2^i}+xa^{2^i})+f(a)
 \end{align*}
-
-Or  dans $\F_3$, $6=0$ et $4=1$, d'où
+Par conséquent, l'ensemble $\lbrace D_af(x)|x \in \F_{2^n} \rbrace$ est de cardinal $2^{n-1}$ si et seulement si le polynôme $D_af$ a un noyau de dimension $1$. C'est à dire, si $\forall x \notin \lbrace 0,a \rbrace$, on a : 
+$$\displaystyle \sum_{i=1}^{n-1} c_i \left( x^{2^i}a+xa^{2^i} \right) \neq 0.$$
+\\
+On peut notamment diviser le facteur $\left( x^{2^i} a+xa^{2^i} \right)$ par $xa$, ce qui nous donne :
 \begin{align*}
-\displaystyle\frac{1}{3}\left[\overline{\chi_1(2)}(\chi_1(0) + \chi_1(1) + \chi_1(2)) + \overline{\chi_1(1)}(\chi_1(0) + \chi_1(2) + \chi_1(1))\right]\\
-+\displaystyle\frac{1}{3}\left[\overline{\chi_1(6)}(\chi_1(0) + \chi_1(0) + \chi_1(0))\right]
+\displaystyle \sum_{i=1}^{n-1} c_i \left( x^{2^{i-1}}+a^{2^{i-1}} \right) \neq 0 
+&\Leftrightarrow \displaystyle \sum_{i=1}^{n-1} c_i x^{2^{i-1}} + \displaystyle \sum_{i=1}^{n-1} c_i a^{2^{i-1}} \neq 0 \\ 
+&\Leftrightarrow \displaystyle \sum_{i=1}^{n-1} c_i x^{2^{i-1}} \neq \displaystyle \sum_{i=1}^{n-1} c_i a^{2^{i-1}},\forall x \notin \lbrace 0,a \rbrace
 \end{align*}
-Or, $\chi_1(0) = e^{2\pi.i.Tr(0)/3} = 1$, $\chi_1(1) = e^{2\pi.i.Tr(1)/3} = e^{2\pi.i/3}$ et\\  $\chi_2(1) = e^{2\pi.i.Tr(2)/3} = e^{2\pi.i.2/3}$ donc $\chi_1(0)+\chi_1(1)+\chi_1(2) = 0$.\newline
-On obtient finalement que \newline
-$N = \frac{1}{3} (\overline{\chi_1(0)}(\chi_1(0)+ \chi_1(0) + \chi_1(0))) = 3/3 = 1$.\\
-On retrouve bien notre nombre de solutions. 
-	\item 
-On peut faire de même pour le cas $\F_4$ et $P := X^2$.
-	\end{enumerate}
-
-\end{examples}
-
-Nous pouvons enfin énoncer notre critère:
-
-\begin{theorem}[Critère]
-Soit $P$ un polynôme à coefficients dans $\Fq$, alors $P$ est de permutation si et seulement si $\displaystyle\sum_{\alpha \in \Fq} \chi(P(\alpha)) = 0$ pour tout caractère additif non-trivial.
-\end{theorem}
-
-\begin{proof}
-	\begin{enumerate}[label = \roman*)]
-		\item De gauche à droite : Supposons que $P$ soit de permutation; il réalise donc une bijection et il s'ensuit que l'équation $P(x) = \alpha$ admet une unique solution. Soit $\chi \neq \chi_0$, donc $\exists \alpha \in \Fq$ tel que $\chi(\alpha)\neq 1$. On peut même supposer $\alpha$ non nul. Comme $P$ est une bijection; si $c$ parcourt $\Fq$, alors $P(c)$ aussi, de sorte que l'on a $\displaystyle\sum_{c\in\Fq}\chi(P(c)) = \displaystyle\sum_{c\in\Fq}\chi(c)$. \newline
-Remarquons de plus que
-\begin{center}$\chi(\alpha)\displaystyle\sum_{c\in\Fq}\chi(c) = \displaystyle\sum_{c\in\Fq}\chi(c)\chi(\alpha) \displaystyle\sum_{c\in\Fq}\chi(c.\alpha) =\displaystyle\sum_{c\in\Fq}\chi(c)$\end{center}
-car $\chi$ est un morphisme et que $\phi :c \longmapsto \alpha.c$ est une bijection pour $\alpha$ non nul.
-On obtient dès lors que
-\begin{center} 
-$\chi(\alpha)\displaystyle\sum_{c\in\Fq}\chi(c) - \displaystyle\sum_{c\in\Fq}\chi(c) =0$
-\end{center}
-i.e.
-\begin{center}
-$\displaystyle\sum_{c\in\Fq}\chi(c)(\chi(\alpha) -1) = 0$
-\end{center}
-Or, comme $
-\chi$ est supposé non trivial, $\chi(\alpha) \neq 1$ et donc $\displaystyle\sum_{c\in\Fq}\chi(c) = 0$ pour tout caractère $\chi$ non trivial.
-		\item De droite à gauche : Supposons que $\displaystyle\sum_{\alpha \in \Fq} \chi(P(\alpha)) = 0$ pour tout caractère additif non-trivial, i.e. 
-		\begin{center} $\displaystyle	\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}=0$ \end{center}
-De la proposition précédente, nous avons que 
-\begin{center} $N = \displaystyle \frac{1}{q} \sum_{c\in\Fq}\sum_{\chi \in \hat{Fq}^+} \chi(P(c)).\overline{\chi(\alpha)}$ \end{center}
-\begin{align*}
-&= \displaystyle \frac{1}{q}\sum_{\chi \in \hat{Fq}^+}  \sum_{c\in\Fq}\chi(P(c)).\overline{\chi(\alpha)}\\
-&= \displaystyle \frac{1}{q}\left[\sum_{c\in\Fq} \chi_0(P(c)).\overline{\chi_0(\alpha)}+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]\\
-&= \displaystyle \frac{1}{q}\left[\sum_{c\in\Fq} \chi_1(0).\overline{\chi_1(0)}+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]\\
-&= \displaystyle \frac{1}{q}\left[q+\sum_{\chi \in \hat{Fq}^+/\chi_0} \sum_{c\in\Fq} \chi(P(c)).\overline{\chi(\alpha)}\right]  \text{   (par la proposition 5)}\\
-&= \displaystyle \frac{1}{q}\left[q+\sum_{\chi \in \hat{Fq}^+/\chi_0} \overline{\chi(\alpha)}\sum_{c\in\Fq} \chi(P(c))\right]\\
-&= 1 + 0  \text{   (par hypothèse)}
-\end{align*}
-Il n'existe alors qu'une seule solution à l'équation pour tout $\alpha \in \Fq$. Il s'ensuit que $P$ réalise une bijection et est donc de permutation.
-
-
-	\end{enumerate}
+Ainsi, pour tous $a$ et $b$ distincts non nuls, on a $Q(a) \neq Q(b)$. Par ailleurs, s'il existe $a$ non nul tel que $Q(a)=Q(0)=0$, il est unique. Mais alors, $Q$ satisfait le lemme suivant, que l'on admettra :
+\begin{lemma}
+Soit $H$ un polynôme de $\F_{2^n}$ tel que $H(0)=0$ et vérifiant,
+$$\forall (a,b) \in \F_{2^n}^2, a\neq b \neq 0, H(a) \neq H(b)$$ 
+et $H(e)=0$ pour un unique $e$ non nul, alors $H$ est de degré $2^{n}-1$.
+\end{lemma}
+On en déduit que $Q$ est de degré $2^n-1$, ce qui est impossible. Par conséquent, pour tout $a \neq 0$, $Q(a) \neq Q(0)$ et donc $Q$ est un polynôme de permutation.
 \end{proof}
 
-\pagebreak
-
-\section{Applications des polynômes de permutations}
-
-\subsection{Applications en cryptographie}
-Les applications en cryptographie symétriques ou mêmes asymétriques sont assez diverses et certaines sont loin d'être triviales. C'est pourquoi nous allons concentrer notre étude sur les polynômes dit de \textsl{DICKSON}. Introduisons cette notion. Les polynômes de Dickson sont des suites de polynômes composées d'une indéterminée et d'un paramètre que l'on notera dans la suite, respectivement, $X$ et $\alpha$. Ces polynômes interviennent dans divers sujets mathématiques comme les permutations sur des corps finis et également sur des algorithmes de factorisations. Il est intéressant de remarquer que les polynômes de Dickson peuvent être identifiés aux polynômes de Tchebychev dès lors que $\alpha$ est un carré. Toutefois dans un aspect cryptographique il est primordial pour certaines applications que $\alpha$ ne soit pas un carré. Dans la suite on notera $\mathbbm{D}_n$ et $\mathbbm{E}_n$ les polynômes de première et deuxième espèce. A noter que les polynômes de deuxième espèce sont habituellement indexés par leur degré mais il est pratique d'introduire un polynôme de deuxième espèce réduit par $\mathbbm{E}_n = \mathbbm{E}_{n-1}$, en posant $\mathbbm{E}_0 = 0$. On définit les coefficients de ces polynômes de la sorte,
-\begin{center}
-$
-\mathbbm{D}_0(X, \alpha) = 2 \hspace{0,2cm} \text{,} \hspace{0,2cm} \mathbbm{E}_0(X, \alpha) = 1 \linebreak
-\mathbbm{D}_n(X, \alpha) = \displaystyle \sum_{k=0}^{\left\lfloor n/2 \right\rfloor} \frac{n}{n-k} \binom{n-k}{k}(-\alpha)^k X^{n-2k} \hspace{0,2cm} \text{,} \hspace{0,2cm} \textbf{si} \hspace{0,2cm} n \hspace{0,2cm} \textbf{est positif} \linebreak
-\mathbbm{E}_n(X, \alpha) = \displaystyle \displaystyle \sum_{k=0}^{\left\lfloor n/2 \right\rfloor} \binom{n-k}{k}(-\alpha)^k X^{n-2k} \hspace{0,2cm} \text{,} \hspace{0,2cm} \textbf{si} \hspace{0,2cm} n \hspace{0,2cm} \textbf{est positif}
-$
-\end{center}
-
-On obtient alors les relations de récurrences suivante,
-\begin{center}
-$
-\mathbbm{D}_n(X, \alpha) = X \mathbbm{D}_{n-1}(X, \alpha) - \alpha 	\mathbbm{D}_{n-2}(X, \alpha) \linebreak
-\mathbbm{E}_n(X, \alpha) = X \mathbbm{E}_{n-1}(X, \alpha) - \alpha 	\mathbbm{E}_{n-2}(X, \alpha)
-$
-\end{center}
-
-Ces polynômes ont un lien étroit avec les polynômes de permutations. On peut en effet voir qu'il existe une condition nécessaire et suffisante entre eux grâce à la proposition suivante,
-\begin{prop}
-Soit $a \in \F_q^{*}$, le polynôme $\mathbbm{D}_n(X, a)$ est de permutation sur $\F_q$ si et seulement si pgcd$(n, q^2 -1) = 1$.
-\end{prop}
-Le cas où $a = 0$ est trivial puisque $\mathbbm{D}_n(X, 0) = X^n$. Pour le cas général il suffit de remarquer que l'ensemble $ \{ \mathbbm{D}_n(X, a) :  $ pgcd$(n, q^2 -1) = 1 \}$ est stable par composition si et seulement si $a \in \{ 0 , 1, -1 \}$. Ces polynômes ont permis la création d'un nouveau système cryptographique à clé publique, baptisé \textsf{LUC} par Smith et Lenon dans les années 90.
-\subsection{Autres applications}
-
-\vfill \eject
 \section*{Conclusion}
 \addcontentsline{toc}{part}{Conclusion}
 
@@ -1240,6 +1255,7 @@ Notre principale préoccupation est de trouver des algorithmes déterministes ef
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagebreak
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
